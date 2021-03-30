@@ -1,7 +1,7 @@
 {
-  "name": "datamodel-manager-system",
+  "name": "abstract-vue",
   "version": "1.0.0",
-  "description": "datamodel-manager-system",
+  "description": "abstract-vue",
   "author": "zhoubichuan@icloud.com",
   "private": true,
   "scripts": {
