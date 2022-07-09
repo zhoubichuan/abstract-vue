@@ -7,9 +7,7 @@
       </template>
     </slider-right>
     <!-- 搜索 -->
-    <search-part
-      v-model="condition"
-      @handleSearch="handleSearch">
+    <search-part v-model="condition" @handleSearch="handleSearch">
     </search-part>
     <!-- 按钮 -->
     <button-part
@@ -19,7 +17,8 @@
       @handleRelease="handleRelease"
       @handleRevise="handleRevise"
       @handleToVoid="handleToVoid"
-      @handleInvalid="handleInvalid">
+      @handleInvalid="handleInvalid"
+    >
     </button-part>
     <!-- 数据展示 -->
     <table-part
@@ -29,129 +28,129 @@
       @showViewModal="showViewModal"
       @showEditModal="showEditModal"
       @pageChange="pageChange"
-      @handleSearch="handleSearch">
+      @handleSearch="handleSearch"
+    >
     </table-part>
-    </div>
+  </div>
 </template>
 <script>
-
 export default {
-    name: 'Tag',
-    components: {
-      SearchPart: () => import('./SearchPart'),
-      ButtonPart: () => import('./ButtonPart'),
-      TablePart: () => import('./TablePart'),
-      SliderTabs: () => import('./SliderTabs')
+  name: "Tag",
+  components: {
+    SearchPart: () => import("./SearchPart"),
+    ButtonPart: () => import("./ButtonPart"),
+    TablePart: () => import("./TablePart"),
+    SliderTabs: () => import("./SliderTabs"),
+  },
+  data() {
+    return {
+      condition: {},
+      page: {},
+      selects: [],
+      sliderRightIndex: 0,
+      sliderPage: [],
+      loadingFlag: false,
+      startLoad: true,
+      addModalFlag: false,
+    };
+  },
+  watch: {
+    condition: {
+      handler(newVal, oldVal) {
+        if (this.startLoad) {
+          this.handleSearch(this.condition);
+          this.startLoad = false;
+        }
+      },
+      deep: true,
     },
-    data () {
-      return {
-        condition: {},
-        page: {},
-        selects: [],
-        sliderRightIndex: 0,
-        sliderPage: [],
-        loadingFlag: false,
-        startLoad: true,
-        addModalFlag: false
+  },
+  beforeCreate() {
+    this.$on("handleSearch", () => {
+      this.handleSearch();
+    });
+  },
+  mounted() {
+    setTimeout(() => {
+      this.handleSearch(this.condition);
+    },1000)
+  },
+  methods: {
+    handleCreate() {
+      if (!this.sliderPage.find((item) => item.state === "add")) {
+        this.sliderPage.push({
+          title: "创建页面",
+          data: {
+            storeType: false,
+            inherit: false,
+          },
+          state: "add",
+          getTableList: this.handleSearch,
+        });
       }
     },
-    watch: {
-      condition: {
-        handler (newVal, oldVal) {
-          if (this.startLoad) {
-            this.handleSearch(this.condition)
-            this.startLoad = false
-          }
-        },
-        deep: true
+    showViewModal(row) {
+      if (!this.sliderPage.find((item) => item.data.id === row.id)) {
+        this.sliderPage.push({
+          title: row.nameEn,
+          data: row,
+          state: "show",
+          getTableList: this.handleSearch,
+        });
       }
     },
-    beforeCreate () {
-      this.$on('handleSearch', () => {
-        this.handleSearch()
-      })
-    },
-    mounted () {
-
-    },
-    methods: {
-      handleCreate () {
-        if (!this.sliderPage.find(item => item.state === 'add')) {
-          this.sliderPage.push({
-            title: '创建页面',
-            data: {
-              storeType: false,
-              inherit: false
-            },
-            state: 'add',
-            getTableList: this.handleSearch
-          })
-        }
-      },
-      showViewModal (row) {
-        if (!this.sliderPage.find(item => item.data.id === row.id)) {
-          this.sliderPage.push({
-            title: row.nameEn,
-            data: row,
-            state: 'show',
-            getTableList: this.handleSearch
-          })
-        }
-      },
-      showEditModal (row) {
-        if (!this.sliderPage.find(item => item.data.id === row.id)) {
-          this.sliderPage.push({
-            title: row.nameEn,
-            data: row,
-            state: 'edit',
-            getTableList: this.handleSearch
-          })
-        }
-      },
-      handleDelete () {
-        let arr = this.selects.map(item => item._id)
-        this.$api.deleteTag(arr).then(req => {
-          this.handleSearch()
-        })
-      },
-      handlePreRelease () {
-      },
-      handleRelease () {
-      },
-      handleRevise () {
-      },
-      handleToVoid () {
-      },
-      handleInvalid () {
-      },
-      pageChange (page) {
-        this.page = page
-        let params = {
-          ...page,
-          ...this.condition
-        }
-        this.handleSearch(params)
-      },
-      handleSearch (condition) {
-        this.$refs.entityTable.queryTagList(condition)
+    showEditModal(row) {
+      if (!this.sliderPage.find((item) => item.data.id === row.id)) {
+        this.sliderPage.push({
+          title: row.nameEn,
+          data: row,
+          state: "edit",
+          getTableList: this.handleSearch,
+        });
       }
-    }
-}
+    },
+    handleDelete() {
+      let arr = this.selects.map((item) => item._id);
+      this.$api.deleteTag(arr).then((req) => {
+        this.handleSearch();
+      });
+    },
+    handlePreRelease() {},
+    handleRelease() {},
+    handleRevise() {},
+    handleToVoid() {},
+    handleInvalid() {},
+    pageChange(page) {
+      this.page = page;
+      let params = {
+        ...page,
+        ...this.condition,
+      };
+      this.handleSearch(params);
+    },
+    handleSearch(condition) {
+      this.$refs.entityTable.queryTagList(condition);
+    },
+  },
+};
 </script>
 
 <style scoped lang="stylus">
 .content {
-  height:100%;
-  display:flex;
+  height: 100%;
+  display: flex;
   flex-direction: column;
 }
-.search-part{
+
+.search-part {
   flex-basis: 20px;
 }
-.button-part{
+
+.button-part {
   flex-basis: 20px;
 }
-.table-part{
+
+.table-part {
   flex-grow: 1;
   display: flex;
   flex-direction: column;

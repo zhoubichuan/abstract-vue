@@ -7,8 +7,8 @@
     <el-tab-pane class="content-tabs-pane" label="参考对象引用信息" name="referenceObject">
       <search-service v-if="activeName === 'referenceObject'"></search-service>
     </el-tab-pane>
-    <el-tab-pane class="content-tabs-pane" label="数据实体引用信息" name="dataEntity">
-      <search-service v-if="activeName === 'dataEntity'"></search-service>
+    <el-tab-pane class="content-tabs-pane" label="数据实体引用信息" name="DataEntity">
+      <search-service v-if="activeName === 'DataEntity'"></search-service>
     </el-tab-pane>
     <el-tab-pane class="content-tabs-pane" label="关系实体引用信息" name="relationEntity">
       <search-service v-if="activeName === 'relationEntity'"></search-service>
@@ -27,7 +27,7 @@ export default {
   },
   provide () {
     return {
-      '$dataEntity': this
+      '$DataEntity': this
     }
   },
   props: {

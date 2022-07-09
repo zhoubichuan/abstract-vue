@@ -1,3 +1,4 @@
 export * from './login'
-export * from './dataModel'
+export * from './relationEntity'
+export * from './dataEntity'
 export * from './systemTag'

@@ -135,7 +135,7 @@ router.beforeEach((to, from, next) => {
       service.post('/users/checklogin', {
         'sessionId': sessionId
       }).then(res => {
-        if (res.status === '1') {
+        if (res.status === 200) {
           if (!store.state.userId) {
             store.commit('SET_USERID', res.result._id)
             store.commit('SET_USERNAME', res.result.info.username)

@@ -25,7 +25,7 @@ module.exports = {
       '/product': {
         target: 'http://localhost:7005'
       },
-      '/dataModel': {
+      '/dataEntity': {
         target: 'http://localhost:7005'
       },
       '/systemBaseInfo': {

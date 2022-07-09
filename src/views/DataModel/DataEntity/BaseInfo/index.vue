@@ -69,7 +69,7 @@ import FormMixin from '@/mixin/FormMixin.js'
       }
     },
     inject: {
-      '$dataEntity': {
+      '$DataEntity': {
         type: Object
       }
     },
@@ -80,7 +80,7 @@ import FormMixin from '@/mixin/FormMixin.js'
       handleInit () {
         this.baseInfoForm = this.$set(
           this, 'baseInfoForm',
-          window._.cloneDeep(this.$dataEntity.tabsData.data)
+          window._.cloneDeep(this.$DataEntity.tabsData.data)
           )
       },
       async checkValidate (handleFn) {
@@ -96,7 +96,7 @@ import FormMixin from '@/mixin/FormMixin.js'
         let keys = ['nameEn', 'name', 'descriptEn', 'descript', 'parentId', 'storeType', 'modelType', 'inherit', 'tableName']
         let params = this.$filterObj(this.baseInfoForm, keys)
         this.$api.createDataEntity(params).then(res => {
-          if (res.status === '1') {
+          if (res.status === 200) {
           this.$message({
               message: res.msg,
               type: 'success'
@@ -112,7 +112,7 @@ import FormMixin from '@/mixin/FormMixin.js'
         let keys = ['id', 'nameEn', 'name', 'descriptEn', 'descript', 'parentId', 'storeType', 'modelType', 'inherit', 'tableName']
         let params = this.$filterObj(this.baseInfoForm, keys)
         this.$api.updateDataEntity(params).then(res => {
-          if (res.status === '1') {
+          if (res.status === 200) {
             this.$message({
                 message: res.msg,
                 type: 'success'
@@ -129,7 +129,7 @@ import FormMixin from '@/mixin/FormMixin.js'
     },
     computed: {
       pageSate () {
-        return this.$dataEntity.tabsData.state
+        return this.$DataEntity.tabsData.state
       },
       disableds () {
         let result = {
@@ -162,7 +162,7 @@ import FormMixin from '@/mixin/FormMixin.js'
           } else {
             result.historyRecord = false
           }
-          let oldFormData = this.$dataEntity.tabsData.data
+          let oldFormData = this.$DataEntity.tabsData.data
           let newFormData = this.baseInfoForm
           result.saveButton = window._.isEqual(oldFormData, newFormData)
           console.log(result.saveButton)

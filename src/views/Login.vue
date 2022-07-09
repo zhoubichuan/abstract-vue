@@ -69,7 +69,7 @@ export default {
           password: this.loginForm.password
       }).then(res => {
           // console.log('login-info  ' + res)
-          if (res.status === '1') {
+          if (res.status === 200) {
               localStorage.setItem('token', res.result.token)
               this.$store.commit('SET_USERID', res.result.user._id)
               this.$store.commit('SET_USERNAME', res.result.user.info.username)

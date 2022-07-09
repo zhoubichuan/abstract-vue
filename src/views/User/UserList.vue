@@ -322,7 +322,7 @@ export default {
       getUserData (res) {
         var _data = []
         let userRole = ''
-        if (res.status === '1') {
+        if (res.status === 200) {
             this.users = res.result
             for (let i = 0; i < this.users.length; i++) {
               var obj = {}

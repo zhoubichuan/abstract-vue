@@ -185,7 +185,7 @@ export default {
           pageSize,
           ...condition
         }).then(res => {
-          if (res.status === '1') {
+          if (res.status === 200) {
             let {result, page: {curPage, total, pageSize}} = res
             this.loadingFlag = false
             this.page.total = total

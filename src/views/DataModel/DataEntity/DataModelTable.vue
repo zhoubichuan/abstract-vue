@@ -15,6 +15,19 @@
     <el-table-column fixed="left" type="index" width="55"> </el-table-column>
     <el-table-column fixed="left" type="selection" width="55">
     </el-table-column>
+    <el-table-column
+      fixed="left"
+      show-overflow-tooltip
+      prop="code"
+      label="编码"
+      width="100"
+    >
+      <template slot-scope="{ row }">
+        <el-link size="mini" type="primary" @click="showViewModal(row)">{{
+          row.code
+        }}</el-link>
+      </template>
+    </el-table-column>
     <el-table-column show-overflow-tooltip prop="name" label="中文名称1">
     </el-table-column>
     <el-table-column show-overflow-tooltip prop="nameEn" label="英文名称">
@@ -22,6 +35,14 @@
     <el-table-column show-overflow-tooltip prop="descript" label="中文描述">
     </el-table-column>
     <el-table-column show-overflow-tooltip prop="descriptEn" label="英文描述">
+    </el-table-column>
+    <el-table-column show-overflow-tooltip prop="version" label="版本">
+    </el-table-column>
+    <el-table-column show-overflow-tooltip prop="state" label="状态">
+    </el-table-column>
+    <el-table-column show-overflow-tooltip prop="eos" label="EOS时间">
+    </el-table-column>
+    <el-table-column show-overflow-tooltip prop="modeType" label="模型类型">
     </el-table-column>
     <el-table-column show-overflow-tooltip prop="creater" label="创建者">
     </el-table-column>
@@ -40,12 +61,18 @@
           title="编辑"
           @click="showEditModal(row)"
         ></el-link>
+        <el-link
+          icon="el-icon-collection"
+          title="修订"
+          @click="showRemoveModal(row)"
+        ></el-link>
       </template>
     </el-table-column>
   </table-page>
 </template>
 <script>
 export default {
+  name: 'DataEntityTable',
   props: {
     searchConditon: {
       type: Object,
@@ -84,7 +111,7 @@ export default {
       this.$emit("pageChange", this.page);
     },
     handleSearch(condition) {
-      this.queryTagList(condition);
+      this.queryDataEntityList(condition);
     },
     handleChange(val) {
       console.log(val);
@@ -107,11 +134,11 @@ export default {
       this.removeModalFlag = true;
       this.productId = row._id;
     },
-    queryTagList(condition = {}) {
+    queryDataEntityList(condition = {}) {
       this.loadingFlag = true;
       let { curPage, pageSize } = this.page;
       this.$api
-        .getTagList({
+        .getDataEntityList({
           curPage,
           pageSize,
           ...condition,

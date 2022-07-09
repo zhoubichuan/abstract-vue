@@ -97,7 +97,7 @@ import {relationEntityTypeOptions} from '@/components/SearchForm/EnumerationType
         let keys = ['nameEn', 'name', 'descriptEn', 'descript', 'parentId', 'combinType', 'relationType', 'inherit', 'tableName']
         let params = this.$filterObj(this.baseInfoForm, keys)
         this.$api.createDataEntity(params).then(res => {
-          if (res.status === '1') {
+          if (res.status === 200) {
           this.$message({
               message: res.msg,
               type: 'success'
@@ -113,7 +113,7 @@ import {relationEntityTypeOptions} from '@/components/SearchForm/EnumerationType
         let keys = ['id', 'nameEn', 'name', 'descriptEn', 'descript', 'parentId', 'combinType', 'relationType', 'inherit', 'tableName']
         let params = this.$filterObj(this.baseInfoForm, keys)
         this.$api.updateDataEntity(params).then(res => {
-          if (res.status === '1') {
+          if (res.status === 200) {
             this.$message({
                 message: res.msg,
                 type: 'success'
