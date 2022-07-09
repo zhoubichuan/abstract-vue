@@ -11,25 +11,25 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/users': {
-        target: 'http://localhost:3000'
+        target: 'http://localhost:7005'
       },
       '/clients': {
-        target: 'http://localhost:3000'
+        target: 'http://localhost:7005'
       },
       '/pay': {
-        target: 'http://localhost:3000'
+        target: 'http://localhost:7005'
       },
       '/order': {
-        target: 'http://localhost:3000'
+        target: 'http://localhost:7005'
       },
       '/product': {
-        target: 'http://localhost:3000'
+        target: 'http://localhost:7005'
       },
       '/dataModel': {
-        target: 'http://localhost:3000'
+        target: 'http://localhost:7005'
       },
       '/systemBaseInfo': {
-        target: 'http://localhost:3000'
+        target: 'http://localhost:7005'
       }
     },
 
