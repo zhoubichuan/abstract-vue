@@ -110,7 +110,7 @@ export default {
       this.$emit("pageChange", this.page);
     },
     handleSearch(condition) {
-      this.queryDataEntityList(condition);
+      this.queryDataInstanceList(condition);
     },
     handleChange(val) {
       console.log(val);
@@ -133,11 +133,11 @@ export default {
       this.removeModalFlag = true;
       this.productId = row._id;
     },
-    queryDataEntityList(condition = {}) {
+    queryDataInstanceList(condition = {}) {
       this.loadingFlag = true;
       let { curPage, pageSize } = this.page;
       this.$api
-        .getDataEntityList({
+        .getDataInstanceList({
           curPage,
           pageSize,
           ...condition,

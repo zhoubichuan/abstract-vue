@@ -28,7 +28,7 @@
         }}</el-link>
       </template>
     </el-table-column>
-    <el-table-column show-overflow-tooltip prop="name" label="中文名称">
+    <el-table-column show-overflow-tooltip prop="name" label="中文名称1">
     </el-table-column>
     <el-table-column show-overflow-tooltip prop="nameEn" label="英文名称">
     </el-table-column>
@@ -72,6 +72,7 @@
 </template>
 <script>
 export default {
+  name: 'DataInstanceTable',
   props: {
     searchConditon: {
       type: Object,
@@ -110,7 +111,7 @@ export default {
       this.$emit("pageChange", this.page);
     },
     handleSearch(condition) {
-      this.queryDataEntityList(condition);
+      this.queryDataInstanceList(condition);
     },
     handleChange(val) {
       console.log(val);
@@ -133,11 +134,11 @@ export default {
       this.removeModalFlag = true;
       this.productId = row._id;
     },
-    queryDataEntityList(condition = {}) {
+    queryDataInstanceList(condition = {}) {
       this.loadingFlag = true;
       let { curPage, pageSize } = this.page;
       this.$api
-        .getDataEntityList({
+        .getDataInstanceList({
           curPage,
           pageSize,
           ...condition,
