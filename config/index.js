@@ -28,6 +28,12 @@ module.exports = {
       '/dataEntity': {
         target: 'http://localhost:7005'
       },
+      '/dataInstance': {
+        target: 'http://localhost:7005'
+      },
+      '/relationEntity': {
+        target: 'http://localhost:7005'
+      },
       '/systemBaseInfo': {
         target: 'http://localhost:7005'
       }
@@ -71,10 +77,10 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../dist/index.html'),
+    index: path.resolve(__dirname, '../abstract-vue/index.html'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsRoot: path.resolve(__dirname, '../abstract-vue'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '',
 

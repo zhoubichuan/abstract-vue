@@ -173,7 +173,7 @@ export default {
           {
             index: '1',
             ico: 'el-icon-info',
-            title: '用户管理',
+            title: '事物',
             childrens: [
               {
                 index: '1-1',

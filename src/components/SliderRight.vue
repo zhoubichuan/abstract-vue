@@ -10,147 +10,155 @@
     :show-close="true"
     :wrapperClosable="false"
     :modal-append-to-body="false"
-    :before-close="handleClear">
+    :before-close="handleClear"
+  >
     <template v-if="page.length">
       <el-tabs
         class="slider-tabs"
         v-model="activeName"
         type="card"
         editable
-        @edit="handleClose">
+        @edit="handleClose"
+      >
         <el-tab-pane
           class="slider-tab-pane"
           :name="pageItem.title"
           :label="pageItem.title"
           v-for="(pageItem, pageIndex) in page"
-          :key="pageIndex">
+          :key="pageIndex"
+        >
           <slot :data="pageItem"></slot>
         </el-tab-pane>
-    </el-tabs>
+      </el-tabs>
     </template>
   </el-drawer>
 </template>
 <script>
-import modal from '@/components/Modal'
+import modal from "@/components/Modal";
 
 export default {
-  name: 'SliderRight',
+  name: "SliderRight",
   components: {
-    modal
+    modal,
   },
   props: {
     value: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
-  data () {
+  data() {
     return {
-      activeName: '',
+      activeName: "",
       page: this.value,
-      drawer: false
-    }
+      drawer: false,
+    };
   },
   watch: {
     value: {
-      handler (val) {
-        this.page = val
+      handler(val) {
+        this.page = val;
         if (this.page.length) {
-          this.drawer = true
+          this.drawer = true;
         } else {
-          this.drawer = false
+          this.drawer = false;
         }
-        this.activeName = this.page[this.page.length - 1].title
+        let data = this.page[this.page.length - 1];
+        this.activeName = data ? data.title : "";
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   methods: {
-    handleClose (targetName) {
-      let tabs = this.page
-      let activeName = this.activeName
+    handleClose(targetName) {
+      let tabs = this.page;
+      let activeName = this.activeName;
       if (activeName === targetName) {
         tabs.forEach((tab, index) => {
           if (tab.data.name === targetName) {
-            let nextTab = tabs[index + 1] || tabs[index - 1]
+            let nextTab = tabs[index + 1] || tabs[index - 1];
             if (nextTab) {
-              activeName = nextTab.data.name
+              activeName = nextTab.data.name;
             }
           }
-        })
+        });
       }
-      this.activeName = activeName
-      this.page = tabs.filter(tab => tab.data.name !== targetName)
+      this.activeName = activeName;
+      this.page = tabs.filter((tab) => tab.data.name !== targetName);
       if (this.page.length) {
-        this.drawer = true
+        this.drawer = true;
       } else {
-        this.drawer = false
+        this.drawer = false;
       }
-      this.$emit('input', this.page)
+      this.$emit("input", this.page);
     },
-    handleClear (done) {
-      this.$confirm('确认关闭？')
-        .then(_ => {
-          this.page = []
-          this.drawer = false
-          this.$emit('input', [])
-          done()
+    handleClear(done) {
+      this.$confirm("确认关闭？")
+        .then((_) => {
+          this.page = [];
+          this.drawer = false;
+          this.$emit("input", []);
+          done();
         })
-        .catch(_ => {})
-    }
+        .catch((_) => {});
+    },
   },
-  install (Vue) {
-    Vue.component('SliderRight', this)
-  }
-}
+  install(Vue) {
+    Vue.component("SliderRight", this);
+  },
+};
 </script>
 <style scoped>
-.slider-right >>> .slider-button{
-  padding:10px 0;
+.slider-right >>> .slider-button {
+  padding: 10px 0;
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color:white ;
-  box-shadow: 1px 0px 5px #888888
+  background-color: white;
+  box-shadow: 1px 0px 5px #888888;
 }
-.slider-right >>> #el-drawer__title span {display: none;}
+.slider-right >>> #el-drawer__title span {
+  display: none;
+}
 .slider-right >>> #el-drawer__title button {
-  position:absolute;
+  position: absolute;
   right: 6px;
   top: 8px;
   z-index: 1000;
 }
-.slider-right >>> #el-drawer__title{
-  margin:0;
-  padding:0;
+.slider-right >>> #el-drawer__title {
+  margin: 0;
+  padding: 0;
 }
-.slider-right >>> .el-drawer__body > .el-tabs.el-tabs--top.el-tabs--border-card{
+.slider-right
+  >>> .el-drawer__body
+  > .el-tabs.el-tabs--top.el-tabs--border-card {
   height: 100%;
 }
-.slider-right >>> .el-tabs--border-card>.el-tabs__content{
-    height: calc(100% - 69px);
+.slider-right >>> .el-tabs--border-card > .el-tabs__content {
+  height: calc(100% - 69px);
 }
-.slider-right >>> .el-tabs--border-card>.el-tabs__content > .el-tab-pane{
+.slider-right >>> .el-tabs--border-card > .el-tabs__content > .el-tab-pane {
   height: 100%;
 }
-.slider-right >>> .el-tabs__new-tab{
+.slider-right >>> .el-tabs__new-tab {
   display: none;
 }
-.slider-right{
+.slider-right {
   left: 30%;
   box-shadow: 2px 0px 3px 3px #888888;
 }
-.slider-right >>> .slider-tabs{
+.slider-right >>> .slider-tabs {
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
-.slider-right >>> .slider-tabs .el-tabs__content{
+.slider-right >>> .slider-tabs .el-tabs__content {
   margin-left: 20px;
   margin-right: 20px;
   flex: 1;
 }
-.slider-right >>> .slider-tabs .slider-tab-pane{
+.slider-right >>> .slider-tabs .slider-tab-pane {
   height: 100%;
 }
 </style>
