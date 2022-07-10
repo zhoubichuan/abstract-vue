@@ -1,5 +1,6 @@
 <template>
   <el-dialog
+    v-if="dialogFormVisible"
     center
     :title="name || '基本属性'"
     modal-append-to-body

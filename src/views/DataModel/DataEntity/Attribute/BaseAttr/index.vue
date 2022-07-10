@@ -78,6 +78,7 @@ export default {
   data() {
     return {
       conditon: {},
+      viewPage: false,
       page: {
         curPage: 1,
         pageSize: 20,
@@ -109,9 +110,6 @@ export default {
           { required: true, message: "请选择模型类型", trigger: "change" },
         ],
         inherit: [],
-        tableName: [
-          { required: true, message: "请输入表名称", trigger: "change" },
-        ],
         version: [],
         creater: [],
         creatTime: [],
@@ -196,7 +194,7 @@ export default {
   },
   computed: {
     pageSate() {
-      return this.$DataEntity.tabsData.state;
+      return this.viewPage ? "show" : this.$DataEntity.tabsData.state;
     },
     disableds() {
       let result = {
@@ -210,7 +208,6 @@ export default {
         storeType: false,
         modelType: false,
         inherit: false,
-        tableName: false,
         version: false,
         creater: false,
         creatTime: false,
@@ -299,9 +296,13 @@ export default {
           label: "是否继承",
           render: this.baseInfoForm.inherit,
         },
-        tableName: {
-          label: "表名称",
-          render: this.baseInfoForm.tableName,
+        image: {
+          label: "图片",
+          render: this.baseInfoForm.image,
+        },
+        video: {
+          label: "视频",
+          render: this.baseInfoForm.video,
         },
       };
 
@@ -436,16 +437,37 @@ export default {
               return this.mixinRadio(formItem);
             },
           },
-          tableName: {
-            label: "表名称",
-            disabled: this.disableds.tableName,
-            placeholder: "请输入表名称",
+          image: {
+            label: "图片",
+            disabled: this.disableds.image,
+            placeholder: "请输入图片",
+            singleFormItem: true,
             render: ({
               data: {
                 attrs: { formItem },
               },
             }) => {
-              return this.mixinInput(formItem);
+              return this.mixinUpload(formItem);
+            },
+          },
+          video: {
+            label: "视频",
+            disabled: this.disableds.video,
+            placeholder: "请输入视频",
+            singleFormItem: true,
+            // onPreview: (file) => {
+            //   this[formItem.formKey][formItem.prop] = file.url;
+            //   this.dialogVisible = true;
+            // },
+            // onRemove: (file, fileList) => {
+            //   console.log(file, fileList);
+            // },
+            render: ({
+              data: {
+                attrs: { formItem },
+              },
+            }) => {
+              return this.mixinUpload(formItem);
             },
           },
         };
@@ -491,6 +513,7 @@ export default {
     },
     handleCreate() {
       this.visibleDialog = true;
+      this.viewPage = false;
       this.$refs.dialogForm.handleCreate();
     },
     create() {
@@ -520,14 +543,15 @@ export default {
       });
     },
     showViewModal(index, row) {
-      let params = this.$filterObj(this.baseInfoForm, keys);
       this.$api.getAttributeDetail(row.code).then((res) => {
         if (res.status === 200) {
           this.$message({
             message: res.msg,
             type: "success",
           });
-          this.baseInfoForm = res.result
+          this.baseInfoForm = res.result;
+          this.viewPage = true;
+          this.handleCreate();
         } else {
           this.$message.error(res.msg);
         }
