@@ -10,7 +10,7 @@
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
     "deploy": "bash deploy.sh",
-    "gh-pages": "bash deploy_gh-pages.sh"
+    "gh-pages": "bash github.sh"
   },
   "dependencies": {
     "axios": ">=0.21.1",

@@ -75,16 +75,16 @@ export default {
       let activeName = this.activeName;
       if (activeName === targetName) {
         tabs.forEach((tab, index) => {
-          if (tab.data.name === targetName) {
+          if (tab.data.nameEn === targetName) {
             let nextTab = tabs[index + 1] || tabs[index - 1];
             if (nextTab) {
-              activeName = nextTab.data.name;
+              activeName = nextTab.data.nameEn;
             }
           }
         });
       }
       this.activeName = activeName;
-      this.page = tabs.filter((tab) => tab.data.name !== targetName);
+      this.page = tabs.filter((tab) => tab.data.nameEn !== targetName);
       if (this.page.length) {
         this.drawer = true;
       } else {

@@ -73,7 +73,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.handleSearch(this.condition);
-    },1000)
+    }, 1000);
   },
   methods: {
     handleCreate() {

@@ -1,3 +1,4 @@
+export * from './attribute'
 export * from './login'
 export * from './relationEntity'
 export * from './dataEntity'

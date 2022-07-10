@@ -1,6 +1,6 @@
 <template>
   <div>
-    <dialog-form ref="dialogForm">
+    <dialog-form ref="dialogForm" name="扩展属性">
       <el-form ref="form" :model="baseInfoForm" label-width="80px" size="mini" :rules="rules">
         <form-item 
           v-for="(formItem, formItemIndex) in baseFormData"

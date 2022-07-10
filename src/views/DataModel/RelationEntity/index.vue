@@ -133,7 +133,7 @@ export default {
         this.handleSearch(params)
       },
       handleSearch (condition) {
-        this.$refs.entityTable.queryDataEntityList(condition)
+        this.$refs.entityTable && this.$refs.entityTable.queryDataEntityList(condition)
       }
     }
 }

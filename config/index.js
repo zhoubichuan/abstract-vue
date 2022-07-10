@@ -36,7 +36,10 @@ module.exports = {
       },
       '/systemBaseInfo': {
         target: 'http://localhost:7005'
-      }
+      },
+      '/attribute': {
+        target: 'http://localhost:7005'
+      },
     },
 
     // Various Dev Server settings

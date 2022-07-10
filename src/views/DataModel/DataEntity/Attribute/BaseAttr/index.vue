@@ -1,6 +1,6 @@
 <template>
   <div>
-    <dialog-form ref="dialogForm">
+    <dialog-form ref="dialogForm" name="基本属性" @create="create">
       <el-form
         ref="form"
         :model="baseInfoForm"
@@ -25,6 +25,8 @@
       <me-button type="primary">导入导出</me-button>
     </button-group>
     <table-page
+      :value="page"
+      @input="(val) => handleInput(val)"
       border
       v-loading="loadingFlag"
       element-loading-text="拼命加载中"
@@ -49,98 +51,17 @@
           <el-link
             type="primary"
             @click="showViewModal(scope.$index, scope.row)"
-            >{{ scope.row.productName }}</el-link
+            >{{ scope.row.code }}</el-link
           >
         </template>
       </el-table-column>
       <el-table-column
-        sortable
-        show-overflow-tooltip
-        prop="name"
-        label="中文名称"
-        width="105"
+        v-for="item in tableRows"
+        :key="item.prop"
+        :prop="item.prop"
+        :label="item.label"
+        v-bind="item.attrs"
       >
-      </el-table-column>
-      <el-table-column
-        sortable
-        show-overflow-tooltip
-        prop="nameEn"
-        label="英文名称"
-        width="105"
-      >
-      </el-table-column>
-      <el-table-column
-        sortable
-        show-overflow-tooltip
-        prop="descript"
-        label="中文描述"
-        width="105"
-      >
-      </el-table-column>
-      <el-table-column
-        sortable
-        show-overflow-tooltip
-        prop="descriptEn"
-        label="英文描述"
-        width="105"
-      >
-      </el-table-column>
-      <el-table-column
-        sortable
-        show-overflow-tooltip
-        prop="version"
-        label="版本"
-      >
-      </el-table-column>
-      <el-table-column
-        sortable
-        show-overflow-tooltip
-        prop="eos"
-        label="EOS时间"
-        width="105"
-      >
-      </el-table-column>
-      <el-table-column
-        sortable
-        show-overflow-tooltip
-        prop="modeType"
-        label="模型类型"
-        width="105"
-      >
-      </el-table-column>
-      <el-table-column
-        sortable
-        show-overflow-tooltip
-        prop="creater"
-        label="创建者"
-        width="105"
-      >
-      </el-table-column>
-      <el-table-column
-        sortable
-        show-overflow-tooltip
-        prop="createTime"
-        label="创建时间"
-        width="105"
-      >
-      </el-table-column>
-      <el-table-column
-        sortable
-        show-overflow-tooltip
-        prop="modifier"
-        label="更新者"
-        width="105"
-      >
-      </el-table-column>
-      <el-table-column
-        sortable
-        show-overflow-tooltip
-        prop="modifiTime"
-        label="更新时间"
-        width="105"
-      >
-      </el-table-column>
-      <el-table-column show-overflow-tooltip prop="tags" label="标签">
       </el-table-column>
     </table-page>
   </div>
@@ -156,6 +77,12 @@ export default {
   },
   data() {
     return {
+      conditon: {},
+      page: {
+        curPage: 1,
+        pageSize: 20,
+        total: 0,
+      },
       visibleDialog: false,
       baseInfoForm: {
         storeType: false,
@@ -202,26 +129,67 @@ export default {
         desc: "",
       },
       loadingFlag: false,
-      tableData: [
+      tableData: [],
+      tableRows: [
         {
-          date: "2016-05-02",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
+          prop: "name",
+          label: "中文名称",
+          attrs: { "show-overflow-tooltip": true },
         },
         {
-          date: "2016-05-04",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1517 弄",
+          prop: "nameEn",
+          label: "英文名称",
+          attrs: { "show-overflow-tooltip": true },
         },
         {
-          date: "2016-05-01",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄",
+          prop: "descript",
+          label: "中文描述",
+          attrs: { "show-overflow-tooltip": true },
         },
         {
-          date: "2016-05-03",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1516 弄",
+          prop: "descriptEn",
+          label: "英文描述",
+          attrs: { "show-overflow-tooltip": true },
+        },
+        {
+          prop: "version",
+          label: "版本",
+          attrs: { "show-overflow-tooltip": true },
+        },
+        {
+          prop: "state",
+          label: "状态",
+          attrs: { "show-overflow-tooltip": true },
+        },
+        {
+          prop: "eos",
+          label: "EOS时间",
+          attrs: { "show-overflow-tooltip": true },
+        },
+        {
+          prop: "modeType",
+          label: "模型类型",
+          attrs: { "show-overflow-tooltip": true },
+        },
+        {
+          prop: "creater",
+          label: "创建者",
+          attrs: { "show-overflow-tooltip": true },
+        },
+        {
+          prop: "modifier",
+          label: "更新者",
+          attrs: { "show-overflow-tooltip": true },
+        },
+        {
+          prop: "modifyTime",
+          label: "更新时间",
+          attrs: { "show-overflow-tooltip": true },
+        },
+        {
+          prop: "tags",
+          label: "标签",
+          attrs: { "show-overflow-tooltip": true },
         },
       ],
     };
@@ -495,11 +463,68 @@ export default {
     },
   },
   methods: {
-    handleSelectionChange() {},
+    handleSelectionChange(condition = {}) {
+      this.loadingFlag = true;
+      let { curPage, pageSize } = this.page;
+      this.$api
+        .getAttributeList({
+          curPage,
+          pageSize,
+          ...condition,
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            let {
+              result,
+              page: { curPage, total, pageSize },
+            } = res;
+            this.loadingFlag = false;
+            this.page.total = total;
+            this.page.curPage = curPage;
+            this.page.pageSize = pageSize;
+            this.tableData = result;
+          } else {
+            this.tableData = [];
+            this.loadingFlag = false;
+          }
+        });
+    },
     handleCreate() {
       this.visibleDialog = true;
       this.$refs.dialogForm.handleCreate();
     },
+    create() {
+      let keys = [
+        "nameEn",
+        "name",
+        "descriptEn",
+        "descript",
+        "parentId",
+        "storeType",
+        "modelType",
+        "inherit",
+        "tableName",
+      ];
+      let params = this.$filterObj(this.baseInfoForm, keys);
+      this.$api.createAttribute(params).then((res) => {
+        if (res.status === 200) {
+          this.$message({
+            message: res.msg,
+            type: "success",
+          });
+          this.handleSelectionChange(this.condition);
+        } else {
+          this.$message.error(res.msg);
+        }
+        this.loading = false;
+      });
+    },
+    showViewModal(index,row) {
+      debugger
+    },
+  },
+  mounted() {
+    this.handleSelectionChange();
   },
 };
 </script>
