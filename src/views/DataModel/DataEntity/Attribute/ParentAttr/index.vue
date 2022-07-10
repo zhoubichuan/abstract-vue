@@ -1,6 +1,6 @@
   <template>
     <div>
-      从父模型基础的属性
+      <p>从父模型基础的属性</p>
         <table-page
           border
           v-loading="loadingFlag"

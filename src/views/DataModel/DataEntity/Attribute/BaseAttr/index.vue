@@ -16,7 +16,7 @@
         </form-item>
       </el-form>
     </dialog-form>
-    基本属性
+    <p>基本属性</p>
     <button-group justify="start">
       <me-button type="primary" @click="handleCreate">创建</me-button>
       <me-button>删除</me-button>
@@ -519,8 +519,20 @@ export default {
         this.loading = false;
       });
     },
-    showViewModal(index,row) {
-      debugger
+    showViewModal(index, row) {
+      let params = this.$filterObj(this.baseInfoForm, keys);
+      this.$api.getAttributeDetail(row.code).then((res) => {
+        if (res.status === 200) {
+          this.$message({
+            message: res.msg,
+            type: "success",
+          });
+          this.baseInfoForm = res.result
+        } else {
+          this.$message.error(res.msg);
+        }
+        this.loading = false;
+      });
     },
   },
   mounted() {

@@ -9,7 +9,7 @@
         </form-item>
       </el-form>
     </dialog-form>
-    扩展属性
+    <p>扩展属性</p>
       <button-group justify="start">
         <me-button type="primary" @click ="handleCreate">创建</me-button>
         <me-button >删除</me-button>

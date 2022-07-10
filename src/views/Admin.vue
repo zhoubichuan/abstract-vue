@@ -173,12 +173,13 @@ export default {
           {
             index: '1',
             ico: 'el-icon-info',
-            title: '事物',
+            title: '搜索服务',
             childrens: [
               {
                 index: '1-1',
                 route: '/admin/userList',
-                title: '员工管理'
+                title: '员工管理',
+                authority: [50],
               }
             ]
           },
@@ -190,17 +191,20 @@ export default {
               {
                 index: '2-1',
                 route: '/order/list',
-                title: '订单列表'
+                title: '订单列表',
+                authority: [50],
               },
               {
                 index: '2-2',
                 route: '/order/tag',
-                title: '订单标签'
+                title: '订单标签',
+                authority: [50],
               },
               {
                 index: '2-3',
                 route: '/product/list',
-                title: '产品列表'
+                title: '产品列表',
+                authority: [50],
               }
             ]
           },
@@ -212,17 +216,20 @@ export default {
               {
                 index: '3-1',
                 route: '/client/list',
-                title: '客户列表'
+                title: '客户列表',
+                authority: [50],
               },
               {
                 index: '3-2',
                 route: '/client/type',
-                title: '客户类型'
+                title: '客户类型',
+                authority: [50],
               },
               {
                 index: '3-3',
                 route: '/client/pay',
-                title: '汇款方式'
+                title: '汇款方式',
+                authority: [50],
               }
             ]
           }
