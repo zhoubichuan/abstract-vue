@@ -14,8 +14,8 @@ import MeButton from '@/components/ButtonGroup/MeButton.vue'
 import FormItem from '@/components/FormItem'
 import DialogForm from '@/components/Dialog/DialogForm'
 import SliderRight from '@/components/SliderRight'
-export default{
-  install (Vue) {
+export default {
+  install(Vue) {
     // import './styles/index.scss'
     Vue.use(ElementUI)
     // Vue.use(mavonEditor)
