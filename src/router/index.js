@@ -67,7 +67,7 @@ let router = new Router({
         meta: {
           requireAuth: true // 添加需要权限的标记
         },
-        component: () => import('@/views/SystemBaseInfo/tags')
+        component: () => import('@/views/SystemBaseInfo/Tags')
       },
       {
         path: 'index',
