@@ -526,8 +526,10 @@ export default {
         "storeType",
         "modelType",
         "inherit",
-        "tableName",
+        "image",
+        "video"
       ];
+      console.log(this.baseInfoForm,'this.baseInfoForm')
       let params = this.$filterObj(this.baseInfoForm, keys);
       this.$api.createAttribute(params).then((res) => {
         if (res.status === 200) {
