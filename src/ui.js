@@ -14,6 +14,7 @@ import MeButton from '@/components/ButtonGroup/MeButton.vue'
 import FormItem from '@/components/FormItem'
 import DialogForm from '@/components/Dialog/DialogForm'
 import SliderRight from '@/components/SliderRight'
+import UploadImage from '@/components/UploadImage'
 export default {
   install(Vue) {
     // import './styles/index.scss'
@@ -31,5 +32,6 @@ export default {
     Vue.use(MeButton)
     Vue.use(FormItem)
     Vue.use(DialogForm)
+    Vue.use(UploadImage)
   }
 }

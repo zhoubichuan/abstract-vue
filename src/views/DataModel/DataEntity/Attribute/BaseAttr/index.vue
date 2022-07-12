@@ -298,11 +298,11 @@ export default {
         },
         image: {
           label: "图片",
-          render: this.baseInfoForm.image,
+          render: () => <img width={150} src={this.baseInfoForm.image} />,
         },
         video: {
           label: "视频",
-          render: this.baseInfoForm.video,
+          render: () => <img width={150} src={this.baseInfoForm.video} />,
         },
       };
 
@@ -440,6 +440,7 @@ export default {
           image: {
             label: "图片",
             disabled: this.disableds.image,
+            type: "image",
             placeholder: "请输入图片",
             singleFormItem: true,
             render: ({
@@ -453,15 +454,9 @@ export default {
           video: {
             label: "视频",
             disabled: this.disableds.video,
+            type: "video",
             placeholder: "请输入视频",
             singleFormItem: true,
-            // onPreview: (file) => {
-            //   this[formItem.formKey][formItem.prop] = file.url;
-            //   this.dialogVisible = true;
-            // },
-            // onRemove: (file, fileList) => {
-            //   console.log(file, fileList);
-            // },
             render: ({
               data: {
                 attrs: { formItem },
@@ -527,9 +522,8 @@ export default {
         "modelType",
         "inherit",
         "image",
-        "video"
+        "video",
       ];
-      console.log(this.baseInfoForm,'this.baseInfoForm')
       let params = this.$filterObj(this.baseInfoForm, keys);
       this.$api.createAttribute(params).then((res) => {
         if (res.status === 200) {
