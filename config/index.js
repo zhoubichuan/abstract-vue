@@ -8,7 +8,7 @@ module.exports = {
   dev: {
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: './',
+    assetsPublicPath: '/abstract-vue/',
     proxyTable: {
       '/users': {
         target: 'http://localhost:7005'
@@ -85,7 +85,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../abstract-vue'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: './',
+    assetsPublicPath: '/abstract-vue/',
 
     /**
      * Source Maps
