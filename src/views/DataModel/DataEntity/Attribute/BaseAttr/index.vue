@@ -298,7 +298,13 @@ export default {
         },
         image: {
           label: "图片",
-          render: () => <img width={150} src={this.baseInfoForm.image} />,
+          render: () => (
+            <el-image
+              style="width: 100px; height: 100px"
+              src={this.baseInfoForm.image}
+              preview-src-list={[this.baseInfoForm.image]}
+            ></el-image>
+          ),
         },
         video: {
           label: "视频",

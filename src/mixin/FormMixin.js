@@ -73,12 +73,20 @@ export default {
     },
     mixinUpload(formItem) {
       return (
-        <upload-image
-          uptype={FormItem.type}
-          value={this[formItem.formKey][formItem.prop]}
-          disabled={formItem.disabled}
-          onInput={val => { this.$set(this[formItem.formKey], formItem.prop, val) }}>
-        </upload-image>
+        <div>
+
+          {this[formItem.formKey][formItem.prop] && <el-image
+            style="width: 100px; height: 100px"
+            src={this[formItem.formKey][formItem.prop]}
+            preview-src-list={[this[formItem.formKey][formItem.prop]]}>
+          </el-image>}
+          <upload-image
+            uptype={FormItem.type}
+            value={this[formItem.formKey][formItem.prop]}
+            disabled={formItem.disabled}
+            onInput={val => { this.$set(this[formItem.formKey], formItem.prop, val) }}>
+          </upload-image>
+        </div>
       )
     }
   },
