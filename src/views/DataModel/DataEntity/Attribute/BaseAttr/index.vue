@@ -300,7 +300,7 @@ export default {
           label: "图片",
           render: () => (
             <el-image
-              style="width: 100px; height: 100px"
+              style="width: 200px;"
               src={this.baseInfoForm.image}
               preview-src-list={[this.baseInfoForm.image]}
             ></el-image>

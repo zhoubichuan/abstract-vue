@@ -76,7 +76,7 @@ export default {
         <div>
 
           {this[formItem.formKey][formItem.prop] && <el-image
-            style="width: 100px; height: 100px"
+            style="width: 200px;"
             src={this[formItem.formKey][formItem.prop]}
             preview-src-list={[this[formItem.formKey][formItem.prop]]}>
           </el-image>}
