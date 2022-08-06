@@ -18,6 +18,7 @@ npm install
 # 启动项目于localhost:8080
 npm run dev
 
+打开 `http://localhost:8080/abstract-vue/`
 # 项目打包
 npm run build
 
