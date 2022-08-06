@@ -21,7 +21,7 @@ import {
 } from '../util/cookies'
 Vue.use(Router)
 let router = new Router({
-  base: 'abstract-vue',
+  base: '/abstract-vue',
   mode: 'history',
   routes: [{
     path: '/',
