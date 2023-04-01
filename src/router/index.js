@@ -21,7 +21,7 @@ import {
 } from '../util/cookies'
 Vue.use(Router)
 let router = new Router({
-  base: '/abstract-vue',
+  base: '/abstract-vue/',
   mode: 'history',
   routes: [{
     path: '/',
@@ -139,31 +139,31 @@ let router = new Router({
   ]
 })
 
-// router.beforeEach((to, from, next) => {
-//   // if (to.matched.some(res => res.meta.requireAuth)) { // 判读是不是要权限登录
-//   let sessionId = getCookie('sessionId')
-//   if (to.path !== '/') {
-//     service.post('/users/checklogin', {
-//       'sessionId': sessionId
-//     }).then(res => {
-//       if (res.status === 200) {
-//         if (!store.state.userId) {
-//           store.commit('SET_USERID', res.result._id)
-//           store.commit('SET_USERNAME', res.result.info.username)
-//           store.commit('SET_AVATAR', res.result.info.avatar)
-//           store.commit('SET_INFOID', res.result.info._id)
-//           store.commit('SET_ROLE', res.result.role)
-//         }
-//         next()
-//       } else {
-//         next('/')
-//       }
-//     })
-//   } else {
-//     next()
-//   }
-//   // } else {
-//   //     next() // 不是就直接去渲染路由
-//   // };
-// })
+router.beforeEach((to, from, next) => {
+  // if (to.matched.some(res => res.meta.requireAuth)) { // 判读是不是要权限登录
+  let sessionId = getCookie('sessionId')
+  if (to.path !== '/') {
+    service.post('/users/checklogin', {
+      'sessionId': sessionId
+    }).then(res => {
+      if (res.status === 200) {
+        if (!store.state.userId) {
+          store.commit('SET_USERID', res.result._id)
+          store.commit('SET_USERNAME', res.result.info.username)
+          store.commit('SET_AVATAR', res.result.info.avatar)
+          store.commit('SET_INFOID', res.result.info._id)
+          store.commit('SET_ROLE', res.result.role)
+        }
+        next()
+      } else {
+        next('/')
+      }
+    })
+  } else {
+    next()
+  }
+  // } else {
+  //     next() // 不是就直接去渲染路由
+  // };
+})
 export default router
