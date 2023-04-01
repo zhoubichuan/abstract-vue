@@ -72,7 +72,7 @@
 </template>
 <script>
 export default {
-  name: 'DataEntityTable',
+  name: "DataEntityTable",
   props: {
     searchConditon: {
       type: Object,
@@ -134,31 +134,31 @@ export default {
       this.removeModalFlag = true;
       this.productId = row._id;
     },
-    queryDataEntityList(condition = {}) {
+    async queryDataEntityList(condition = {}) {
       this.loadingFlag = true;
       let { curPage, pageSize } = this.page;
-      this.$api
-        .getDataEntityList({
+      try {
+        let res = await this.$api.getDataEntityList({
           curPage,
           pageSize,
           ...condition,
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            let {
-              result,
-              page: { curPage, total, pageSize },
-            } = res;
-            this.loadingFlag = false;
-            this.page.total = total;
-            this.page.curPage = curPage;
-            this.page.pageSize = pageSize;
-            this.tableData = result;
-          } else {
-            this.tableData = [];
-            this.loadingFlag = false;
-          }
         });
+        if (res.status === 200) {
+          let {
+            result,
+            page: { curPage, total, pageSize },
+          } = res;
+          this.page.total = total;
+          this.page.curPage = curPage;
+          this.page.pageSize = pageSize;
+          this.tableData = result;
+        } else {
+          this.tableData = [];
+        }      
+      } catch (error) {
+
+      }
+      this.loadingFlag = false;
     },
   },
 };
@@ -184,5 +184,14 @@ export default {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  height: 100%;
+  >>> .el-table--scrollable-x {
+    &.el-table__body-wrapper{
+    height: 100%;
+    .el-table__body{
+      height: 100%
+    }
+  }
+  }
 }
 </style>

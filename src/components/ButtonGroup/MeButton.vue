@@ -15,7 +15,7 @@ export default {
   props: {
     duration: {
       type: Number,
-      default: 3000
+      default: 1000
     }
   },
   methods: {

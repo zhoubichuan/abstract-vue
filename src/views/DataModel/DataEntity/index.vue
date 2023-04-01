@@ -7,8 +7,7 @@
       </template>
     </slider-right>
     <!-- 搜索 -->
-    <data-entity-search v-model="condition" @handleSearch="handleSearch">
-    </data-entity-search>
+    <data-entity-search v-model="condition" @handleSearch="handleSearch" />
     <!-- 按钮 -->
     <data-entity-button
       @handleCreate="handleCreate"
@@ -18,8 +17,7 @@
       @handleRevise="handleRevise"
       @handleToVoid="handleToVoid"
       @handleInvalid="handleInvalid"
-    >
-    </data-entity-button>
+    />
     <!-- 数据展示 -->
     <data-entity-table
       ref="entityTable"
@@ -29,8 +27,7 @@
       @showEditModal="showEditModal"
       @pageChange="pageChange"
       @handleSearch="handleSearch"
-    >
-    </data-entity-table>
+    />
   </div>
 </template>
 <script>

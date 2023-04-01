@@ -24,8 +24,9 @@
                   </template>
                   <el-menu-item-group>
                     <template v-for="childItem in item.childrens">
+                      <!--  v-if="childItem.authority && childItem.authority.includes($store.state.role)" -->
                       <el-menu-item
-                        v-if="childItem.authority && childItem.authority.includes($store.state.role)"
+                       
                         :key="childItem.index" 
                         :index="childItem.index" 
                         :route="childItem.route">
