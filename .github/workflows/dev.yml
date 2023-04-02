@@ -18,7 +18,7 @@ jobs:
       - name: 安装项目依赖
         run: yarn install
       - name: 打包
-        run: yarn run build
+        run: yarn build
       - name: 发布到服务器上
         uses: appleboy/scp-action@master
         with:
