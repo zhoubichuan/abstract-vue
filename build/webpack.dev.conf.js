@@ -57,7 +57,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   // 提取static assets 中css 复制到dist/static文件
   new CopyWebpackPlugin([
    {
-    from: path.resolve(__dirname, '../static'),
+    from: path.resolve(__dirname, '../abstract-vue'),
     to: config.dev.assetsSubDirectory,
     ignore: ['.*']//忽略.*的文件
    }

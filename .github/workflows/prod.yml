@@ -13,6 +13,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "13.0.0"
+      - name: 安装项目依赖
+        run: npm install
       - name: 打包
         run: npm run build
       - name: 发布到服务器上

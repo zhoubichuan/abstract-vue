@@ -54,7 +54,7 @@ module.exports = {
 // ========================生产环境配置
  
  build: {
-  index: path.resolve(__dirname, '../dist/index.html'),//编译后"首页面"生成的绝对路径和名字
+  index: path.resolve(__dirname, '../abstract-vue/index.html'),//编译后"首页面"生成的绝对路径和名字
   assetsRoot: path.resolve(__dirname, '../abstract-vue'),//打包编译的根路径(默认dist，存放打包压缩后的代码)
   assetsSubDirectory: 'static',//静态资源文件夹(一般存放css、js、image等文件)
   assetsPublicPath: '/abstract-vue/',//发布的根目录(dist文件夹所在路径)
