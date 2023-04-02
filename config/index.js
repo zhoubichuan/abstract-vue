@@ -9,34 +9,7 @@ module.exports = {
   assetsSubDirectory: 'static',//静态资源文件夹(一般存放css、js、image等文件)
   assetsPublicPath: '/abstract-vue/',//根目录
   proxyTable: {
-      '/users': {
-        target: 'http://localhost:7005'
-      },
-      '/clients': {
-        target: 'http://localhost:7005'
-      },
-      '/pay': {
-        target: 'http://localhost:7005'
-      },
-      '/order': {
-        target: 'http://localhost:7005'
-      },
-      '/product': {
-        target: 'http://localhost:7005'
-      },
-      '/dataEntity': {
-        target: 'http://localhost:7005'
-      },
-      '/dataInstance': {
-        target: 'http://localhost:7005'
-      },
-      '/relationEntity': {
-        target: 'http://localhost:7005'
-      },
-      '/systemBaseInfo': {
-        target: 'http://localhost:7005'
-      },
-      '/attribute': {
+      '/api': {
         target: 'http://localhost:7005'
       },
   },//配置API代理，可利用该属性解决跨域的问题

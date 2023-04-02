@@ -141,12 +141,9 @@ let router = new Router({
 
 router.beforeEach((to, from, next) => {
   // if (to.matched.some(res => res.meta.requireAuth)) { // 判读是不是要权限登录
-  let sessionId = getCookie('sessionId')
   if (to.path !== '/') {
-    service.post('/users/checklogin', {
-      'sessionId': sessionId
-    }).then(res => {
-      if (res.status === 200) {
+    service.get('/api/user/current').then(res => {
+      if (res.success) {
         if (!store.state.userId) {
           store.commit('SET_USERID', res.result._id)
           store.commit('SET_USERNAME', res.result.info.username)

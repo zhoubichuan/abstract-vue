@@ -21,7 +21,7 @@ export function getInfo (token) {
 export function userLogin (data) {
   console.log(data)
   return request({
-    url: '/users/login',
+    url: '/api/user/login',
     method: 'post',
     data
   })
@@ -30,7 +30,7 @@ export function userLogin (data) {
 export function logout (data) {
   console.log(data)
   return request({
-    url: '/users/logout',
+    url: '/api/user/logout',
     method: 'post',
     data
   })
