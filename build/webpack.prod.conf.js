@@ -87,7 +87,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   }),
   new CopyWebpackPlugin([//复制static中的静态资源（默认到dist里面）
    {
-    from: path.resolve(__dirname, '../abstract-vue'),
+    from: path.resolve(__dirname, '../'),
     to: config.build.assetsSubDirectory,
     ignore: ['.*']
    }
