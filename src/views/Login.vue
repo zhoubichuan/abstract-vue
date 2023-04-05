@@ -95,38 +95,34 @@ export default {
     };
   },
   methods: {
-    login() {
+    async login() {
       if (!this.loginForm.account || !this.loginForm.password) {
         this.isTips = true;
         this.errMsg = "用户名、密码不能为空";
       }
-      this.$api
-        .userLogin({
-          username: this.loginForm.account,
-          password: this.loginForm.password,
-          autoLogin: true,
-          type: "account",
-        })
-        .then((res) => {
-          if (res.success) {
-            localStorage.setItem("token", res.result.token);
-            this.$store.commit("SET_USERID", res.result.user._id);
-            this.$store.commit("SET_USERNAME", res.result.user.info.username);
-            this.$store.commit("SET_AVATAR", res.result.user.info.avatar);
-            this.$store.commit("SET_INFOID", res.result.user.info._id);
-            this.$store.commit("SET_ROLE", res.result.user.role);
-            setCookie("sessionId", res.result.sessionId);
-            localStorage.token=res.result.token
-            this.$router.push("/admin");
-          } else {
-            this.isTips = true;
-            this.errMsg = "用户/密码错误,请重新输入";
-          }
-        });
+      let res = await this.$api.userLogin({
+        username: this.loginForm.account,
+        password: this.loginForm.password,
+        autoLogin: true,
+        type: "account",
+      });
+      if (res && res.success) {
+        localStorage.setItem("token", res.result.token);
+        this.$store.commit("SET_USERID", res.result.user._id);
+        this.$store.commit("SET_USERNAME", res.result.user.info.username);
+        this.$store.commit("SET_AVATAR", res.result.user.info.avatar);
+        this.$store.commit("SET_INFOID", res.result.user.info._id);
+        this.$store.commit("SET_ROLE", res.result.user.role);
+        setCookie("sessionId", res.result.sessionId);
+        localStorage.token = res.result.token;
+        this.$router.push("/admin");
+      } else {
+        this.isTips = true;
+        this.errMsg = "用户/密码错误,请重新输入";
+      }
       this.$router.push("/admin");
     },
   },
-  components: {},
 };
 </script>
 
