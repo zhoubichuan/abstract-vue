@@ -97,7 +97,6 @@ const webpackConfig = merge(baseWebpackConfig, {
  
 if (config.build.productionGzip) {
  const CompressionWebpackPlugin = require('compression-webpack-plugin')
- 
  webpackConfig.plugins.push(
   new CompressionWebpackPlugin({
    asset: '[path].gz[query]',
