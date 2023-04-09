@@ -12,7 +12,7 @@ const portfinder = require('portfinder')// 查看空闲端口位置，默认情�
  
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
- 
+const env = require('../config/dev.env')
 const devWebpackConfig = merge(baseWebpackConfig, {
  module: {
   rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
@@ -43,7 +43,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
  },
  plugins: [
   new webpack.DefinePlugin({
-   'process.env': require('../config/dev.env')
+   'process.env': env
   }),
   new webpack.HotModuleReplacementPlugin(),//模块热替换插件，修改模块时不需要刷新页面
   new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
@@ -57,7 +57,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   // 提取static assets 中css 复制到dist/static文件
   new CopyWebpackPlugin([
    {
-    from: path.resolve(__dirname, '../abstract-vue'),
+    from: path.resolve(__dirname, '../'),
     to: config.dev.assetsSubDirectory,
     ignore: ['.*']//忽略.*的文件
    }

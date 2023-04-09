@@ -1,19 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/views/Login'
-import Admin from '@/views/Admin'
-import Index from '@/views/Index'
-import UserList from '@/views/User/UserList'
-import UserInfo from '@/views/User/UserInfo'
-import Upload from '@/views/User/Upload'
-import OrderList from '@/views/Order/OrderList'
-import OrderTag from '@/views/Order/OrderTag'
-import SalesList from '@/views/Sales/SalesList'
-import ClientList from '@/views/Client/ClientList'
-import ClientType from '@/views/Client/ClientType'
-import Payment from '@/views/Client/Payment'
-import Comment from '@/views/Comments/comment'
-import Product from '@/views/Product/Product'
 import store from '../store'
 import service from '@/util/request.js'
 import {
@@ -26,12 +12,12 @@ let router = new Router({
   routes: [{
     path: '/',
     name: 'login',
-    component: Login
+    component: () => import('@/views/Login')
   },
   {
     path: '/admin',
     name: 'admin',
-    component: Admin,
+    component: () => import('@/views/Admin'),
     redirect: '/admin/DataEntity', // 登录成功后跳转的位置
     children: [
       {
@@ -73,62 +59,62 @@ let router = new Router({
       {
         path: 'index',
         name: 'index',
-        component: Index
+        component: () => import('@/views/Index')
       },
       {
         path: 'userList',
         name: 'userList',
-        component: UserList
+        component: () => import('@/views/User/UserList')
       },
       {
         path: 'userInfo/:id',
         name: 'userInfo',
-        component: UserInfo
+        component: () => import('@/views/User/UserInfo')
       },
       {
         path: 'upload',
         name: 'upload',
-        component: Upload
+        component: () => import('@/views/User/Upload')
       },
       {
         path: '/order/list',
         name: 'OrderList',
-        component: OrderList
+        component: () => import('@/views/Order/OrderList')
       },
       {
         path: '/order/tag',
         name: 'OrderTag',
-        component: OrderTag
+        component: () => import('@/views/Order/OrderTag')
       },
       {
         path: '/product/list',
         name: 'Product',
-        component: Product
+        component: () => import('@/views/Product/Product')
       },
       {
         path: '/sales/list',
         name: 'SalesList',
-        component: SalesList
+        component: () => import('@/views/Sales/SalesList')
       },
       {
         path: '/client/list',
         name: 'ClientList',
-        component: ClientList
+        component: () => import('@/views/Client/ClientList')
       },
       {
         path: '/client/type',
         name: 'ClientType',
-        component: ClientType
+        component: () => import('@/views/Client/ClientType')
       },
       {
         path: '/client/pay',
         name: 'Payment',
-        component: Payment
+        component: () => import('@/views/Client/Payment')
       },
       {
         path: 'comment',
         name: 'comment',
-        component: Comment
+        component: () => import('@/views/Comments/comment')
       },
       {
         path: '*',
@@ -141,24 +127,24 @@ let router = new Router({
 
 router.beforeEach((to, from, next) => {
   // if (to.matched.some(res => res.meta.requireAuth)) { // 判读是不是要权限登录
-  if (to.path !== '/') {
-    service.get('/api/user/current').then(res => {
-      if (res.success) {
-        if (!store.state.userId) {
-          store.commit('SET_USERID', res.result._id)
-          store.commit('SET_USERNAME', res.result.info.username)
-          store.commit('SET_AVATAR', res.result.info.avatar)
-          store.commit('SET_INFOID', res.result.info._id)
-          store.commit('SET_ROLE', res.result.role)
-        }
-        next()
-      } else {
-        next('/')
-      }
-    })
-  } else {
+  // if (to.path !== '/') {
+  //   service.get('/api/user/current').then(res => {
+  //     if (res.success) {
+  //       if (!store.state.userId) {
+  //         store.commit('SET_USERID', res.result._id)
+  //         store.commit('SET_USERNAME', res.result.info.username)
+  //         store.commit('SET_AVATAR', res.result.info.avatar)
+  //         store.commit('SET_INFOID', res.result.info._id)
+  //         store.commit('SET_ROLE', res.result.role)
+  //       }
+  //       next()
+  //     } else {
+  //       next('/')
+  //     }
+  //   })
+  // } else {
     next()
-  }
+  // }
   // } else {
   //     next() // 不是就直接去渲染路由
   // };
