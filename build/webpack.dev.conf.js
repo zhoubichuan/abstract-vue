@@ -57,7 +57,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   // 提取static assets 中css 复制到dist/static文件
   new CopyWebpackPlugin([
    {
-    from: path.resolve(__dirname, '../'),
+    from: path.resolve(__dirname, '../static'),
     to: config.dev.assetsSubDirectory,
     ignore: ['.*']//忽略.*的文件
    }

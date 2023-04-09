@@ -108,11 +108,11 @@ export default {
       });
       if (res && res.success) {
         localStorage.setItem("token", res.result.token);
-        this.$store.commit("SET_USERID", res.result.user._id);
-        this.$store.commit("SET_USERNAME", res.result.user.info.username);
-        this.$store.commit("SET_AVATAR", res.result.user.info.avatar);
-        this.$store.commit("SET_INFOID", res.result.user.info._id);
-        this.$store.commit("SET_ROLE", res.result.user.role);
+        this.$store.commit("SET_USERID", res.result._id);
+        this.$store.commit("SET_USERNAME", res.result.username);
+        this.$store.commit("SET_AVATAR", res.result.avatar);
+        this.$store.commit("SET_INFOID", res.result._id);
+        this.$store.commit("SET_ROLE", res.result.role);
         setCookie("sessionId", res.result.sessionId);
         localStorage.token = res.result.token;
         this.$router.push("/admin");
