@@ -58,7 +58,8 @@ const webpackConfig = merge(baseWebpackConfig, {
     collapseWhitespace: true,//删除空格
     removeAttributeQuotes: true//删除属性的引号
    },
-   chunksSortMode: 'dependency'//模块排序，按照我们需要的顺序排序
+   chunksSortMode: 'dependency',//模块排序，按照我们需要的顺序排序
+   favicon: path.resolve('blog_favicon.ico')
   }),
  
   new webpack.HashedModuleIdsPlugin(),
