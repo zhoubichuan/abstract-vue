@@ -2,7 +2,7 @@ import request from '@/util/request'
 // 数据实体列表查询
 export function getRelationEntityList (data) {
   return request({
-    url: '/relationEntity/getRelationEntityList',
+    url: '/api/relationEntity/getRelationEntityList',
     method: 'post',
     data
   })
@@ -10,7 +10,7 @@ export function getRelationEntityList (data) {
 // 获取数据实体详情
 export function getRelationEntityDetail (id) {
   return request({
-    url: '/relationEntity/getRelationEntityDetail',
+    url: '/api/relationEntity/getRelationEntityDetail',
     method: 'post',
     data: {id}
   })
@@ -18,7 +18,7 @@ export function getRelationEntityDetail (id) {
 // 创建数据实体
 export function createRelationEntity (data) {
   return request({
-    url: '/relationEntity/createRelationEntity',
+    url: '/api/relationEntity/createRelationEntity',
     method: 'post',
     data
   })
@@ -26,7 +26,7 @@ export function createRelationEntity (data) {
 // 更新数据实体
 export function updateRelationEntity (data) {
   return request({
-    url: '/relationEntity/updateRelationEntity',
+    url: '/api/relationEntity/updateRelationEntity',
     method: 'put',
     data
   })
@@ -34,7 +34,7 @@ export function updateRelationEntity (data) {
 // 删除数据实体
 export function deleteRelationEntity (data) {
   return request({
-    url: '/relationEntity/deleteRelationEntity',
+    url: '/api/relationEntity/deleteRelationEntity',
     method: 'delete',
     data
   })
@@ -42,7 +42,7 @@ export function deleteRelationEntity (data) {
 // 数据实体基本属性列表查询
 export function getRelationEntityBaseAttrList (id) {
   return request({
-    url: '/relationEntity/getRelationEntityBaseAttrList',
+    url: '/api/relationEntity/getRelationEntityBaseAttrList',
     method: 'get',
     params: {id}
   })
@@ -51,7 +51,7 @@ export function getRelationEntityBaseAttrList (id) {
 // 数据实体基本属性详情查询
 export function getRelationEntityBaseAttrDetail (id) {
   return request({
-    url: '/relationEntity/getRelationEntityBaseAttrDetail',
+    url: '/api/relationEntity/getRelationEntityBaseAttrDetail',
     method: 'get',
     params: {id}
   })
@@ -60,7 +60,7 @@ export function getRelationEntityBaseAttrDetail (id) {
 // 数据实体基本属性创建
 export function createRelationEntityBaseAttr (data) {
   return request({
-    url: '/relationEntity/createRelationEntityBaseAttr',
+    url: '/api/relationEntity/createRelationEntityBaseAttr',
     method: 'post',
     data
   })
@@ -68,7 +68,7 @@ export function createRelationEntityBaseAttr (data) {
 // 数据实体基本属性更新
 export function updateRelationEntityBaseAttr (data) {
   return request({
-    url: '/relationEntity/updateRelationEntityBaseAttr',
+    url: '/api/relationEntity/updateRelationEntityBaseAttr',
     method: 'put',
     data
   })
@@ -77,7 +77,7 @@ export function updateRelationEntityBaseAttr (data) {
 // 数据实体基本属性删除
 export function updateRelationEntityBaseAttrDelete (data) {
   return request({
-    url: '/relationEntity/updateRelationEntityBaseAttrDelete',
+    url: '/api/relationEntity/updateRelationEntityBaseAttrDelete',
     method: 'delete',
     data
   })
@@ -85,7 +85,7 @@ export function updateRelationEntityBaseAttrDelete (data) {
 // 数据实体扩展属性列表查询
 export function getRelationEntityExtendAttrList (id) {
   return request({
-    url: '/relationEntity/getRelationEntityExtendAttrList',
+    url: '/api/relationEntity/getRelationEntityExtendAttrList',
     method: 'get',
     params: {id}
   })
@@ -94,7 +94,7 @@ export function getRelationEntityExtendAttrList (id) {
 // 数据实体扩展属性详情查询
 export function getRelationEntityExtendAttrDetail (id) {
   return request({
-    url: '/relationEntity/getRelationEntityExtendAttrDetail',
+    url: '/api/relationEntity/getRelationEntityExtendAttrDetail',
     method: 'get',
     params: {id}
   })
@@ -103,7 +103,7 @@ export function getRelationEntityExtendAttrDetail (id) {
 // 数据实体扩展属性创建
 export function createRelationEntityExtendAttr (data) {
   return request({
-    url: '/relationEntity/createRelationEntityExtendAttr',
+    url: '/api/relationEntity/createRelationEntityExtendAttr',
     method: 'post',
     data
   })
@@ -111,7 +111,7 @@ export function createRelationEntityExtendAttr (data) {
 // 数据实体扩展属性更新
 export function updateRelationEntityExtendAttr (data) {
   return request({
-    url: '/relationEntity/updateRelationEntityExtendAttr',
+    url: '/api/relationEntity/updateRelationEntityExtendAttr',
     method: 'update',
     data
   })
@@ -120,7 +120,7 @@ export function updateRelationEntityExtendAttr (data) {
 // 数据实体基本属性删除
 export function updateRelationEntityExtendAttrDelete (data) {
   return request({
-    url: '/relationEntity/updateRelationEntityExtendAttrDelete',
+    url: '/api/relationEntity/updateRelationEntityExtendAttrDelete',
     method: 'delete',
     data
   })
@@ -129,7 +129,7 @@ export function updateRelationEntityExtendAttrDelete (data) {
 // 数据实体父模型属性列表查询
 export function getRelationEntityParentAttrList (id) {
   return request({
-    url: '/relationEntity/getRelationEntityParentAttrList',
+    url: '/api/relationEntity/getRelationEntityParentAttrList',
     method: 'get',
     params: {id}
   })
@@ -138,7 +138,7 @@ export function getRelationEntityParentAttrList (id) {
 // 数据实体父模型属性列表查询
 export function getRelationEntityParentAttrDetail (id) {
   return request({
-    url: '/relationEntity/getRelationEntityParentAttrDetail',
+    url: '/api/relationEntity/getRelationEntityParentAttrDetail',
     method: 'get',
     params: {id}
   })

@@ -28,7 +28,7 @@
       ref="loginForm"
       :model="loginForm"
     >
-      <h3 class="title">订单管理</h3>
+      <h3 class="title">数据管理</h3>
       <div class="tips" v-if="isTips">
         <p>{{ errMsg }}</p>
       </div>

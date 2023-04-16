@@ -2,7 +2,7 @@ import request from '@/util/request'
 // 数据实体列表查询
 export function getTagList (data) {
   return request({
-    url: '/systemBaseInfo/getTagList',
+    url: '/api/systemBaseInfo/getTagList',
     method: 'post',
     data
   })
@@ -10,7 +10,7 @@ export function getTagList (data) {
 // 获取数据实体详情
 export function getTagDetail (id) {
   return request({
-    url: '/systemBaseInfo/getTagDetail',
+    url: '/api/systemBaseInfo/getTagDetail',
     method: 'post',
     data: {id}
   })
@@ -18,7 +18,7 @@ export function getTagDetail (id) {
 // 创建数据实体
 export function createTag (data) {
   return request({
-    url: '/systemBaseInfo/createTag',
+    url: '/api/systemBaseInfo/createTag',
     method: 'post',
     data
   })
@@ -26,7 +26,7 @@ export function createTag (data) {
 // 更新数据实体
 export function updateTag (data) {
   return request({
-    url: '/systemBaseInfo/updateTag',
+    url: '/api/systemBaseInfo/updateTag',
     method: 'put',
     data
   })
@@ -34,7 +34,7 @@ export function updateTag (data) {
 // 删除数据实体
 export function deleteTag (data) {
   return request({
-    url: '/systemBaseInfo/deleteTag',
+    url: '/api/systemBaseInfo/deleteTag',
     method: 'delete',
     data
   })
@@ -42,7 +42,7 @@ export function deleteTag (data) {
 // 数据实体基本属性列表查询
 export function getTagBaseAttrList (id) {
   return request({
-    url: '/systemBaseInfo/getTagBaseAttrList',
+    url: '/api/systemBaseInfo/getTagBaseAttrList',
     method: 'get',
     params: {id}
   })
@@ -51,7 +51,7 @@ export function getTagBaseAttrList (id) {
 // 数据实体基本属性详情查询
 export function getTagBaseAttrDetail (id) {
   return request({
-    url: '/systemBaseInfo/getTagBaseAttrDetail',
+    url: '/api/systemBaseInfo/getTagBaseAttrDetail',
     method: 'get',
     params: {id}
   })
@@ -60,7 +60,7 @@ export function getTagBaseAttrDetail (id) {
 // 数据实体基本属性创建
 export function createTagBaseAttr (data) {
   return request({
-    url: '/systemBaseInfo/createTagBaseAttr',
+    url: '/api/systemBaseInfo/createTagBaseAttr',
     method: 'post',
     data
   })
@@ -68,7 +68,7 @@ export function createTagBaseAttr (data) {
 // 数据实体基本属性更新
 export function updateTagBaseAttr (data) {
   return request({
-    url: '/systemBaseInfo/updateTagBaseAttr',
+    url: '/api/systemBaseInfo/updateTagBaseAttr',
     method: 'put',
     data
   })
@@ -77,7 +77,7 @@ export function updateTagBaseAttr (data) {
 // 数据实体基本属性删除
 export function updateTagBaseAttrDelete (data) {
   return request({
-    url: '/systemBaseInfo/updateTagBaseAttrDelete',
+    url: '/api/systemBaseInfo/updateTagBaseAttrDelete',
     method: 'delete',
     data
   })
@@ -85,7 +85,7 @@ export function updateTagBaseAttrDelete (data) {
 // 数据实体扩展属性列表查询
 export function getTagExtendAttrList (id) {
   return request({
-    url: '/systemBaseInfo/getTagExtendAttrList',
+    url: '/api/systemBaseInfo/getTagExtendAttrList',
     method: 'get',
     params: {id}
   })
@@ -94,7 +94,7 @@ export function getTagExtendAttrList (id) {
 // 数据实体扩展属性详情查询
 export function getTagExtendAttrDetail (id) {
   return request({
-    url: '/systemBaseInfo/getTagExtendAttrDetail',
+    url: '/api/systemBaseInfo/getTagExtendAttrDetail',
     method: 'get',
     params: {id}
   })
@@ -103,7 +103,7 @@ export function getTagExtendAttrDetail (id) {
 // 数据实体扩展属性创建
 export function createTagExtendAttr (data) {
   return request({
-    url: '/systemBaseInfo/createTagExtendAttr',
+    url: '/api/systemBaseInfo/createTagExtendAttr',
     method: 'post',
     data
   })
@@ -111,7 +111,7 @@ export function createTagExtendAttr (data) {
 // 数据实体扩展属性更新
 export function updateTagExtendAttr (data) {
   return request({
-    url: '/systemBaseInfo/updateTagExtendAttr',
+    url: '/api/systemBaseInfo/updateTagExtendAttr',
     method: 'update',
     data
   })
@@ -120,7 +120,7 @@ export function updateTagExtendAttr (data) {
 // 数据实体基本属性删除
 export function updateTagExtendAttrDelete (data) {
   return request({
-    url: '/systemBaseInfo/updateTagExtendAttrDelete',
+    url: '/api/systemBaseInfo/updateTagExtendAttrDelete',
     method: 'delete',
     data
   })
@@ -129,7 +129,7 @@ export function updateTagExtendAttrDelete (data) {
 // 数据实体父模型属性列表查询
 export function getTagParentAttrList (id) {
   return request({
-    url: '/systemBaseInfo/getTagParentAttrList',
+    url: '/api/systemBaseInfo/getTagParentAttrList',
     method: 'get',
     params: {id}
   })
@@ -138,7 +138,7 @@ export function getTagParentAttrList (id) {
 // 数据实体父模型属性列表查询
 export function getTagParentAttrDetail (id) {
   return request({
-    url: '/systemBaseInfo/getTagParentAttrDetail',
+    url: '/api/systemBaseInfo/getTagParentAttrDetail',
     method: 'get',
     params: {id}
   })

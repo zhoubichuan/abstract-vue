@@ -2,7 +2,7 @@ import request from '@/util/request'
 // 数据实体列表查询
 export function getDataInstanceList (data) {
   return request({
-    url: '/dataInstance/getDataInstanceList',
+    url: '/api/dataInstance/getDataInstanceList',
     method: 'post',
     data
   })
@@ -10,7 +10,7 @@ export function getDataInstanceList (data) {
 // 获取数据实体详情
 export function getDataInstanceDetail (id) {
   return request({
-    url: '/dataInstance/getDataInstanceDetail',
+    url: '/api/dataInstance/getDataInstanceDetail',
     method: 'post',
     data: {id}
   })
@@ -18,7 +18,7 @@ export function getDataInstanceDetail (id) {
 // 创建数据实体
 export function createDataInstance (data) {
   return request({
-    url: '/dataInstance/createDataInstance',
+    url: '/api/dataInstance/createDataInstance',
     method: 'post',
     data
   })
@@ -26,7 +26,7 @@ export function createDataInstance (data) {
 // 更新数据实体
 export function updateDataInstance (data) {
   return request({
-    url: '/dataInstance/updateDataInstance',
+    url: '/api/dataInstance/updateDataInstance',
     method: 'put',
     data
   })
@@ -34,7 +34,7 @@ export function updateDataInstance (data) {
 // 删除数据实体
 export function deleteDataInstance (data) {
   return request({
-    url: '/dataInstance/deleteDataInstance',
+    url: '/api/dataInstance/deleteDataInstance',
     method: 'delete',
     data
   })
@@ -42,7 +42,7 @@ export function deleteDataInstance (data) {
 // 数据实体基本属性列表查询
 export function getDataInstanceBaseAttrList (id) {
   return request({
-    url: '/dataInstance/getDataInstanceBaseAttrList',
+    url: '/api/dataInstance/getDataInstanceBaseAttrList',
     method: 'get',
     params: {id}
   })
@@ -51,7 +51,7 @@ export function getDataInstanceBaseAttrList (id) {
 // 数据实体基本属性详情查询
 export function getDataInstanceBaseAttrDetail (id) {
   return request({
-    url: '/dataInstance/getDataInstanceBaseAttrDetail',
+    url: '/api/dataInstance/getDataInstanceBaseAttrDetail',
     method: 'get',
     params: {id}
   })
@@ -60,7 +60,7 @@ export function getDataInstanceBaseAttrDetail (id) {
 // 数据实体基本属性创建
 export function createDataInstanceBaseAttr (data) {
   return request({
-    url: '/dataInstance/createDataInstanceBaseAttr',
+    url: '/api/dataInstance/createDataInstanceBaseAttr',
     method: 'post',
     data
   })
@@ -68,7 +68,7 @@ export function createDataInstanceBaseAttr (data) {
 // 数据实体基本属性更新
 export function updateDataInstanceBaseAttr (data) {
   return request({
-    url: '/dataInstance/updateDataInstanceBaseAttr',
+    url: '/api/dataInstance/updateDataInstanceBaseAttr',
     method: 'put',
     data
   })
@@ -77,7 +77,7 @@ export function updateDataInstanceBaseAttr (data) {
 // 数据实体基本属性删除
 export function updateDataInstanceBaseAttrDelete (data) {
   return request({
-    url: '/dataInstance/updateDataInstanceBaseAttrDelete',
+    url: '/api/dataInstance/updateDataInstanceBaseAttrDelete',
     method: 'delete',
     data
   })
@@ -85,7 +85,7 @@ export function updateDataInstanceBaseAttrDelete (data) {
 // 数据实体扩展属性列表查询
 export function getDataInstanceExtendAttrList (id) {
   return request({
-    url: '/dataInstance/getDataInstanceExtendAttrList',
+    url: '/api/dataInstance/getDataInstanceExtendAttrList',
     method: 'get',
     params: {id}
   })
@@ -94,7 +94,7 @@ export function getDataInstanceExtendAttrList (id) {
 // 数据实体扩展属性详情查询
 export function getDataInstanceExtendAttrDetail (id) {
   return request({
-    url: '/dataInstance/getDataInstanceExtendAttrDetail',
+    url: '/api/dataInstance/getDataInstanceExtendAttrDetail',
     method: 'get',
     params: {id}
   })
@@ -103,7 +103,7 @@ export function getDataInstanceExtendAttrDetail (id) {
 // 数据实体扩展属性创建
 export function createDataInstanceExtendAttr (data) {
   return request({
-    url: '/dataInstance/createDataInstanceExtendAttr',
+    url: '/api/dataInstance/createDataInstanceExtendAttr',
     method: 'post',
     data
   })
@@ -111,7 +111,7 @@ export function createDataInstanceExtendAttr (data) {
 // 数据实体扩展属性更新
 export function updateDataInstanceExtendAttr (data) {
   return request({
-    url: '/dataInstance/updateDataInstanceExtendAttr',
+    url: '/api/dataInstance/updateDataInstanceExtendAttr',
     method: 'update',
     data
   })
@@ -120,7 +120,7 @@ export function updateDataInstanceExtendAttr (data) {
 // 数据实体基本属性删除
 export function updateDataInstanceExtendAttrDelete (data) {
   return request({
-    url: '/dataInstance/updateDataInstanceExtendAttrDelete',
+    url: '/api/dataInstance/updateDataInstanceExtendAttrDelete',
     method: 'delete',
     data
   })
@@ -129,7 +129,7 @@ export function updateDataInstanceExtendAttrDelete (data) {
 // 数据实体父模型属性列表查询
 export function getDataInstanceParentAttrList (id) {
   return request({
-    url: '/dataInstance/getDataInstanceParentAttrList',
+    url: '/api/dataInstance/getDataInstanceParentAttrList',
     method: 'get',
     params: {id}
   })
@@ -138,7 +138,7 @@ export function getDataInstanceParentAttrList (id) {
 // 数据实体父模型属性列表查询
 export function getDataInstanceParentAttrDetail (id) {
   return request({
-    url: '/dataInstance/getDataInstanceParentAttrDetail',
+    url: '/api/dataInstance/getDataInstanceParentAttrDetail',
     method: 'get',
     params: {id}
   })

@@ -2,7 +2,7 @@ import request from '@/util/request'
 // 数据实体列表查询
 export function getAttributeList (data) {
   return request({
-    url: '/attribute/getAttributeList',
+    url: '/api/attribute/getAttributeList',
     method: 'post',
     data
   })
@@ -10,7 +10,7 @@ export function getAttributeList (data) {
 // 获取数据实体详情
 export function getAttributeDetail (id) {
   return request({
-    url: '/attribute/getAttributeDetail',
+    url: '/api/attribute/getAttributeDetail',
     method: 'post',
     data: {id}
   })
@@ -18,7 +18,7 @@ export function getAttributeDetail (id) {
 // 创建数据实体
 export function createAttribute (data) {
   return request({
-    url: '/attribute/createAttribute',
+    url: '/api/attribute/createAttribute',
     method: 'post',
     data
   })
@@ -26,7 +26,7 @@ export function createAttribute (data) {
 // 更新数据实体
 export function updateAttribute (data) {
   return request({
-    url: '/attribute/updateAttribute',
+    url: '/api/attribute/updateAttribute',
     method: 'put',
     data
   })
@@ -34,7 +34,7 @@ export function updateAttribute (data) {
 // 删除数据实体
 export function deleteAttribute (data) {
   return request({
-    url: '/attribute/deleteAttribute',
+    url: '/api/attribute/deleteAttribute',
     method: 'delete',
     data
   })
@@ -42,7 +42,7 @@ export function deleteAttribute (data) {
 // 数据实体基本属性列表查询
 export function getAttributeBaseAttrList (id) {
   return request({
-    url: '/attribute/getAttributeBaseAttrList',
+    url: '/api/attribute/getAttributeBaseAttrList',
     method: 'get',
     params: {id}
   })
@@ -51,7 +51,7 @@ export function getAttributeBaseAttrList (id) {
 // 数据实体基本属性详情查询
 export function getAttributeBaseAttrDetail (id) {
   return request({
-    url: '/attribute/getAttributeBaseAttrDetail',
+    url: '/api/attribute/getAttributeBaseAttrDetail',
     method: 'get',
     params: {id}
   })
@@ -60,7 +60,7 @@ export function getAttributeBaseAttrDetail (id) {
 // 数据实体基本属性创建
 export function createAttributeBaseAttr (data) {
   return request({
-    url: '/attribute/createAttributeBaseAttr',
+    url: '/api/attribute/createAttributeBaseAttr',
     method: 'post',
     data
   })
@@ -68,7 +68,7 @@ export function createAttributeBaseAttr (data) {
 // 数据实体基本属性更新
 export function updateAttributeBaseAttr (data) {
   return request({
-    url: '/attribute/updateAttributeBaseAttr',
+    url: '/api/attribute/updateAttributeBaseAttr',
     method: 'put',
     data
   })
@@ -77,7 +77,7 @@ export function updateAttributeBaseAttr (data) {
 // 数据实体基本属性删除
 export function updateAttributeBaseAttrDelete (data) {
   return request({
-    url: '/attribute/updateAttributeBaseAttrDelete',
+    url: '/api/attribute/updateAttributeBaseAttrDelete',
     method: 'delete',
     data
   })
@@ -85,7 +85,7 @@ export function updateAttributeBaseAttrDelete (data) {
 // 数据实体扩展属性列表查询
 export function getAttributeExtendAttrList (id) {
   return request({
-    url: '/attribute/getAttributeExtendAttrList',
+    url: '/api/attribute/getAttributeExtendAttrList',
     method: 'get',
     params: {id}
   })
@@ -94,7 +94,7 @@ export function getAttributeExtendAttrList (id) {
 // 数据实体扩展属性详情查询
 export function getAttributeExtendAttrDetail (id) {
   return request({
-    url: '/attribute/getAttributeExtendAttrDetail',
+    url: '/api/attribute/getAttributeExtendAttrDetail',
     method: 'get',
     params: {id}
   })
@@ -103,7 +103,7 @@ export function getAttributeExtendAttrDetail (id) {
 // 数据实体扩展属性创建
 export function createAttributeExtendAttr (data) {
   return request({
-    url: '/attribute/createAttributeExtendAttr',
+    url: '/api/attribute/createAttributeExtendAttr',
     method: 'post',
     data
   })
@@ -111,7 +111,7 @@ export function createAttributeExtendAttr (data) {
 // 数据实体扩展属性更新
 export function updateAttributeExtendAttr (data) {
   return request({
-    url: '/attribute/updateAttributeExtendAttr',
+    url: '/api/attribute/updateAttributeExtendAttr',
     method: 'update',
     data
   })
@@ -120,7 +120,7 @@ export function updateAttributeExtendAttr (data) {
 // 数据实体基本属性删除
 export function updateAttributeExtendAttrDelete (data) {
   return request({
-    url: '/attribute/updateAttributeExtendAttrDelete',
+    url: '/api/attribute/updateAttributeExtendAttrDelete',
     method: 'delete',
     data
   })
@@ -129,7 +129,7 @@ export function updateAttributeExtendAttrDelete (data) {
 // 数据实体父模型属性列表查询
 export function getAttributeParentAttrList (id) {
   return request({
-    url: '/attribute/getAttributeParentAttrList',
+    url: '/api/attribute/getAttributeParentAttrList',
     method: 'get',
     params: {id}
   })
@@ -138,7 +138,7 @@ export function getAttributeParentAttrList (id) {
 // 数据实体父模型属性列表查询
 export function getAttributeParentAttrDetail (id) {
   return request({
-    url: '/attribute/getAttributeParentAttrDetail',
+    url: '/api/attribute/getAttributeParentAttrDetail',
     method: 'get',
     params: {id}
   })
