@@ -4,15 +4,13 @@ on:
     branches:
       - dev
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: 使用库中的代码
-      - uses: actions/checkout@v1
-      - name: 安装 Node.js
-        uses: actions/setup-node@v1
+        uses: actions/checkout@v2
         with:
-          node-version: "13.0.0"
+          persist-credentials: false
       - name: 安装项目依赖
         run: npm install
       - name: 打包
