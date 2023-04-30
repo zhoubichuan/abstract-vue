@@ -81,49 +81,49 @@
 </template>
 
 <script type="text/ecmascript-6">
-import { setCookie } from "../util/cookies";
+import { setCookie } from '../util/cookies'
 export default {
-  data() {
+  data () {
     return {
       loginForm: {
-        account: "admin",
-        password: "ant.design1",
-        check: false,
+        account: 'admin',
+        password: 'ant.design1',
+        check: false
       },
-      errMsg: "",
-      isTips: false,
-    };
+      errMsg: '',
+      isTips: false
+    }
   },
   methods: {
-    async login() {
+    async login () {
       if (!this.loginForm.account || !this.loginForm.password) {
-        this.isTips = true;
-        this.errMsg = "用户名、密码不能为空";
+        this.isTips = true
+        this.errMsg = '用户名、密码不能为空'
       }
       let res = await this.$api.userLogin({
         username: this.loginForm.account,
         password: this.loginForm.password,
         autoLogin: true,
-        type: "account",
-      });
+        type: 'account'
+      })
       if (res && res.success) {
-        localStorage.setItem("token", res.result.token);
-        this.$store.commit("SET_USERID", res.result._id);
-        this.$store.commit("SET_USERNAME", res.result.username);
-        this.$store.commit("SET_AVATAR", res.result.avatar);
-        this.$store.commit("SET_INFOID", res.result._id);
-        this.$store.commit("SET_ROLE", res.result.role);
-        setCookie("sessionId", res.result.sessionId);
-        localStorage.token = res.result.token;
-        this.$router.push("/admin");
+        localStorage.setItem('token', res.result.token)
+        this.$store.commit('SET_USERID', res.result._id)
+        this.$store.commit('SET_USERNAME', res.result.username)
+        this.$store.commit('SET_AVATAR', res.result.avatar)
+        this.$store.commit('SET_INFOID', res.result._id)
+        this.$store.commit('SET_ROLE', res.result.role)
+        setCookie('sessionId', res.result.sessionId)
+        localStorage.token = res.result.token
+        this.$router.push('/admin')
       } else {
-        this.isTips = true;
-        this.errMsg = "用户/密码错误,请重新输入";
+        this.isTips = true
+        this.errMsg = '用户/密码错误,请重新输入'
       }
-      this.$router.push("/admin");
-    },
-  },
-};
+      this.$router.push('/admin')
+    }
+  }
+}
 </script>
 
 <style lang="stylus" scoped>

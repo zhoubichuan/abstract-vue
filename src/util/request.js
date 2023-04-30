@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import store from '../store'
-// import { getToken } from '@/utils/auth'
+import { getToken } from '@/utils/auth'
 
 // 创建axios实例
 const service = axios.create({
@@ -13,10 +13,10 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
-    // const token = getToken()
-    // if (token) {
-    //   config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
-    // }
+    const token = getToken()
+    if (token) {
+      config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+    }
     return config
   },
   error => {
@@ -55,7 +55,6 @@ service.interceptors.response.use(
           })
         })
       }
-      return Promise.reject('error')
     } else {
       return response.data
     }

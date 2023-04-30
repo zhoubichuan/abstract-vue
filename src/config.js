@@ -4,9 +4,10 @@ import axios from 'axios'
 import service from '@/util/request.js'
 
 export default {
-  install(Vue) {
+  install (Vue) {
     Vue.prototype._ = _
     window._ = _
+    window.$env = process.env
     // Vue.prototype.$SliderRight = SliderRight
     Vue.prototype.$service = service
     Vue.prototype.$api = api
@@ -34,7 +35,7 @@ export default {
     Vue.prototype.$log = console.log
 
     // 由一个组件，向上找到最近的指定组件
-    Vue.prototype.$findComponentUpward = function findComponentUpward(context, componentName) {
+    Vue.prototype.$findComponentUpward = function findComponentUpward (context, componentName) {
       let parent = context.$parent
       let name = parent.$options.name
 
@@ -45,7 +46,7 @@ export default {
       return parent
     }
     // 由一个组件，向上找到所有的指定组件
-    Vue.prototype.$findComponentsUpward = function findComponentsUpward(context, componentName) {
+    Vue.prototype.$findComponentsUpward = function findComponentsUpward (context, componentName) {
       let parents = []
       const parent = context.$parent
 
@@ -57,7 +58,7 @@ export default {
       }
     }
     // 由一个组件，向下找到最近的指定组件
-    Vue.prototype.$findComponentDownward = function findComponentDownward(context, componentName) {
+    Vue.prototype.$findComponentDownward = function findComponentDownward (context, componentName) {
       const childrens = context.$children
       let children = null
 
@@ -77,7 +78,7 @@ export default {
       return children
     }
     // 由一个组件，向下找到所有指定的组件
-    Vue.prototype.$findComponentsDownward = function findComponentsDownward(context, componentName) {
+    Vue.prototype.$findComponentsDownward = function findComponentsDownward (context, componentName) {
       return context.$children.reduce((components, child) => {
         if (child.$options.name === componentName) components.push(child)
         const foundChilds = findComponentsDownward(child, componentName)
@@ -85,7 +86,7 @@ export default {
       }, [])
     }
     // 由一个组件，找到指定组件的兄弟组件
-    Vue.prototype.$findBrothersComponents = function findBrothersComponents(context, componentName, exceptMe = true) {
+    Vue.prototype.$findBrothersComponents = function findBrothersComponents (context, componentName, exceptMe = true) {
       let res = context.$parent.$children.filter((item) => {
         return item.$options.name === componentName
       })
