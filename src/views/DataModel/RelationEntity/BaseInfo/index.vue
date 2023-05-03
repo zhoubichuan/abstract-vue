@@ -30,8 +30,8 @@
 </template>
 <script>
 import FormMixin from '@/mixin/FormMixin.js'
-import {relationEntityTypeOptions} from '@/components/SearchForm/EnumerationType.js'
-  export default {
+import {relationEntityTypeOptions} from 'static/EnumerationType.js'
+export default {
     mixins: [FormMixin],
     data () {
       return {

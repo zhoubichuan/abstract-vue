@@ -9,8 +9,7 @@
   </search-form>
 </template>
 <script>
-import SearchEnumerationType from '@/components/SearchForm/EnumerationType.js'
-
+import SearchEnumerationType from 'static/EnumerationType.js'
 export default {
   name: 'TagSearch',
   data () {

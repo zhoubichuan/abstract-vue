@@ -90,14 +90,7 @@
     </div>
 </template>
 <script>
-import modal from '@/components/Modal'
-import pagination from '@/components/Pagination'
-
 export default {
-    components: {
-        modal,
-        pagination
-    },
     data () {
       var validateType = (rule, value, callback) => {
           if (value === '') {

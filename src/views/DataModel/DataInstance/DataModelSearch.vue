@@ -9,8 +9,7 @@
   </search-form>
 </template>
 <script>
-import SearchEnumerationType, {stateOptions, entityTypeOptions, modelTypeOptions, selectFunctionOptions} from '@/components/SearchForm/EnumerationType.js'
-
+import SearchEnumerationType, {stateOptions, entityTypeOptions, modelTypeOptions, selectFunctionOptions} from 'static/EnumerationType.js'
 export default {
   name: 'DataInstanceSearch',
   data () {

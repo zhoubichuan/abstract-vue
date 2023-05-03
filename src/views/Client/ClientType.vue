@@ -84,15 +84,9 @@
     </div>
 </template>
 <script>
-import modal from '@/components/Modal'
-import pagination from '@/components/Pagination'
 // import { mapState } from 'vuex'
 
 export default {
-    components: {
-        modal,
-        pagination
-    },
     data () {
         var validateClientType = (rule, value, callback) => {
           if (value === '') {
@@ -164,7 +158,7 @@ export default {
         //     this.addModalFlag = true;
         // },
         addClientType () {
-            if (this.clientTypeForm.clientType != '') {
+            if (this.clientTypeForm.clientType !== '') {
                 this.$ajax.post('/clients/type/add', {
                     clientType: this.clientTypeForm.clientType
                 }).then(res => {

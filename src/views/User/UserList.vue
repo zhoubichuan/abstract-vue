@@ -159,8 +159,6 @@
 </template>
 
 <script type="text/ecmascript-6">
-import modal from '@/components/Modal'
-import pagination from '@/components/Pagination'
 import { mapState } from 'vuex'
 
 export default {
@@ -556,10 +554,6 @@ export default {
       resetForm (formName) {
         this.$refs[formName].resetFields()
       }
-    },
-    components: {
-      modal,
-      pagination
     }
 }
 </script>
