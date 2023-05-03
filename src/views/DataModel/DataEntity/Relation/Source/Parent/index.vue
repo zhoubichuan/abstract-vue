@@ -1,7 +1,7 @@
   <template>
     <div>
       从父模型基础的属性
-        <table-page
+        <web-table-page
           border
           v-loading="loadingFlag"
           element-loading-text="拼命加载中"
@@ -126,7 +126,7 @@
             label="标签"
           >
           </el-table-column>
-        </table-page>
+        </web-table-page>
     </div>
   </template>
 

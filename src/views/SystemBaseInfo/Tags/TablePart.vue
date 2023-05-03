@@ -1,5 +1,5 @@
 <template>
-  <table-page
+  <web-table-page
     :value="page"
     @input="(val) => handleInput(val)"
     border
@@ -42,7 +42,7 @@
         ></el-link>
       </template>
     </el-table-column>
-  </table-page>
+  </web-table-page>
 </template>
 <script>
 export default {

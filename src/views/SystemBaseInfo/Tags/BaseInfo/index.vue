@@ -1,6 +1,6 @@
 <template>
   <div v-loading="loading">
-    <collapse v-model="activeName">
+    <web-collapse v-model="activeName">
       <el-form
         ref="form"
         :model="baseInfoForm"
@@ -8,30 +8,30 @@
         size="mini"
         :rules="rules"
       >
-        <collapse-item title="基本信息" name="base-info">
-          <form-item
+        <web-collapse-item title="基本信息" name="base-info">
+          <web-form-item
             v-for="(formItem, formItemIndex) in baseFormData"
             :formData="formItem"
             :key="formItemIndex"
           >
-          </form-item>
-        </collapse-item>
-        <collapse-item
+          </web-form-item>
+        </web-collapse-item>
+        <web-collapse-item
           title="历史记录"
           name="history-record"
           v-if="shows.historyRecord"
         >
-          <form-item
+          <web-form-item
             v-for="(formItem, formItemIndex) in historyFormData"
             :formData="formItem"
             :key="formItemIndex"
           >
-          </form-item>
-        </collapse-item>
+          </web-form-item>
+        </web-collapse-item>
       </el-form>
-    </collapse>
-    <button-group v-if="shows.saveButton">
-      <me-button
+    </web-collapse>
+    <web-button-group v-if="shows.saveButton">
+      <web-button
         :disabled="disableds.saveButton"
         type="primary"
         @click="
@@ -39,101 +39,101 @@
         "
       >
         保存
-      </me-button>
-    </button-group>
+      </web-button>
+    </web-button-group>
   </div>
 </template>
 <script>
-import FormMixin from "@/mixin/FormMixin.js";
+import FormMixin from '@/mixin/FormMixin.js'
 export default {
   mixins: [FormMixin],
-  data() {
+  data () {
     return {
       loading: false,
-      activeName: ["base-info", "history-record"],
+      activeName: ['base-info', 'history-record'],
       rules: {
         nameEn: [
-          { required: true, message: "请输入英文名称", trigger: "change" },
+          { required: true, message: '请输入英文名称', trigger: 'change' }
         ],
         name: [
-          { required: true, message: "请输入中文名称", trigger: "change" },
+          { required: true, message: '请输入中文名称', trigger: 'change' }
         ],
         descriptEn: [],
         descript: [
-          { required: true, message: "请输入中文描述", trigger: "change" },
-        ],
+          { required: true, message: '请输入中文描述', trigger: 'change' }
+        ]
       },
       baseInfoForm: {
         storeType: false,
-        inherit: false,
-      },
-    };
+        inherit: false
+      }
+    }
   },
   inject: {
     $Tag: {
-      type: Object,
-    },
+      type: Object
+    }
   },
-  created() {
-    this.handleInit();
+  created () {
+    this.handleInit()
   },
   methods: {
-    handleInit() {
+    handleInit () {
       this.baseInfoForm = this.$set(
         this,
-        "baseInfoForm",
+        'baseInfoForm',
         window._.cloneDeep(this.$Tag.tabsData.data)
-      );
+      )
     },
-    async checkValidate(handleFn) {
-      this.loading = true;
-      let { rej, err } = await this.$awaitWarp(this.$refs.form.validate());
+    async checkValidate (handleFn) {
+      this.loading = true
+      let { rej, err } = await this.$awaitWarp(this.$refs.form.validate())
       if (rej === false || err) {
-        this.loading = false;
-        return false;
+        this.loading = false
+        return false
       }
-      handleFn();
+      handleFn()
     },
-    handleAdd() {
-      let keys = ["nameEn", "name", "descriptEn", "descript"];
-      let params = this.$filterObj(this.baseInfoForm, keys);
+    handleAdd () {
+      let keys = ['nameEn', 'name', 'descriptEn', 'descript']
+      let params = this.$filterObj(this.baseInfoForm, keys)
       this.$api.createTag(params).then((res) => {
         if (res.status === 200) {
           this.$message({
             message: res.msg,
-            type: "success",
-          });
-          this.$findComponentUpward(this, "Tag").$emit("handleSearch");
+            type: 'success'
+          })
+          this.$findComponentUpward(this, 'Tag').$emit('handleSearch')
         } else {
-          this.$message.error(res.msg);
+          this.$message.error(res.msg)
         }
-        this.loading = false;
-      });
+        this.loading = false
+      })
     },
-    handleEdit() {
-      let keys = ["id", "nameEn", "name", "descriptEn", "descript"];
-      let params = this.$filterObj(this.baseInfoForm, keys);
+    handleEdit () {
+      let keys = ['id', 'nameEn', 'name', 'descriptEn', 'descript']
+      let params = this.$filterObj(this.baseInfoForm, keys)
       this.$api.updateTag(params).then((res) => {
         if (res.status === 200) {
           this.$message({
             message: res.msg,
-            type: "success",
-          });
-          this.baseInfoForm = res.result;
-          let parent = this.$findComponentUpward(this, "Tag");
-          parent.$emit("handleSearch");
+            type: 'success'
+          })
+          this.baseInfoForm = res.result
+          let parent = this.$findComponentUpward(this, 'Tag')
+          parent.$emit('handleSearch')
         } else {
-          this.$message.error(res.msg);
+          this.$message.error(res.msg)
         }
-        this.loading = false;
-      });
-    },
+        this.loading = false
+      })
+    }
   },
   computed: {
-    pageSate() {
-      return this.$Tag.tabsData.state;
+    pageSate () {
+      return this.$Tag.tabsData.state
     },
-    disableds() {
+    disableds () {
       let result = {
         code: false,
         state: false,
@@ -145,201 +145,201 @@ export default {
         creater: false,
         creatTime: false,
         modifier: false,
-        modifyTime: false,
-      };
-      if (this.pageSate !== "show") {
-        if (this.pageSate === "edit") {
-          result.code = true;
-          result.state = true;
-          result.version = true;
-          result.creater = true;
-          result.creatTime = true;
-          result.modifier = true;
-          result.modifyTime = true;
+        modifyTime: false
+      }
+      if (this.pageSate !== 'show') {
+        if (this.pageSate === 'edit') {
+          result.code = true
+          result.state = true
+          result.version = true
+          result.creater = true
+          result.creatTime = true
+          result.modifier = true
+          result.modifyTime = true
         } else {
-          result.historyRecord = false;
+          result.historyRecord = false
         }
-        let oldFormData = this.$Tag.tabsData.data;
-        let newFormData = this.baseInfoForm;
-        result.saveButton = window._.isEqual(oldFormData, newFormData);
-        console.log(result.saveButton);
+        let oldFormData = this.$Tag.tabsData.data
+        let newFormData = this.baseInfoForm
+        result.saveButton = window._.isEqual(oldFormData, newFormData)
+        console.log(result.saveButton)
       }
 
-      return result;
+      return result
     },
-    shows() {
+    shows () {
       let result = {
         saveButton: false,
-        historyRecord: true,
-      };
-      if (this.pageSate !== "show") {
-        result.saveButton = true;
-        if (this.pageSate === "edit") {
+        historyRecord: true
+      }
+      if (this.pageSate !== 'show') {
+        result.saveButton = true
+        if (this.pageSate === 'edit') {
         } else {
-          result.historyRecord = false;
+          result.historyRecord = false
         }
       }
-      return result;
+      return result
     },
-    baseFormData() {
+    baseFormData () {
       let result = {
         nameEn: {
-          label: "英文名称",
-          render: this.baseInfoForm.nameEn,
+          label: '英文名称',
+          render: this.baseInfoForm.nameEn
         },
         name: {
-          label: "中文名称",
-          render: this.baseInfoForm.name,
+          label: '中文名称',
+          render: this.baseInfoForm.name
         },
         descriptEn: {
-          label: "英文描述",
+          label: '英文描述',
           singleFormItem: true,
-          render: this.baseInfoForm.descriptEn,
+          render: this.baseInfoForm.descriptEn
         },
         descript: {
-          label: "中文描述",
+          label: '中文描述',
           singleFormItem: true,
-          render: this.baseInfoForm.descript,
-        },
-      };
+          render: this.baseInfoForm.descript
+        }
+      }
 
-      if (["edit", "add"].includes(this.pageSate)) {
+      if (['edit', 'add'].includes(this.pageSate)) {
         result = {
           nameEn: {
-            label: "英文名称",
+            label: '英文名称',
             disabled: this.disableds.nameEn,
-            placeholder: "请输入英文名称",
+            placeholder: '请输入英文名称',
             render: ({
               data: {
-                attrs: { formItem },
-              },
+                attrs: { formItem }
+              }
             }) => {
-              return this.mixinInput(formItem);
-            },
+              return this.mixinInput(formItem)
+            }
           },
           name: {
-            label: "中文名称",
-            placeholder: "请输入中文名称",
+            label: '中文名称',
+            placeholder: '请输入中文名称',
             render: ({
               data: {
-                attrs: { formItem },
-              },
+                attrs: { formItem }
+              }
             }) => {
-              return this.mixinInput(formItem);
-            },
+              return this.mixinInput(formItem)
+            }
           },
           descriptEn: {
-            label: "英文描述",
+            label: '英文描述',
             disabled: this.disableds.descriptEn,
-            placeholder: "请输入英文描述",
+            placeholder: '请输入英文描述',
             singleFormItem: true,
             render: ({
               data: {
-                attrs: { formItem },
-              },
+                attrs: { formItem }
+              }
             }) => {
-              return this.mixinTextarea(formItem);
-            },
+              return this.mixinTextarea(formItem)
+            }
           },
           descript: {
-            label: "中文描述",
-            placeholder: "请输入中文描述",
+            label: '中文描述',
+            placeholder: '请输入中文描述',
             singleFormItem: true,
             render: ({
               data: {
-                attrs: { formItem },
-              },
+                attrs: { formItem }
+              }
             }) => {
-              return this.mixinTextarea(formItem);
-            },
-          },
-        };
+              return this.mixinTextarea(formItem)
+            }
+          }
+        }
       }
       Object.keys(this.shows).forEach((key) => {
         if (this.shows[key] === false) {
-          Reflect.deleteProperty(result, key);
+          Reflect.deleteProperty(result, key)
         }
-      });
+      })
       Object.keys(result).forEach((key) => {
-        result[key]["formKey"] = "baseInfoForm";
-        result[key]["prop"] = key;
-      });
-      return this.$devideArr(Object.values(result), 2);
+        result[key]['formKey'] = 'baseInfoForm'
+        result[key]['prop'] = key
+      })
+      return this.$devideArr(Object.values(result), 2)
     },
-    historyFormData() {
+    historyFormData () {
       let result = {
         creater: {
-          label: "创建者",
-          render: this.baseInfoForm.creater,
+          label: '创建者',
+          render: this.baseInfoForm.creater
         },
         creatTime: {
-          label: "创建时间",
-          render: this.baseInfoForm.creatTime,
+          label: '创建时间',
+          render: this.baseInfoForm.creatTime
         },
         modifier: {
-          label: "更新者",
-          render: this.baseInfoForm.modifier,
+          label: '更新者',
+          render: this.baseInfoForm.modifier
         },
         modifyTime: {
-          label: "更新时间",
-          render: this.baseInfoForm.modifyTime,
-        },
-      };
-      if (["edit", "add"].includes(this.pageSate)) {
+          label: '更新时间',
+          render: this.baseInfoForm.modifyTime
+        }
+      }
+      if (['edit', 'add'].includes(this.pageSate)) {
         result = {
           creater: {
-            label: "创建者",
+            label: '创建者',
             disabled: this.disableds.creater,
             render: ({
               data: {
-                attrs: { formItem },
-              },
+                attrs: { formItem }
+              }
             }) => {
-              return this.mixinInput(formItem);
-            },
+              return this.mixinInput(formItem)
+            }
           },
           creatTime: {
-            label: "创建时间",
+            label: '创建时间',
             disabled: this.disableds.creatTime,
             render: ({
               data: {
-                attrs: { formItem },
-              },
+                attrs: { formItem }
+              }
             }) => {
-              return this.mixinInput(formItem);
-            },
+              return this.mixinInput(formItem)
+            }
           },
           modifier: {
-            label: "更新者",
+            label: '更新者',
             disabled: this.disableds.modifier,
             render: ({
               data: {
-                attrs: { formItem },
-              },
+                attrs: { formItem }
+              }
             }) => {
-              return this.mixinInput(formItem);
-            },
+              return this.mixinInput(formItem)
+            }
           },
           modifyTime: {
-            label: "更新时间",
+            label: '更新时间',
             disabled: this.disableds.modifyTime,
             render: ({
               data: {
-                attrs: { formItem },
-              },
+                attrs: { formItem }
+              }
             }) => {
-              return this.mixinSelect(formItem);
-            },
-          },
-        };
+              return this.mixinSelect(formItem)
+            }
+          }
+        }
       }
       Object.keys(result).forEach((key) => {
-        result[key]["formKey"] = "baseInfoForm";
-        result[key]["prop"] = key;
-      });
-      console.log(this.$devideArr(Object.values(result), 2));
-      return this.$devideArr(Object.values(result), 2);
-    },
-  },
-};
+        result[key]['formKey'] = 'baseInfoForm'
+        result[key]['prop'] = key
+      })
+      console.log(this.$devideArr(Object.values(result), 2))
+      return this.$devideArr(Object.values(result), 2)
+    }
+  }
+}
 </script>

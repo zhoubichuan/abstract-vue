@@ -40,95 +40,95 @@
         <history-record v-if="activeName === 'historyRecord'"></history-record>
       </el-tab-pane>
     </el-tabs>
-    <button-group class="slider-button" v-if="shows.groupButton">
-      <me-button @click="handleEdit" v-show="shows.editButton" type="primary"
-        >编辑</me-button
+    <web-button-group class="slider-button" v-if="shows.groupButton">
+      <web-button @click="handleEdit" v-show="shows.editButton" type="primary"
+        >编辑</web-button
       >
-      <me-button v-show="shows.preReleaseButton">预发布</me-button>
-      <me-button v-show="shows.releaseButton">发布</me-button>
-      <me-button v-show="shows.reviseButton">修订</me-button>
-      <me-button v-show="shows.invalidButton">作废</me-button>
-    </button-group>
+      <web-button v-show="shows.preReleaseButton">预发布</web-button>
+      <web-button v-show="shows.releaseButton">发布</web-button>
+      <web-button v-show="shows.reviseButton">修订</web-button>
+      <web-button v-show="shows.invalidButton">作废</web-button>
+    </web-button-group>
   </div>
 </template>
   
 <script>
 export default {
   components: {
-    BaseInfo: () => import("./BaseInfo"),
-    Attribute: () => import("./Attribute"),
-    FunctionConfig: () => import("./FunctionConfig"),
-    Relation: () => import("./Relation"),
-    Permission: () => import("./Permission"),
-    InstanceLayout: () => import("./InstanceLayout"),
-    UserInfo: () => import("./UserInfo"),
-    HistoryRecord: () => import("./HistoryRecord"),
+    BaseInfo: () => import('./BaseInfo'),
+    Attribute: () => import('./Attribute'),
+    FunctionConfig: () => import('./FunctionConfig'),
+    Relation: () => import('./Relation'),
+    Permission: () => import('./Permission'),
+    InstanceLayout: () => import('./InstanceLayout'),
+    UserInfo: () => import('./UserInfo'),
+    HistoryRecord: () => import('./HistoryRecord')
   },
-  provide() {
+  provide () {
     return {
-      $DataInstance: this,
-    };
+      $DataInstance: this
+    }
   },
   props: {
     pageData: {
-      type: Object,
-    },
+      type: Object
+    }
   },
-  data() {
+  data () {
     return {
-      activeName: "baseInfo",
-      tabsData: this.pageData,
-    };
+      activeName: 'baseInfo',
+      tabsData: this.pageData
+    }
   },
   computed: {
-    pageState() {
-      return this.tabsData.state;
+    pageState () {
+      return this.tabsData.state
     },
-    shows() {
+    shows () {
       let result = {
         groupButton: true,
         editButton: true,
         preReleaseButton: true,
         releaseButton: true,
         reviseButton: true,
-        invalidButton: true,
-      };
-      if (this.pageState === "show") {
-        result.preReleaseButton = false;
-        result.releaseButton = false;
-        result.reviseButton = false;
-        result.invalidButton = false;
-      } else if (this.pageState === "edit") {
-        result.editButton = false;
-      } else if (this.pageState === "add") {
-        result.groupButton = false;
+        invalidButton: true
       }
-      return result;
-    },
+      if (this.pageState === 'show') {
+        result.preReleaseButton = false
+        result.releaseButton = false
+        result.reviseButton = false
+        result.invalidButton = false
+      } else if (this.pageState === 'edit') {
+        result.editButton = false
+      } else if (this.pageState === 'add') {
+        result.groupButton = false
+      }
+      return result
+    }
   },
   watch: {
-    pageData(val) {
-      this.tabsData = val;
-    },
+    pageData (val) {
+      this.tabsData = val
+    }
   },
-  created() {
-    this.handleInit();
+  created () {
+    this.handleInit()
   },
   methods: {
-    handleEdit() {
-      this.tabsData.state = "edit";
+    handleEdit () {
+      this.tabsData.state = 'edit'
     },
-    handleClick(tab, event) {
-      console.log(tab, event);
+    handleClick (tab, event) {
+      console.log(tab, event)
     },
-    handleInit() {
-      if (this.pageState === "add") return false;
+    handleInit () {
+      if (this.pageState === 'add') return false
       this.$api.getDataInstanceDetail(this.pageData.data.id).then((res) => {
-        this.tabsData.data = Object.assign(this.tabsData.data, res.result);
-      });
-    },
-  },
-};
+        this.tabsData.data = Object.assign(this.tabsData.data, res.result)
+      })
+    }
+  }
+}
 </script>
 <style scoped>
 .data-entity {

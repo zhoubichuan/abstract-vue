@@ -26,13 +26,13 @@
       <history-record v-if="activeName === 'historyRecord'"></history-record>
     </el-tab-pane>
   </el-tabs>
-  <button-group class="slider-button" v-if="shows.groupButton">
-    <me-button @click="handleEdit" v-show="shows.editButton" type="primary">编辑</me-button>
-    <me-button v-show="shows.preReleaseButton">预发布</me-button>
-    <me-button v-show="shows.releaseButton">发布</me-button>
-    <me-button v-show="shows.reviseButton">修订</me-button>
-    <me-button v-show="shows.invalidButton">作废</me-button>
-  </button-group>
+  <web-button-group class="slider-button" v-if="shows.groupButton">
+    <web-button @click="handleEdit" v-show="shows.editButton" type="primary">编辑</web-button>
+    <web-button v-show="shows.preReleaseButton">预发布</web-button>
+    <web-button v-show="shows.releaseButton">发布</web-button>
+    <web-button v-show="shows.reviseButton">修订</web-button>
+    <web-button v-show="shows.invalidButton">作废</web-button>
+  </web-button-group>
 </div>
 </template>
   

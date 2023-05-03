@@ -1,12 +1,12 @@
 <template>
-  <button-group class="button-part" justify="start">
-    <me-button @click="handleCreate" type="primary">创建</me-button>
-    <me-button @click="handleDelete">删除</me-button>
-    <me-button @click="handlePreRelease">预发布</me-button>
-    <me-button @click="handleRelease">发布</me-button>
-    <me-button @click="handleRevise">修订</me-button>
-    <me-button @click="handleToVoid">失效</me-button>
-    <me-button @click="handleInvalid">作废</me-button>
+  <web-button-group class="button-part" justify="start">
+    <web-button @click="handleCreate" type="primary">创建</web-button>
+    <web-button @click="handleDelete">删除</web-button>
+    <web-button @click="handlePreRelease">预发布</web-button>
+    <web-button @click="handleRelease">发布</web-button>
+    <web-button @click="handleRevise">修订</web-button>
+    <web-button @click="handleToVoid">失效</web-button>
+    <web-button @click="handleInvalid">作废</web-button>
     <el-dropdown @click="handleCreate">
       <span class="el-dropdown-link">
         导入导出操作<i class="el-icon-arrow-down el-icon--right"></i>
@@ -17,11 +17,10 @@
         <el-dropdown-item>导入数据实体</el-dropdown-item>
       </el-dropdown-menu>
       </el-dropdown>
-    <me-button >添加标签</me-button>
-  </button-group>
+    <web-button >添加标签</web-button>
+  </web-button-group>
 </template>
 <script>
-
 export default {
     name: 'DataInstanceButton',
     components: {

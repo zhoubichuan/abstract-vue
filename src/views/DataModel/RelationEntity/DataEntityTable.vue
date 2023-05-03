@@ -1,5 +1,5 @@
 <template>
-  <table-page
+  <web-table-page
     :value="page"
     @input="val => handleInput(val)"
     border
@@ -107,7 +107,7 @@
         @click="showRemoveModal(row)"></el-link>
       </template>
     </el-table-column>
-  </table-page>
+  </web-table-page>
 </template>
 <script>
 

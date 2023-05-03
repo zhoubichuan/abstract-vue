@@ -1,5 +1,5 @@
 <template>
-  <table-page
+  <web-table-page
     :value="page"
     @input="(val) => handleInput(val)"
     border
@@ -50,18 +50,18 @@
         ></el-link>
       </template>
     </el-table-column>
-  </table-page>
+  </web-table-page>
 </template>
 <script>
 export default {
   props: {
     searchConditon: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   components: {},
-  data() {
+  data () {
     return {
       sliderRightIndex: 0,
       sliderPage: {},
@@ -69,7 +69,7 @@ export default {
       page: {
         curPage: 1,
         pageSize: 20,
-        total: 0,
+        total: 0
       },
       loadingFlag: false,
       addModalFlag: false,
@@ -77,134 +77,134 @@ export default {
       removeModalFlag: false,
       drawer: false,
       tableData: [],
-      productId: "",
+      productId: '',
       tableRows: [
         {
-          prop: "name",
-          label: "中文名称",
-          attrs: { "show-overflow-tooltip": true },
+          prop: 'name',
+          label: '中文名称',
+          attrs: { 'show-overflow-tooltip': true }
         },
         {
-          prop: "nameEn",
-          label: "英文名称",
-          attrs: { "show-overflow-tooltip": true },
+          prop: 'nameEn',
+          label: '英文名称',
+          attrs: { 'show-overflow-tooltip': true }
         },
         {
-          prop: "descript",
-          label: "中文描述",
-          attrs: { "show-overflow-tooltip": true },
+          prop: 'descript',
+          label: '中文描述',
+          attrs: { 'show-overflow-tooltip': true }
         },
         {
-          prop: "descriptEn",
-          label: "英文描述",
-          attrs: { "show-overflow-tooltip": true },
+          prop: 'descriptEn',
+          label: '英文描述',
+          attrs: { 'show-overflow-tooltip': true }
         },
         {
-          prop: "version",
-          label: "版本",
-          attrs: { "show-overflow-tooltip": true },
+          prop: 'version',
+          label: '版本',
+          attrs: { 'show-overflow-tooltip': true }
         },
         {
-          prop: "state",
-          label: "状态",
-          attrs: { "show-overflow-tooltip": true },
+          prop: 'state',
+          label: '状态',
+          attrs: { 'show-overflow-tooltip': true }
         },
         {
-          prop: "eos",
-          label: "EOS时间",
-          attrs: { "show-overflow-tooltip": true },
+          prop: 'eos',
+          label: 'EOS时间',
+          attrs: { 'show-overflow-tooltip': true }
         },
         {
-          prop: "modeType",
-          label: "模型类型",
-          attrs: { "show-overflow-tooltip": true },
+          prop: 'modeType',
+          label: '模型类型',
+          attrs: { 'show-overflow-tooltip': true }
         },
         {
-          prop: "creater",
-          label: "创建者",
-          attrs: { "show-overflow-tooltip": true },
+          prop: 'creater',
+          label: '创建者',
+          attrs: { 'show-overflow-tooltip': true }
         },
         {
-          prop: "modifier",
-          label: "更新者",
-          attrs: { "show-overflow-tooltip": true },
+          prop: 'modifier',
+          label: '更新者',
+          attrs: { 'show-overflow-tooltip': true }
         },
         {
-          prop: "modifyTime",
-          label: "更新时间",
-          attrs: { "show-overflow-tooltip": true },
+          prop: 'modifyTime',
+          label: '更新时间',
+          attrs: { 'show-overflow-tooltip': true }
         },
         {
-          prop: "tags",
-          label: "标签",
-          attrs: { "show-overflow-tooltip": true },
-        },
-      ],
-    };
+          prop: 'tags',
+          label: '标签',
+          attrs: { 'show-overflow-tooltip': true }
+        }
+      ]
+    }
   },
   methods: {
-    showViewModal(row) {
-      this.$emit("showViewModal", row);
+    showViewModal (row) {
+      this.$emit('showViewModal', row)
     },
-    showEditModal(row) {
-      this.$emit("showEditModal", row);
+    showEditModal (row) {
+      this.$emit('showEditModal', row)
     },
-    handleInput(val) {
-      this.page = val;
-      this.$emit("pageChange", this.page);
+    handleInput (val) {
+      this.page = val
+      this.$emit('pageChange', this.page)
     },
-    handleSearch(condition) {
-      this.queryDataEntityList(condition);
+    handleSearch (condition) {
+      this.queryDataEntityList(condition)
     },
-    handleChange(val) {
-      console.log(val);
+    handleChange (val) {
+      console.log(val)
     },
-    handleClick(tab, event) {
-      console.log(tab, event);
+    handleClick (tab, event) {
+      console.log(tab, event)
     },
-    clickpageNum(index) {
-      console.log("pageCount  " + index);
+    clickpageNum (index) {
+      console.log('pageCount  ' + index)
     },
-    handleSelectionChange(val) {
-      this.$emit("input", val);
+    handleSelectionChange (val) {
+      this.$emit('input', val)
     },
-    modalChange() {
-      this.addModalFlag = false;
-      this.removeModalFlag = false;
-      this.editModalFlag = false;
+    modalChange () {
+      this.addModalFlag = false
+      this.removeModalFlag = false
+      this.editModalFlag = false
     },
-    showRemoveModal(index, row) {
-      this.removeModalFlag = true;
-      this.productId = row._id;
+    showRemoveModal (index, row) {
+      this.removeModalFlag = true
+      this.productId = row._id
     },
-    queryDataEntityList(condition = {}) {
-      this.loadingFlag = true;
-      let { curPage, pageSize } = this.page;
+    queryDataEntityList (condition = {}) {
+      this.loadingFlag = true
+      let { curPage, pageSize } = this.page
       this.$api
         .getDataEntityList({
           curPage,
           pageSize,
-          ...condition,
+          ...condition
         })
         .then((res) => {
           if (res.status === 200) {
             let {
               result,
-              page: { curPage, total, pageSize },
-            } = res;
-            this.loadingFlag = false;
-            this.page.total = total;
-            this.page.curPage = curPage;
-            this.page.pageSize = pageSize;
-            this.tableData = result;
+              page: { curPage, total, pageSize }
+            } = res
+            this.loadingFlag = false
+            this.page.total = total
+            this.page.curPage = curPage
+            this.page.pageSize = pageSize
+            this.tableData = result
           } else {
-            this.tableData = [];
-            this.loadingFlag = false;
+            this.tableData = []
+            this.loadingFlag = false
           }
-        });
-    },
-  },
-};
+        })
+    }
+  }
+}
 </script>
 
 <style scoped lang="stylus">

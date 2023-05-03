@@ -1,11 +1,10 @@
 <template>
-  <button-group class="button-part" justify="start">
-    <me-button @click="handleCreate" type="primary">创建</me-button>
-    <me-button @click="handleDelete">删除</me-button>
-  </button-group>
+  <web-button-group class="button-part" justify="start">
+    <web-button @click="handleCreate" type="primary">创建</web-button>
+    <web-button @click="handleDelete">删除</web-button>
+  </web-button-group>
 </template>
 <script>
-
 export default {
     data () {
       return {

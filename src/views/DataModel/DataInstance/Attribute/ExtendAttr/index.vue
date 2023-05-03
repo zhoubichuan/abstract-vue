@@ -2,22 +2,22 @@
   <div>
     <dialog-form ref="dialogForm">
       <el-form ref="form" :model="baseInfoForm" label-width="80px" size="mini" :rules="rules">
-        <form-item 
+        <web-form-item 
           v-for="(formItem, formItemIndex) in baseFormData"
           :formData="formItem"
           :key="formItemIndex">
-        </form-item>
+        </web-form-item>
       </el-form>
     </dialog-form>
     扩展属性
-      <button-group justify="start">
-        <me-button type="primary" @click ="handleCreate">创建</me-button>
-        <me-button >删除</me-button>
-        <me-button >生效</me-button>
-        <me-button >失效</me-button>
-        <me-button type="primary">导入导出</me-button>
-      </button-group>
-      <table-page
+      <web-button-group justify="start">
+        <web-button type="primary" @click ="handleCreate">创建</web-button>
+        <web-button >删除</web-button>
+        <web-button >生效</web-button>
+        <web-button >失效</web-button>
+        <web-button type="primary">导入导出</web-button>
+      </web-button-group>
+      <web-table-page
         border
         v-loading="loadingFlag"
         element-loading-text="拼命加载中"
@@ -142,7 +142,7 @@
           label="标签"
         >
         </el-table-column>
-      </table-page>
+      </web-table-page>
   </div>
 </template>
 <script>

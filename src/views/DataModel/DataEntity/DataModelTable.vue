@@ -1,5 +1,5 @@
 <template>
-  <table-page
+  <web-table-page
     :value="page"
     @input="(val) => handleInput(val)"
     border
@@ -68,19 +68,19 @@
         ></el-link>
       </template>
     </el-table-column>
-  </table-page>
+  </web-table-page>
 </template>
 <script>
 export default {
-  name: "DataEntityTable",
+  name: 'DataEntityTable',
   props: {
     searchConditon: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   components: {},
-  data() {
+  data () {
     return {
       sliderRightIndex: 0,
       sliderPage: {},
@@ -88,7 +88,7 @@ export default {
       page: {
         curPage: 1,
         pageSize: 20,
-        total: 0,
+        total: 0
       },
       loadingFlag: false,
       addModalFlag: false,
@@ -96,72 +96,72 @@ export default {
       removeModalFlag: false,
       drawer: false,
       tableData: [],
-      productId: "",
-    };
+      productId: ''
+    }
   },
   methods: {
-    showViewModal(row) {
-      this.$emit("showViewModal", row);
+    showViewModal (row) {
+      this.$emit('showViewModal', row)
     },
-    showEditModal(row) {
-      this.$emit("showEditModal", row);
+    showEditModal (row) {
+      this.$emit('showEditModal', row)
     },
-    handleInput(val) {
-      this.page = val;
-      this.$emit("pageChange", this.page);
+    handleInput (val) {
+      this.page = val
+      this.$emit('pageChange', this.page)
     },
-    handleSearch(condition) {
-      this.queryDataEntityList(condition);
+    handleSearch (condition) {
+      this.queryDataEntityList(condition)
     },
-    handleChange(val) {
-      console.log(val);
+    handleChange (val) {
+      console.log(val)
     },
-    handleClick(tab, event) {
-      console.log(tab, event);
+    handleClick (tab, event) {
+      console.log(tab, event)
     },
-    clickpageNum(index) {
-      console.log("pageCount  " + index);
+    clickpageNum (index) {
+      console.log('pageCount  ' + index)
     },
-    handleSelectionChange(val) {
-      this.$emit("input", val);
+    handleSelectionChange (val) {
+      this.$emit('input', val)
     },
-    modalChange() {
-      this.addModalFlag = false;
-      this.removeModalFlag = false;
-      this.editModalFlag = false;
+    modalChange () {
+      this.addModalFlag = false
+      this.removeModalFlag = false
+      this.editModalFlag = false
     },
-    showRemoveModal(index, row) {
-      this.removeModalFlag = true;
-      this.productId = row._id;
+    showRemoveModal (index, row) {
+      this.removeModalFlag = true
+      this.productId = row._id
     },
-    async queryDataEntityList(condition = {}) {
-      this.loadingFlag = true;
-      let { curPage, pageSize } = this.page;
+    async queryDataEntityList (condition = {}) {
+      this.loadingFlag = true
+      let { curPage, pageSize } = this.page
       try {
         let res = await this.$api.getDataEntityList({
           curPage,
           pageSize,
-          ...condition,
-        });
+          ...condition
+        })
         if (res.status === 200) {
           let {
             result,
-            page: { curPage, total, pageSize },
-          } = res;
-          this.page.total = total;
-          this.page.curPage = curPage;
-          this.page.pageSize = pageSize;
-          this.tableData = result;
+            page: { curPage, total, pageSize }
+          } = res
+          this.page.total = total
+          this.page.curPage = curPage
+          this.page.pageSize = pageSize
+          this.tableData = result
         } else {
-          this.tableData = [];
-        }      
+          this.tableData = []
+        }
       } catch (error) {
 
       }
-      this.loadingFlag = false;
-    },
-  },
-};
+      this.loadingFlag = false
+    }
+  }
+}
 </script>
 
 <style scoped lang="stylus">

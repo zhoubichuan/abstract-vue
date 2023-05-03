@@ -1,31 +1,31 @@
 <template>
 <div v-loading="loading">
-  <collapse v-model="activeName">
+  <web-collapse v-model="activeName">
     <el-form ref="form" :model="baseInfoForm" label-width="80px" size="mini" :rules="rules">
-      <collapse-item title="基本信息" name="base-info">
-        <form-item 
+      <web-collapse-item title="基本信息" name="base-info">
+        <web-form-item 
           v-for="(formItem, formItemIndex) in baseFormData"
           :formData="formItem"
           :key="formItemIndex">
-        </form-item>
-        </collapse-item>
-        <collapse-item title="历史记录" name="history-record" v-if="shows.historyRecord">
-          <form-item 
+        </web-form-item>
+        </web-collapse-item>
+        <web-collapse-item title="历史记录" name="history-record" v-if="shows.historyRecord">
+          <web-form-item
             v-for="(formItem, formItemIndex) in historyFormData"
             :formData="formItem"
             :key="formItemIndex">
-          </form-item>
-        </collapse-item>
+          </web-form-item>
+        </web-collapse-item>
     </el-form>
-  </collapse>
-  <button-group v-if="shows.saveButton">
-    <me-button 
+  </web-collapse>
+  <web-button-group v-if="shows.saveButton">
+    <web-button 
       :disabled="disableds.saveButton" 
       type="primary" 
       @click="checkValidate(['add'].includes(pageSate) ? handleAdd : handleEdit)">
         保存
-    </me-button>
-  </button-group>
+    </web-button>
+  </web-button-group>
 </div>
 </template>
 <script>

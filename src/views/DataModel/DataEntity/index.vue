@@ -1,11 +1,11 @@
 <template>
   <div class="content">
     <!-- 右侧滑窗 -->
-    <slider-right v-model="sliderPage">
+    <web-slider-right v-model="sliderPage">
       <template slot-scope="pageData">
         <slider-tabs :pageData="pageData.data"></slider-tabs>
       </template>
-    </slider-right>
+    </web-slider-right>
     <!-- 搜索 -->
     <data-entity-search v-model="condition" @handleSearch="handleSearch" />
     <!-- 按钮 -->
@@ -32,14 +32,14 @@
 </template>
 <script>
 export default {
-  name: "DataEntity",
+  name: 'DataEntity',
   components: {
-    DataEntitySearch: () => import("./DataEntitySearch"),
-    DataEntityButton: () => import("./DataEntityButton"),
-    DataEntityTable: () => import("./DataEntityTable"),
-    SliderTabs: () => import("./SliderTabs"),
+    DataEntitySearch: () => import('./DataEntitySearch'),
+    DataEntityButton: () => import('./DataEntityButton'),
+    DataEntityTable: () => import('./DataEntityTable'),
+    SliderTabs: () => import('./SliderTabs')
   },
-  data() {
+  data () {
     return {
       condition: {},
       page: {},
@@ -48,84 +48,84 @@ export default {
       sliderPage: [],
       loadingFlag: false,
       startLoad: true,
-      addModalFlag: false,
-    };
+      addModalFlag: false
+    }
   },
   watch: {
     condition: {
-      handler(newVal, oldVal) {
+      handler (newVal, oldVal) {
         if (this.startLoad) {
-          this.handleSearch(this.condition);
-          this.startLoad = false;
+          this.handleSearch(this.condition)
+          this.startLoad = false
         }
       },
-      deep: true,
-    },
+      deep: true
+    }
   },
-  beforeCreate() {
-    this.$on("handleSearch", () => {
-      this.handleSearch();
-    });
+  beforeCreate () {
+    this.$on('handleSearch', () => {
+      this.handleSearch()
+    })
   },
-  mounted() {},
+  mounted () {},
   methods: {
-    handleCreate() {
-      if (!this.sliderPage.find((item) => item.state === "add")) {
+    handleCreate () {
+      if (!this.sliderPage.find((item) => item.state === 'add')) {
         this.sliderPage.push({
-          title: "创建页面",
+          title: '创建页面',
           data: {
             storeType: false,
-            inherit: false,
+            inherit: false
           },
-          state: "add",
-          getTableList: this.handleSearch,
-        });
+          state: 'add',
+          getTableList: this.handleSearch
+        })
       }
     },
-    showViewModal(row) {
+    showViewModal (row) {
       if (!this.sliderPage.find((item) => item.data.id === row.id)) {
         this.sliderPage.push({
           title: row.nameEn,
           data: row,
-          state: "show",
-          getTableList: this.handleSearch,
-        });
+          state: 'show',
+          getTableList: this.handleSearch
+        })
       }
     },
-    showEditModal(row) {
+    showEditModal (row) {
       if (!this.sliderPage.find((item) => item.data.id === row.id)) {
         this.sliderPage.push({
           title: row.nameEn,
           data: row,
-          state: "edit",
-          getTableList: this.handleSearch,
-        });
+          state: 'edit',
+          getTableList: this.handleSearch
+        })
       }
     },
-    handleDelete() {
-      let arr = this.selects.map((item) => item._id);
+    handleDelete () {
+      let arr = this.selects.map((item) => item._id)
       this.$api.deleteDataEntity(arr).then((req) => {
-        this.handleSearch();
-      });
+        this.handleSearch()
+      })
     },
-    handlePreRelease() {},
-    handleRelease() {},
-    handleRevise() {},
-    handleToVoid() {},
-    handleInvalid() {},
-    pageChange(page) {
-      this.page = page;
+    handlePreRelease () {},
+    handleRelease () {},
+    handleRevise () {},
+    handleToVoid () {},
+    handleInvalid () {},
+    pageChange (page) {
+      this.page = page
       let params = {
         ...page,
-        ...this.condition,
-      };
-      this.handleSearch(params);
+        ...this.condition
+      }
+      this.handleSearch(params)
     },
-    handleSearch(condition) {
-      this.$refs.entityTable && this.$refs.entityTable.queryDataEntityList(condition);
-    },
-  },
-};
+    handleSearch (condition) {
+      this.$refs.entityTable && this.$refs.entityTable.queryDataEntityList(condition)
+    }
+  }
+}
 </script>
 
 <style scoped lang="stylus">

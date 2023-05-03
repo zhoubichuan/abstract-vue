@@ -1,12 +1,12 @@
 <template>
   <!-- 搜索组件 -->
-  <search-form
+  <web-search
     class="search-part"
     :condition="condition"
     :value="searchField"
     @input="val => updateField(val)"
     @handleSearch="handleSearch">
-  </search-form>
+  </web-search>
 </template>
 <script>
 import SearchEnumerationType, {stateOptions, entityTypeOptions, modelTypeOptions, selectFunctionOptions} from 'static/EnumerationType.js'

@@ -1,9 +1,9 @@
 <template>
   <div>
-      <!-- <button-group class="button-part" justify="start">
+      <!-- <web-button-group class="button-part" justify="start">
         <el-button size="mini" @click="compire" type="primary">对比</el-button>
-      </button-group> -->
-      <table-page
+      </web-button-group> -->
+      <web-table-page
         :data="tableData"
         style="width: 100%">
         <el-table-column
@@ -33,7 +33,7 @@
             <el-button type="text" @click="toTargetPage(row)">{{row.address}}</el-button>
           </template>
         </el-table-column>
-      </table-page>
+      </web-table-page>
   </div>
 </template>
 
