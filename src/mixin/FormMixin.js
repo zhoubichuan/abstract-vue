@@ -1,12 +1,12 @@
-import { FormItem } from "element-ui"
+import { FormItem } from 'element-ui'
 
 export default {
-  data() {
+  data () {
     return {
     }
   },
   methods: {
-    mixinInput(formItem) {
+    mixinInput (formItem) {
       return (
         <el-input
           value={this[formItem.formKey][formItem.prop]}
@@ -16,7 +16,7 @@ export default {
         </el-input>
       )
     },
-    mixinTextarea(formItem) {
+    mixinTextarea (formItem) {
       return (
         <el-input
           type="textarea"
@@ -29,7 +29,7 @@ export default {
         </el-input>
       )
     },
-    mixinSelect(formItem) {
+    mixinSelect (formItem) {
       !formItem.options && (
         formItem.options = [
           { label: '是', value: true },
@@ -50,7 +50,7 @@ export default {
         </el-select>
       )
     },
-    mixinRadio(formItem) {
+    mixinRadio (formItem) {
       !formItem.options && (
         formItem.options = [
           { label: '是', value: true },
@@ -71,7 +71,7 @@ export default {
         </el-radio-group>
       )
     },
-    mixinUpload(formItem) {
+    mixinUpload (formItem) {
       return (
         <div>
 
@@ -80,12 +80,12 @@ export default {
             src={this[formItem.formKey][formItem.prop]}
             preview-src-list={[this[formItem.formKey][formItem.prop]]}>
           </el-image>}
-          <upload-image
+          <web-upload-image
             uptype={FormItem.type}
             value={this[formItem.formKey][formItem.prop]}
             disabled={formItem.disabled}
             onInput={val => { this.$set(this[formItem.formKey], formItem.prop, val) }}>
-          </upload-image>
+          </web-upload-image>
         </div>
       )
     }
