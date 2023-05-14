@@ -124,6 +124,11 @@ export default {
           attrs: { 'show-overflow-tooltip': true }
         },
         {
+          prop: 'creatTime',
+          label: '创建时间',
+          attrs: { 'show-overflow-tooltip': true }
+        },
+        {
           prop: 'modifier',
           label: '更新者',
           attrs: { 'show-overflow-tooltip': true }
