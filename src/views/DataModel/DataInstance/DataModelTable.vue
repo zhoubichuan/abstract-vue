@@ -86,7 +86,7 @@ export default {
       sliderPage: {},
       conditon: this.searchConditon,
       page: {
-        curPage: 1,
+        current: 1,
         pageSize: 20,
         total: 0
       },
@@ -136,22 +136,22 @@ export default {
     },
     queryDataInstanceList (condition = {}) {
       this.loadingFlag = true
-      let { curPage, pageSize } = this.page
+      let { current, pageSize } = this.page
       this.$api
         .getDataInstanceList({
-          curPage,
+          current,
           pageSize,
           ...condition
         })
         .then((res) => {
-          if (res.status === 200) {
+          if (res.statusCode === 200) {
             let {
               result,
-              page: { curPage, total, pageSize }
+              page: { current, total, pageSize }
             } = res
             this.loadingFlag = false
             this.page.total = total
-            this.page.curPage = curPage
+            this.page.current = current
             this.page.pageSize = pageSize
             this.tableData = result
           } else {
@@ -164,7 +164,7 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus">
+<style scoped lang="scss">
 .content {
   height: 100%;
   display: flex;

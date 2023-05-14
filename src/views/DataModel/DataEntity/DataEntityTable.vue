@@ -2,7 +2,6 @@
   <web-table-page
     :value="page"
     @input="(val) => handleInput(val)"
-    border
     v-loading="loadingFlag"
     element-loading-text="拼命加载中"
     element-loading-spinner="el-icon-loading"
@@ -67,7 +66,7 @@ export default {
       sliderPage: {},
       conditon: this.searchConditon,
       page: {
-        curPage: 1,
+        current: 1,
         pageSize: 20,
         total: 0
       },
@@ -177,37 +176,34 @@ export default {
       this.removeModalFlag = true
       this.productId = row._id
     },
-    queryDataEntityList (condition = {}) {
+    async queryDataEntityList (condition = {}) {
       this.loadingFlag = true
-      let { curPage, pageSize } = this.page
-      this.$api
-        .getDataEntityList({
-          curPage,
-          pageSize,
-          ...condition
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            let {
-              result,
-              page: { curPage, total, pageSize }
-            } = res
-            this.loadingFlag = false
-            this.page.total = total
-            this.page.curPage = curPage
-            this.page.pageSize = pageSize
-            this.tableData = result
-          } else {
-            this.tableData = []
-            this.loadingFlag = false
-          }
-        })
+      let { current, pageSize } = this.page
+      let res = await this.$api.getDataEntityList({
+        current,
+        pageSize,
+        ...condition
+      })
+      if (res) {
+        let {
+          data,
+          page: { current, total, pageSize }
+        } = res
+        this.loadingFlag = false
+        this.page.total = total
+        this.page.current = current
+        this.page.pageSize = pageSize
+        this.tableData = data
+      } else {
+        this.tableData = []
+        this.loadingFlag = false
+      }
     }
   }
 }
 </script>
 
-<style scoped lang="stylus">
+<style scoped lang="scss">
 .content {
   height: 100%;
   display: flex;

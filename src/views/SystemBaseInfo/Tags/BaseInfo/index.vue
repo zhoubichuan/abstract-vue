@@ -98,7 +98,7 @@ export default {
       let keys = ['nameEn', 'name', 'descriptEn', 'descript']
       let params = this.$filterObj(this.baseInfoForm, keys)
       this.$api.createTag(params).then((res) => {
-        if (res.status === 200) {
+        if (res.statusCode === 200) {
           this.$message({
             message: res.msg,
             type: 'success'
@@ -114,7 +114,7 @@ export default {
       let keys = ['id', 'nameEn', 'name', 'descriptEn', 'descript']
       let params = this.$filterObj(this.baseInfoForm, keys)
       this.$api.updateTag(params).then((res) => {
-        if (res.status === 200) {
+        if (res.statusCode === 200) {
           this.$message({
             message: res.msg,
             type: 'success'

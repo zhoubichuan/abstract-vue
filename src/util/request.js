@@ -15,7 +15,7 @@ service.interceptors.request.use(
     config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
     const token = getToken()
     if (token) {
-      config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+      // config.headers['token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
     }
     return config
   },
@@ -56,7 +56,7 @@ service.interceptors.response.use(
         })
       }
     } else {
-      return response.data
+      return Promise.resolve(res.data.result)
     }
   },
   error => {

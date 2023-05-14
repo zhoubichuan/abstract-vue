@@ -80,7 +80,7 @@ export default {
       conditon: {},
       viewPage: false,
       page: {
-        curPage: 1,
+        current: 1,
         pageSize: 20,
         total: 0
       },
@@ -488,22 +488,22 @@ export default {
   methods: {
     handleSelectionChange (condition = {}) {
       this.loadingFlag = true
-      let { curPage, pageSize } = this.page
+      let { current, pageSize } = this.page
       this.$api
         .getAttributeList({
-          curPage,
+          current,
           pageSize,
           ...condition
         })
         .then((res) => {
-          if (res.status === 200) {
+          if (res.statusCode === 200) {
             let {
               result,
-              page: { curPage, total, pageSize }
+              page: { current, total, pageSize }
             } = res
             this.loadingFlag = false
             this.page.total = total
-            this.page.curPage = curPage
+            this.page.current = current
             this.page.pageSize = pageSize
             this.tableData = result
           } else {
@@ -532,7 +532,7 @@ export default {
       ]
       let params = this.$filterObj(this.baseInfoForm, keys)
       this.$api.createAttribute(params).then((res) => {
-        if (res.status === 200) {
+        if (res.statusCode === 200) {
           this.$message({
             message: res.msg,
             type: 'success'
@@ -546,7 +546,7 @@ export default {
     },
     showViewModal (index, row) {
       this.$api.getAttributeDetail(row.code).then((res) => {
-        if (res.status === 200) {
+        if (res.statusCode === 200) {
           this.$message({
             message: res.msg,
             type: 'success'

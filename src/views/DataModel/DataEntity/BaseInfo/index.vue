@@ -96,7 +96,7 @@ import FormMixin from '@/mixin/FormMixin.js'
         let keys = ['nameEn', 'name', 'descriptEn', 'descript', 'parentId', 'storeType', 'modelType', 'inherit', 'tableName']
         let params = this.$filterObj(this.baseInfoForm, keys)
         this.$api.createDataEntity(params).then(res => {
-          if (res.status === 200) {
+          if (res.statusCode === 200) {
           this.$message({
               message: res.msg,
               type: 'success'
@@ -112,7 +112,7 @@ import FormMixin from '@/mixin/FormMixin.js'
         let keys = ['id', 'nameEn', 'name', 'descriptEn', 'descript', 'parentId', 'storeType', 'modelType', 'inherit', 'tableName']
         let params = this.$filterObj(this.baseInfoForm, keys)
         this.$api.updateDataEntity(params).then(res => {
-          if (res.status === 200) {
+          if (res.statusCode === 200) {
             this.$message({
                 message: res.msg,
                 type: 'success'

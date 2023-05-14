@@ -237,7 +237,7 @@ export default {
           if (valid) {
             this.$ajax.post(`/product/update/${this.productId}`, this.ProductEditForm).then(res => {
               console.log('product edit   ' + res)
-              if (res.status === '200') {
+              if (res.statusCode === '200') {
                   this.$message({
                       message: '修改成功',
                       type: 'success'

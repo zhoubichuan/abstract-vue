@@ -80,7 +80,7 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 import { setCookie } from '../util/cookies'
 export default {
   data () {
@@ -126,7 +126,7 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="scss" scoped>
 .login {
   position: relative;
   width: 100%;

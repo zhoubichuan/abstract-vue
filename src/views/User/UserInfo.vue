@@ -51,7 +51,7 @@
     </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 
 import { mapState } from 'vuex'
     export default {

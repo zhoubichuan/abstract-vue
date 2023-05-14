@@ -49,19 +49,19 @@ export default {
   props: {
     searchConditon: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   components: {},
-  data() {
+  data () {
     return {
       sliderRightIndex: 0,
       sliderPage: {},
       conditon: this.searchConditon,
       page: {
-        curPage: 1,
+        current: 1,
         pageSize: 20,
-        total: 0,
+        total: 0
       },
       loadingFlag: false,
       addModalFlag: false,
@@ -69,75 +69,75 @@ export default {
       removeModalFlag: false,
       drawer: false,
       tableData: [],
-      productId: "",
-    };
+      productId: ''
+    }
   },
   methods: {
-    showViewModal(row) {
-      this.$emit("showViewModal", row);
+    showViewModal (row) {
+      this.$emit('showViewModal', row)
     },
-    showEditModal(row) {
-      this.$emit("showEditModal", row);
+    showEditModal (row) {
+      this.$emit('showEditModal', row)
     },
-    handleInput(val) {
-      this.page = val;
-      this.$emit("pageChange", this.page);
+    handleInput (val) {
+      this.page = val
+      this.$emit('pageChange', this.page)
     },
-    handleSearch(condition) {
-      this.queryTagList(condition);
+    handleSearch (condition) {
+      this.queryTagList(condition)
     },
-    handleChange(val) {
-      console.log(val);
+    handleChange (val) {
+      console.log(val)
     },
-    handleClick(tab, event) {
-      console.log(tab, event);
+    handleClick (tab, event) {
+      console.log(tab, event)
     },
-    clickpageNum(index) {
-      console.log("pageCount  " + index);
+    clickpageNum (index) {
+      console.log('pageCount  ' + index)
     },
-    handleSelectionChange(val) {
-      this.$emit("input", val);
+    handleSelectionChange (val) {
+      this.$emit('input', val)
     },
-    modalChange() {
-      this.addModalFlag = false;
-      this.removeModalFlag = false;
-      this.editModalFlag = false;
+    modalChange () {
+      this.addModalFlag = false
+      this.removeModalFlag = false
+      this.editModalFlag = false
     },
-    showRemoveModal(index, row) {
-      this.removeModalFlag = true;
-      this.productId = row._id;
+    showRemoveModal (index, row) {
+      this.removeModalFlag = true
+      this.productId = row._id
     },
-    queryTagList(condition = {}) {
-      this.loadingFlag = true;
-      let { curPage, pageSize } = this.page;
+    queryTagList (condition = {}) {
+      this.loadingFlag = true
+      let { current, pageSize } = this.page
       this.$api
         .getTagList({
-          curPage,
+          current,
           pageSize,
-          ...condition,
+          ...condition
         })
         .then((res) => {
-          if (res.status === 200) {
+          if (res.statusCode === 200) {
             let {
               result,
-              page: { curPage, total, pageSize },
-            } = res;
-            this.loadingFlag = false;
-            this.page.total = total;
-            this.page.curPage = curPage;
-            this.page.pageSize = pageSize;
-            this.tableData = result;
+              page: { current, total, pageSize }
+            } = res
+            this.loadingFlag = false
+            this.page.total = total
+            this.page.current = current
+            this.page.pageSize = pageSize
+            this.tableData = result
           } else {
-            this.tableData = [];
-            this.loadingFlag = false;
+            this.tableData = []
+            this.loadingFlag = false
           }
-        });
-    },
-  },
-};
+        })
+    }
+  }
+}
 </script>
 
-<style scoped lang="stylus">
+<style scoped lang="scss">
 .content {
   height: 100%;
   display: flex;
