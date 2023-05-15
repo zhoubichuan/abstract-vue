@@ -7,13 +7,14 @@
     element-loading-spinner="el-icon-loading"
     :data="tableData"
     stripe
+    border
+    highlight-current-row
     style="width: 100%"
     @selection-change="handleSelectionChange"
     class="table-part"
   >
-    <el-table-column fixed="left" type="index" width="55"> </el-table-column>
-    <el-table-column fixed="left" type="selection" width="55">
-    </el-table-column>
+    <el-table-column fixed="left" type="selection" width="55"></el-table-column>
+    <el-table-column fixed="left" type="index" label="序号" width="55"></el-table-column>
     <el-table-column
       fixed="left"
       show-overflow-tooltip
