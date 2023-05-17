@@ -2,7 +2,6 @@
   <web-table-page
     :value="page"
     @input="(val) => handleInput(val)"
-    border
     v-loading="loadingFlag"
     element-loading-text="拼命加载中"
     element-loading-spinner="el-icon-loading"
@@ -157,8 +156,9 @@ export default {
         }
       } catch (error) {
 
+      } finally {
+        this.loadingFlag = false
       }
-      this.loadingFlag = false
     }
   }
 }

@@ -7,7 +7,6 @@
     element-loading-spinner="el-icon-loading"
     :data="tableData"
     stripe
-    border
     highlight-current-row
     style="width: 100%"
     @selection-change="handleSelectionChange"

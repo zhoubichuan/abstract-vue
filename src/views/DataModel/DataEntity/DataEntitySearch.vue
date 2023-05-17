@@ -4,12 +4,12 @@
     class="search-part"
     :condition="condition"
     :value="searchField"
-    @input="val => updateField(val)"
-    @handleSearch="handleSearch">
+    @input="(val) => updateField(val)"
+    @handleSearch="handleSearch"
+  >
   </web-search>
 </template>
 <script>
-import SearchEnumerationType, {stateOptions, entityTypeOptions, modelTypeOptions, selectFunctionOptions} from 'static/EnumerationType.js'
 export default {
   name: 'DataEntitySearch',
   data () {
@@ -17,82 +17,140 @@ export default {
       searchField: {},
       condition: [
         {
-          type: SearchEnumerationType.input,
+          type: 'searchInput',
           name: 'code',
           label: '编码',
           placeholder: '请输入编码'
         },
         {
-          type: SearchEnumerationType.input,
+          type: 'searchInput',
           name: 'name',
           label: '中文名称',
           placeholder: '请输入中文名称'
         },
         {
-          type: SearchEnumerationType.input,
+          type: 'searchInput',
           name: 'nameEn',
           label: '英文名称',
           placeholder: '请输入英文名称'
         },
         {
-          type: SearchEnumerationType.select,
+          type: 'searchSelect',
           name: 'state',
           multiple: true,
-          defaultValue: [ 'isWrok', 'preRelease', 'release' ],
+          defaultValue: ['isWrok', 'preRelease', 'release'],
           label: '状态',
           placeholder: '请选择状态',
-          options: stateOptions
+          options: [
+            {
+              label: '正在工作',
+              value: 'isWrok'
+            },
+            {
+              label: '预发布',
+              value: 'preRelease'
+            },
+            {
+              label: '已发布',
+              value: 'release'
+            },
+            {
+              label: '已修订',
+              value: 'revised'
+            },
+            {
+              label: '已作废',
+              value: 'invalid'
+            }
+          ]
         },
         {
-          type: SearchEnumerationType.multipleSelect,
+          type: 'searchSelect',
           name: 'parentId',
           label: '父模型',
           placeholder: '请选择父模型',
-          options: this.getParentOptions()
+          options: function () {
+            return []
+          }
         },
         {
-          type: SearchEnumerationType.select,
+          type: 'searchSelect',
           name: 'entityType',
           label: '实体类型',
           placeholder: '请选择实体类型',
-          options: entityTypeOptions
+          options: [
+            {
+              label: '单实体',
+              value: 'singleEntity'
+            },
+            {
+              label: 'master-Version',
+              value: 'masterVersion'
+            }
+          ]
         },
         {
-          type: SearchEnumerationType.input,
+          type: 'searchInput',
           name: 'version',
           label: '版本',
           placeholder: '请输入版本'
         },
         {
-          type: SearchEnumerationType.select,
+          type: 'searchSelect',
           name: 'modeType',
           label: '模型类型',
           placeholder: '请选择模型类型',
-          options: modelTypeOptions
+          options: [
+            {
+              label: 'XDM',
+              value: 'XDM'
+            },
+            {
+              label: 'SYS',
+              value: 'SYS'
+            },
+            {
+              label: 'GENERE',
+              value: 'GENERE'
+            }
+          ]
         },
         {
-          type: SearchEnumerationType.select,
+          type: 'searchSelect',
           name: 'selectFunction',
           multiple: true,
           defaultValue: [],
           label: '可选功能',
           placeholder: '请选择可选功能',
-          options: selectFunctionOptions
+          options: [
+            {
+              label: '组合关系',
+              value: 'XDM'
+            },
+            {
+              label: '树形关系',
+              value: 'SYS'
+            },
+            {
+              label: '权限管理',
+              value: 'GENERE'
+            }
+          ]
         },
         {
-          type: SearchEnumerationType.user,
+          type: 'searchUser',
           name: 'user',
           label: '创建者',
           placeholder: '请输入用户'
         },
         {
-          type: SearchEnumerationType.time,
+          type: 'searchTime',
           name: 'eos',
           label: 'EOS时间',
           placeholder: '请选择时间'
         },
         {
-          type: SearchEnumerationType.cascader,
+          type: 'searchCascader',
           name: 'tags',
           label: '标签类型',
           placeholder: '请选择标签类型',
@@ -114,8 +172,7 @@ export default {
       ]
     }
   },
-  watch: {
-  },
+  watch: {},
   methods: {
     updateField (val) {
       this.searchField = val
@@ -123,9 +180,6 @@ export default {
     },
     handleSearch (condition) {
       this.$emit('handleSearch', condition)
-    },
-    getParentOptions () {
-      return []
     }
   }
 }
