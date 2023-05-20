@@ -13,6 +13,8 @@ const portfinder = require("portfinder"); // 查看空闲端口位置，默认�
 const HOST = process.env.HOST;
 const PORT = process.env.PORT && Number(process.env.PORT);
 const env = require("../config/dev.env");
+var bundleConfig = require("../public/libs-mainfest.json");
+
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
@@ -60,7 +62,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "index.html",
-      inject: true
+      inject: true,
+      // libJsName: bundleConfig.libs.js,
+      // libCssName: bundleConfig.libs.css,
+      env: config.dev.env
     }),
     // 提取static assets 中css 复制到dist/static文件
     new CopyWebpackPlugin([
@@ -69,7 +74,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         to: config.dev.assetsSubDirectory,
         ignore: [".*"] //忽略.*的文件
       }
-    ])
+    ]),
   ]
 });
 let devConfig = new Promise((resolve, reject) => {

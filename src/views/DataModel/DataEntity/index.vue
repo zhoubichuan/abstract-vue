@@ -3,13 +3,13 @@
     <!-- 右侧滑窗 -->
     <web-slider-right v-model="sliderPage">
       <template slot-scope="pageData">
-        <slider-tabs :pageData="pageData.data"></slider-tabs>
+        <page-slider :pageData="pageData.data"></page-slider>
       </template>
     </web-slider-right>
     <!-- 搜索 -->
-    <data-entity-search v-model="condition" @handleSearch="handleSearch" />
+    <page-search v-model="condition" @handleSearch="handleSearch" />
     <!-- 按钮 -->
-    <data-entity-button
+    <page-button
       @handleCreate="handleCreate"
       @handleDelete="handleDelete"
       @handlePreRelease="handlePreRelease"
@@ -19,7 +19,7 @@
       @handleInvalid="handleInvalid"
     />
     <!-- 数据展示 -->
-    <data-entity-table
+    <page-table
       ref="entityTable"
       v-model="selects"
       :searchConditon="condition"
@@ -34,10 +34,10 @@
 export default {
   name: 'DataEntity',
   components: {
-    DataEntitySearch: () => import('./DataEntitySearch'),
-    DataEntityButton: () => import('./DataEntityButton'),
-    DataEntityTable: () => import('./DataEntityTable'),
-    SliderTabs: () => import('./SliderTabs')
+    PageSearch: () => import('./PageSearch'),
+    PageButton: () => import('./PageButton'),
+    PageTable: () => import('./PageTable'),
+    PageSlider: () => import('./PageSlider')
   },
   data () {
     return {
