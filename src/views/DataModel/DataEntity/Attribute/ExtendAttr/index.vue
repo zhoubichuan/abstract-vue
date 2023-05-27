@@ -348,14 +348,14 @@ export default {
             code: {
               label: '编码',
               disabled: this.disableds.code,
-              render: ({data: {attrs: {formItem}}}) => {
+              render: (h,{data: {attrs: {formItem}}}) => {
                 return this.mixinInput(formItem)
               }
             },
             state: {
               label: '状态',
               disabled: this.disableds.state,
-              render: ({data: {attrs: {formItem}}}) => {
+              render: (h,{data: {attrs: {formItem}}}) => {
                 return this.mixinSelect(formItem)
               }
             },
@@ -363,14 +363,14 @@ export default {
               label: '英文名称',
               disabled: this.disableds.nameEn,
               placeholder: '请输入英文名称',
-              render: ({data: {attrs: {formItem}}}) => {
+              render: (h,{data: {attrs: {formItem}}}) => {
                 return this.mixinInput(formItem)
               }
             },
             name: {
               label: '中文名称',
               placeholder: '请输入中文名称',
-              render: ({data: {attrs: {formItem}}}) => {
+              render: (h,{data: {attrs: {formItem}}}) => {
                 return this.mixinInput(formItem)
               }
             },
@@ -379,7 +379,7 @@ export default {
               disabled: this.disableds.descriptEn,
               placeholder: '请输入英文描述',
               singleFormItem: true,
-              render: ({data: {attrs: {formItem}}}) => {
+              render: (h,{data: {attrs: {formItem}}}) => {
                 return this.mixinTextarea(formItem)
               }
             },
@@ -387,7 +387,7 @@ export default {
               label: '中文描述',
               placeholder: '请输入中文描述',
               singleFormItem: true,
-              render: ({data: {attrs: {formItem}}}) => {
+              render: (h,{data: {attrs: {formItem}}}) => {
                 return this.mixinTextarea(formItem)
               }
             },
@@ -395,7 +395,7 @@ export default {
               label: '父模型',
               disabled: this.disableds.parentId,
               placeholder: '请选择父模型',
-              render: ({data: {attrs: {formItem}}}) => {
+              render: (h,{data: {attrs: {formItem}}}) => {
                 return this.mixinSelect(formItem)
               }
             },
@@ -415,21 +415,21 @@ export default {
                   value: 'GENERE'
                 }
               ],
-              render: ({data: {attrs: {formItem}}}) => {
+              render: (h,{data: {attrs: {formItem}}}) => {
                 return this.mixinSelect(formItem)
               }
             },
             storeType: {
               label: '存储类型',
               disabled: this.disableds.storeType,
-              render: ({data: {attrs: {formItem}}}) => {
+              render: (h,{data: {attrs: {formItem}}}) => {
                 return this.mixinRadio(formItem)
               }
             },
             inherit: {
               label: '是否继承',
               disabled: this.disableds.inherit,
-              render: ({data: {attrs: {formItem}}}) => {
+              render: (h,{data: {attrs: {formItem}}}) => {
                 return this.mixinRadio(formItem)
               }
             },
@@ -437,7 +437,7 @@ export default {
               label: '表名称',
               disabled: this.disableds.tableName,
               placeholder: '请输入表名称',
-              render: ({data: {attrs: {formItem}}}) => {
+              render: (h,{data: {attrs: {formItem}}}) => {
                 return this.mixinInput(formItem)
               }
             }

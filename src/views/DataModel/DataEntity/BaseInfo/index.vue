@@ -44,9 +44,7 @@
   </div>
 </template>
 <script>
-import FormMixin from '@/mixin/FormMixin.js'
 export default {
-  mixins: [FormMixin],
   data () {
     return {
       loading: false,
@@ -281,46 +279,109 @@ export default {
           code: {
             label: '编码',
             disabled: this.disableds.code,
-            render: ({
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
-              return this.mixinInput(formItem)
+            ) => {
+              return (
+                <el-input
+                  value={this[formItem.formKey][formItem.prop]}
+                  disabled={formItem.disabled}
+                  onInput={(val) => {
+                    this.$set(this[formItem.formKey], formItem.prop, val)
+                  }}
+                  placeholder={formItem.placeholder}
+                ></el-input>
+              )
             }
           },
           state: {
             label: '状态',
             disabled: this.disableds.state,
-            render: ({
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
-              return this.mixinSelect(formItem)
+            ) => {
+              !formItem.options &&
+                (formItem.options = [
+                  { label: '是', value: true },
+                  { label: '否', value: false }
+                ])
+              return (
+                <el-select
+                  value={this[formItem.formKey][formItem.prop]}
+                  disabled={formItem.disabled}
+                  onInput={(val) => {
+                    this.$set(this[formItem.formKey], formItem.prop, val)
+                  }}
+                  placeholder={formItem.placeholder}
+                >
+                  {formItem.options.map((item) => (
+                    <el-option
+                      key={item.value}
+                      label={item.label}
+                      value={item.value}
+                    >
+                      {item.label}
+                    </el-option>
+                  ))}
+                </el-select>
+              )
             }
           },
           nameEn: {
             label: '英文名称',
             disabled: this.disableds.nameEn,
             placeholder: '请输入英文名称',
-            render: ({
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
-              return this.mixinInput(formItem)
+            ) => {
+              return (
+                <el-input
+                  value={this[formItem.formKey][formItem.prop]}
+                  disabled={formItem.disabled}
+                  onInput={(val) => {
+                    this.$set(this[formItem.formKey], formItem.prop, val)
+                  }}
+                  placeholder={formItem.placeholder}
+                ></el-input>
+              )
             }
           },
           name: {
             label: '中文名称',
             placeholder: '请输入中文名称',
-            render: ({
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
-              return this.mixinInput(formItem)
+            ) => {
+              return (
+                <el-input
+                  value={this[formItem.formKey][formItem.prop]}
+                  disabled={formItem.disabled}
+                  onInput={(val) => {
+                    this.$set(this[formItem.formKey], formItem.prop, val)
+                  }}
+                  placeholder={formItem.placeholder}
+                ></el-input>
+              )
             }
           },
           descriptEn: {
@@ -328,36 +389,93 @@ export default {
             disabled: this.disableds.descriptEn,
             placeholder: '请输入英文描述',
             singleFormItem: true,
-            render: ({
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
-              return this.mixinTextarea(formItem)
+            ) => {
+              return (
+                <el-input
+                  type="textarea"
+                  rows="2"
+                  maxlength="1024"
+                  value={this[formItem.formKey][formItem.prop]}
+                  disabled={formItem.disabled}
+                  onInput={(val) => {
+                    this.$set(this[formItem.formKey], formItem.prop, val)
+                  }}
+                  placeholder={formItem.placeholder}
+                ></el-input>
+              )
             }
           },
           descript: {
             label: '中文描述',
             placeholder: '请输入中文描述',
             singleFormItem: true,
-            render: ({
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
-              return this.mixinTextarea(formItem)
+            ) => {
+              return (
+                <el-input
+                  type="textarea"
+                  rows="2"
+                  maxlength="1024"
+                  value={this[formItem.formKey][formItem.prop]}
+                  disabled={formItem.disabled}
+                  onInput={(val) => {
+                    this.$set(this[formItem.formKey], formItem.prop, val)
+                  }}
+                  placeholder={formItem.placeholder}
+                ></el-input>
+              )
             }
           },
           parentId: {
             label: '父模型',
             disabled: this.disableds.parentId,
             placeholder: '请选择父模型',
-            render: ({
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
-              return this.mixinSelect(formItem)
+            ) => {
+              !formItem.options &&
+                (formItem.options = [
+                  { label: '是', value: true },
+                  { label: '否', value: false }
+                ])
+              return (
+                <el-select
+                  value={this[formItem.formKey][formItem.prop]}
+                  disabled={formItem.disabled}
+                  onInput={(val) => {
+                    this.$set(this[formItem.formKey], formItem.prop, val)
+                  }}
+                  placeholder={formItem.placeholder}
+                >
+                  {formItem.options.map((item) => (
+                    <el-option
+                      key={item.value}
+                      label={item.label}
+                      value={item.value}
+                    >
+                      {item.label}
+                    </el-option>
+                  ))}
+                </el-select>
+              )
             }
           },
           modelType: {
@@ -377,45 +495,129 @@ export default {
                 value: 'GENERE'
               }
             ],
-            render: ({
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
-              return this.mixinSelect(formItem)
+            ) => {
+              !formItem.options &&
+                (formItem.options = [
+                  { label: '是', value: true },
+                  { label: '否', value: false }
+                ])
+              return (
+                <el-select
+                  value={this[formItem.formKey][formItem.prop]}
+                  disabled={formItem.disabled}
+                  onInput={(val) => {
+                    this.$set(this[formItem.formKey], formItem.prop, val)
+                  }}
+                  placeholder={formItem.placeholder}
+                >
+                  {formItem.options.map((item) => (
+                    <el-option
+                      key={item.value}
+                      label={item.label}
+                      value={item.value}
+                    >
+                      {item.label}
+                    </el-option>
+                  ))}
+                </el-select>
+              )
             }
           },
           storeType: {
             label: '存储类型',
             disabled: this.disableds.storeType,
-            render: ({
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
-              return this.mixinRadio(formItem)
+            ) => {
+              !formItem.options &&
+                (formItem.options = [
+                  { label: '是', value: true },
+                  { label: '否', value: false }
+                ])
+              return (
+                <el-radio-group
+                  value={this[formItem.formKey][formItem.prop]}
+                  disabled={formItem.disabled}
+                  onInput={(val) => {
+                    this.$set(this[formItem.formKey], formItem.prop, val)
+                  }}
+                  placeholder={formItem.placeholder}
+                >
+                  {formItem.options.map((item) => (
+                    <el-radio
+                      key={item.value}
+                      label={item.value}
+                      value={item.value}
+                    >
+                      {item.label}
+                    </el-radio>
+                  ))}
+                </el-radio-group>
+              )
             }
           },
           inherit: {
             label: '是否继承',
             disabled: this.disableds.inherit,
-            render: ({
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
-              return this.mixinRadio(formItem)
+            ) => {
+              !formItem.options &&
+                (formItem.options = [
+                  { label: '是', value: true },
+                  { label: '否', value: false }
+                ])
+              return (
+                <el-radio-group
+                  value={this[formItem.formKey][formItem.prop]}
+                  disabled={formItem.disabled}
+                  onInput={(val) => {
+                    this.$set(this[formItem.formKey], formItem.prop, val)
+                  }}
+                  placeholder={formItem.placeholder}
+                >
+                  {formItem.options.map((item) => (
+                    <el-radio
+                      key={item.value}
+                      label={item.value}
+                      value={item.value}
+                    >
+                      {item.label}
+                    </el-radio>
+                  ))}
+                </el-radio-group>
+              )
             }
           },
           tableName: {
             label: '表名称',
             disabled: this.disableds.tableName,
             placeholder: '请输入表名称',
-            render: ({
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
+            ) => {
               return (
                 <el-input
                   value={this[formItem.formKey][formItem.prop]}
@@ -473,57 +675,132 @@ export default {
           version: {
             label: '版本',
             disabled: this.disableds.version,
-            render: ({
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
-              return this.mixinInput(formItem)
+            ) => {
+              return (
+                <el-input
+                  value={this[formItem.formKey][formItem.prop]}
+                  disabled={formItem.disabled}
+                  onInput={(val) => {
+                    this.$set(this[formItem.formKey], formItem.prop, val)
+                  }}
+                  placeholder={formItem.placeholder}
+                ></el-input>
+              )
             }
           },
           space: {},
           creater: {
             label: '创建者',
             disabled: this.disableds.creater,
-            render: ({
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
-              return this.mixinInput(formItem)
+            ) => {
+              return (
+                <el-input
+                  value={this[formItem.formKey][formItem.prop]}
+                  disabled={formItem.disabled}
+                  onInput={(val) => {
+                    this.$set(this[formItem.formKey], formItem.prop, val)
+                  }}
+                  placeholder={formItem.placeholder}
+                ></el-input>
+              )
             }
           },
           creatTime: {
             label: '创建时间',
             disabled: this.disableds.creatTime,
-            render: ({
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
-              return this.mixinInput(formItem)
+            ) => {
+              return (
+                <el-input
+                  value={this[formItem.formKey][formItem.prop]}
+                  disabled={formItem.disabled}
+                  onInput={(val) => {
+                    this.$set(this[formItem.formKey], formItem.prop, val)
+                  }}
+                  placeholder={formItem.placeholder}
+                ></el-input>
+              )
             }
           },
           modifier: {
             label: '更新者',
             disabled: this.disableds.modifier,
-            render: ({
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
-              return this.mixinInput(formItem)
+            ) => {
+              return (
+                <el-input
+                  value={this[formItem.formKey][formItem.prop]}
+                  disabled={formItem.disabled}
+                  onInput={(val) => {
+                    this.$set(this[formItem.formKey], formItem.prop, val)
+                  }}
+                  placeholder={formItem.placeholder}
+                ></el-input>
+              )
             }
           },
           modifyTime: {
             label: '更新时间',
             disabled: this.disableds.modifyTime,
-            render: ({
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
-              return this.mixinSelect(formItem)
+            ) => {
+              !formItem.options &&
+                (formItem.options = [
+                  { label: '是', value: true },
+                  { label: '否', value: false }
+                ])
+              return (
+                <el-select
+                  value={this[formItem.formKey][formItem.prop]}
+                  disabled={formItem.disabled}
+                  onInput={(val) => {
+                    this.$set(this[formItem.formKey], formItem.prop, val)
+                  }}
+                  placeholder={formItem.placeholder}
+                >
+                  {formItem.options.map((item) => (
+                    <el-option
+                      key={item.value}
+                      label={item.label}
+                      value={item.value}
+                    >
+                      {item.label}
+                    </el-option>
+                  ))}
+                </el-select>
+              )
             }
           }
         }

@@ -27,7 +27,6 @@
     <web-table-page
       :value="page"
       @input="(val) => handleInput(val)"
-      border
       v-loading="loadingFlag"
       element-loading-text="拼命加载中"
       element-loading-spinner="el-icon-loading"
@@ -317,7 +316,7 @@ export default {
           code: {
             label: '编码',
             disabled: this.disableds.code,
-            render: ({
+            render: (h, {
               data: {
                 attrs: { formItem }
               }
@@ -328,7 +327,7 @@ export default {
           state: {
             label: '状态',
             disabled: this.disableds.state,
-            render: ({
+            render: (h, {
               data: {
                 attrs: { formItem }
               }
@@ -340,7 +339,7 @@ export default {
             label: '英文名称',
             disabled: this.disableds.nameEn,
             placeholder: '请输入英文名称',
-            render: ({
+            render: (h, {
               data: {
                 attrs: { formItem }
               }
@@ -351,7 +350,7 @@ export default {
           name: {
             label: '中文名称',
             placeholder: '请输入中文名称',
-            render: ({
+            render: (h, {
               data: {
                 attrs: { formItem }
               }
@@ -364,7 +363,7 @@ export default {
             disabled: this.disableds.descriptEn,
             placeholder: '请输入英文描述',
             singleFormItem: true,
-            render: ({
+            render: (h, {
               data: {
                 attrs: { formItem }
               }
@@ -376,7 +375,7 @@ export default {
             label: '中文描述',
             placeholder: '请输入中文描述',
             singleFormItem: true,
-            render: ({
+            render: (h, {
               data: {
                 attrs: { formItem }
               }
@@ -388,7 +387,7 @@ export default {
             label: '父模型',
             disabled: this.disableds.parentId,
             placeholder: '请选择父模型',
-            render: ({
+            render: (h, {
               data: {
                 attrs: { formItem }
               }
@@ -413,7 +412,7 @@ export default {
                 value: 'GENERE'
               }
             ],
-            render: ({
+            render: (h, {
               data: {
                 attrs: { formItem }
               }
@@ -424,7 +423,7 @@ export default {
           storeType: {
             label: '存储类型',
             disabled: this.disableds.storeType,
-            render: ({
+            render: (h, {
               data: {
                 attrs: { formItem }
               }
@@ -435,7 +434,7 @@ export default {
           inherit: {
             label: '是否继承',
             disabled: this.disableds.inherit,
-            render: ({
+            render: (h, {
               data: {
                 attrs: { formItem }
               }
@@ -449,7 +448,7 @@ export default {
             type: 'image',
             placeholder: '请输入图片',
             singleFormItem: true,
-            render: ({
+            render: (h, {
               data: {
                 attrs: { formItem }
               }
@@ -463,7 +462,7 @@ export default {
             type: 'video',
             placeholder: '请输入视频',
             singleFormItem: true,
-            render: ({
+            render: (h, {
               data: {
                 attrs: { formItem }
               }
