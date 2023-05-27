@@ -80,6 +80,12 @@ export default {
       this.removeModalFlag = true
       this.productId = row._id
     },
+    async deleteModal (id) {
+      let res = await this.$api.deleteDataEntity(id)
+      if (res) {
+        this.handleSearch()
+      }
+    },
     async queryDataEntityList (condition = {}) {
       this.loadingFlag = true
       let { current, pageSize } = this.page

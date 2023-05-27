@@ -25,7 +25,8 @@ data.table1 = [
       <el-link
         size={'mini'}
         type={'primary'}
-        onClick={(row) => this.showViewModal(row)}
+        title={row[item.prop]}
+        onClick={row => this.showViewModal(row)}
       ></el-link>
     )
   },
@@ -134,12 +135,12 @@ data.table1 = [
       <el-link
         icon={'el-icon-edit'}
         title={'编辑'}
-        onClick={(row) => this.showEditModal(row)}
+        onClick={row => this.showEditModal(row)}
       />,
       <el-link
         icon={'el-icon-collection'}
         title={'修订'}
-        onClick={(row) => this.showRemoveModal(row)}
+        onClick={row => this.showRemoveModal(row)}
       />
     ]
   }
@@ -190,20 +191,23 @@ data.table2 = [
   {
     label: '操作',
     attrs: { fixed: 'right', 'show-overflow-tooltip': true },
-    render: (h, {
-      data: {
-        attrs: { item, row }
+    render: (
+      h,
+      {
+        data: {
+          attrs: { item, row }
+        }
       }
-    }) => [
+    ) => [
       <el-link
         icon={'el-icon-edit'}
         title={'编辑'}
-        onClick={(row) => this.showEditModal(row)}
+        onClick={row => this.showEditModal(row)}
       ></el-link>,
       <el-link
         icon={'el-icon-collection'}
         title={'修订'}
-        onClick={(row) => this.showRemoveModal(row)}
+        onClick={row => this.showRemoveModal(row)}
       ></el-link>
     ]
   }
@@ -231,7 +235,8 @@ data.table3 = [
       <el-link
         size={'mini'}
         type={'primary'}
-        onClick={(row) => this.showViewModal(row)}
+        title={row._id || '-'}
+        onClick={row => this.showViewModal(row._id)}
       ></el-link>
     )
   },
@@ -303,22 +308,36 @@ data.table3 = [
   {
     label: '操作',
     attrs: { fixed: 'right', 'show-overflow-tooltip': true },
-    render: (h, {
-      data: {
-        attrs: { formItem }
+    render: (
+      h,
+      {
+        data: {
+          attrs: { item, row }
+        }
       }
-    }) => {
+    ) => {
       return (
-        <el-link
-        icon={'el-icon-edit'}
-        title={'编辑'}
-        onClick={(row) => this.showEditModal(row)}
-      ></el-link>,
-      <el-link
-        icon={'el-icon-collection'}
-        title={'修订'}
-        onClick={(row) => this.showRemoveModal(row)}
-      ></el-link>
+        [(
+          <el-link
+            icon={'el-icon-edit'}
+            title={'编辑'}
+            onClick={() => this.showEditModal(row._id)}
+          ></el-link>
+        ),
+        (
+          <el-link
+            icon={'el-icon-collection'}
+            title={'修订'}
+            onClick={() => this.showRemoveModal(row._id)}
+          ></el-link>
+        ),
+        (
+          <el-link
+            icon={'el-icon-delete'}
+            title={'删除'}
+            onClick={() => this.deleteModal(row._id)}
+          ></el-link>
+        )]
       )
     }
   }
@@ -488,6 +507,6 @@ data.search1 = [
 
 export default {
   install: function (Vue) {
-    Vue.prototype.getData = (name) => data[name] || []
+    Vue.prototype.getData = name => data[name] || []
   }
 }

@@ -1,5 +1,5 @@
 import request from '@/util/request'
-// 数据实体列表查询
+// 列表查询
 export function getDataEntityList (data) {
   return request({
     url: '/api/dataEntity/list',
@@ -7,14 +7,14 @@ export function getDataEntityList (data) {
     data
   })
 }
-// 获取数据实体详情
+// 实体详情
 export function getDataEntityDetail (id) {
   return request({
     url: '/api/dataEntity/' + id,
     method: 'get'
   })
 }
-// 创建数据实体
+// 创建数据
 export function createDataEntity (data) {
   return request({
     url: '/api/dataEntity/create',
@@ -22,7 +22,7 @@ export function createDataEntity (data) {
     data
   })
 }
-// 更新数据实体
+// 更新数据
 export function updateDataEntity (data) {
   return request({
     url: '/api/dataEntity/update',
@@ -30,10 +30,17 @@ export function updateDataEntity (data) {
     data
   })
 }
-// 删除数据实体
-export function deleteDataEntity (data) {
+// 删除数据
+export function deleteDataEntity (id) {
   return request({
-    url: '/api/dataEntity/delete',
+    url: '/api/dataEntity/' + id,
+    method: 'delete'
+  })
+}
+// 批量删除
+export function pathDelete (data) {
+  return request({
+    url: '/api/dataEntity/pathdelete',
     method: 'delete',
     data
   })

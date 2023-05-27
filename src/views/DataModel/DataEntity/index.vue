@@ -104,7 +104,7 @@ export default {
     },
     async handleDelete() {
       let arr = this.selects.map((item) => item._id);
-      let res = await this.$api.deleteDataEntity(arr);
+      let res = await this.$api.pathDelete(arr);
       if (res) {
         this.handleSearch();
       }
