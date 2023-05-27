@@ -10,24 +10,24 @@
   </web-search>
 </template>
 <script>
-let { result } = require("@/assets/data/search.json");
+let { result } = require('@/assets/data/search.json')
 export default {
-  name: "DataEntitySearch",
-  data() {
+  name: 'DataEntitySearch',
+  data () {
     return {
       searchField: {},
-      condition: result,
-    };
+      condition: result
+    }
   },
   watch: {},
   methods: {
-    updateField(val) {
-      this.searchField = val;
-      this.$emit("input", this.searchField);
+    updateField (val) {
+      this.searchField = val
+      this.$emit('input', this.searchField)
     },
-    handleSearch(condition) {
-      this.$emit("handleSearch", condition);
-    },
-  },
-};
+    handleSearch (condition) {
+      this.$emit('handleSearch', condition)
+    }
+  }
+}
 </script>
