@@ -21,7 +21,7 @@
     "vue": "2.5.17",
     "vue-router": "3.0.1",
     "vuex": "3.0.1",
-    "web-elementui": "^1.1.0"
+    "web-elementui": "^1.1.6"
   },
   "devDependencies": {
     "assets-webpack-plugin": "3.9.10",

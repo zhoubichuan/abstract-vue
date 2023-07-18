@@ -1,6 +1,6 @@
 <template>
   <div>
-    <dialog-form ref="dialogForm" name="基本属性" @create="create">
+    <web-dialog ref="dialogForm" name="基本属性" @create="create">
       <el-form
         ref="form"
         :model="baseInfoForm"
@@ -15,7 +15,7 @@
         >
         </web-form-item>
       </el-form>
-    </dialog-form>
+    </web-dialog>
     <p>基本属性</p>
     <web-button-group justify="start">
       <web-button type="primary" @click="handleCreate">创建</web-button>

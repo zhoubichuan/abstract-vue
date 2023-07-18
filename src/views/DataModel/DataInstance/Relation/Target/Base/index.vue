@@ -1,6 +1,6 @@
 <template>
   <div>
-    <dialog-form ref="dialogForm">
+    <web-dialog ref="dialogForm">
       <el-form ref="form" :model="baseInfoForm" label-width="80px" size="mini" :rules="rules">
         <web-form-item
           v-for="(formItem, formItemIndex) in baseFormData"
@@ -8,7 +8,7 @@
           :key="formItemIndex">
         </web-form-item>
       </el-form>
-    </dialog-form>
+    </web-dialog>
     基本属性
       <!-- <web-button-group justify="start">
         <web-button type="primary" @click ="handleCreate">创建</web-button>
