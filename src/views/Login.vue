@@ -131,9 +131,9 @@ export default {
   position: relative;
   width: 100%;
   height: 100vh;
-  background: url('https://cdn.pixabay.com/photo/2020/07/20/12/49/milky-way-5422901_960_720.jpg') no-repeat center; // cdn.pixabay.com/photo/2020/07/20/12/49/milky-way-5422901_960_720.jpg) no-repeat center
+  background: url("https://cdn.pixabay.com/photo/2020/07/20/12/49/milky-way-5422901_960_720.jpg")
+    no-repeat center; // cdn.pixabay.com/photo/2020/07/20/12/49/milky-way-5422901_960_720.jpg) no-repeat center
   background-size: cover;
-
   .login-form {
     position: absolute;
     left: 0;
@@ -173,12 +173,12 @@ export default {
 
       &::before {
         display: block;
-        content: '';
+        content: "";
       }
 
       &::after {
         display: block;
-        content: '';
+        content: "";
         clear: both;
       }
 
@@ -233,7 +233,6 @@ export default {
         }
       }
     }
-
     .loginBtn {
       width: 100%;
       margin-bottom: 30px;
@@ -243,7 +242,6 @@ export default {
       cursor: pointer;
       background: #fff;
       border: 1px solid #dcdfe6;
-      -webkit-appearance: none;
       text-align: center;
       box-sizing: border-box;
       outline: 0;
