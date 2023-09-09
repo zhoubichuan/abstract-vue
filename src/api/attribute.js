@@ -1,40 +1,40 @@
 import request from '@/util/request'
-// 数据实体列表查询
+// 模型属性列表查询
 export function getAttributeList (data) {
   return request({
-    url: '/api/attribute/getAttributeList',
-    method: 'post',
-    data
+    url: '/api/attribute',
+    method: 'get',
+    params: data
   })
 }
-// 获取数据实体详情
+// 获取模型属性详情
 export function getAttributeDetail (id) {
   return request({
-    url: '/api/attribute/getAttributeDetail',
+    url: '/api/attribute/' + id,
     method: 'post',
-    data: {id}
+    data: { id }
   })
 }
-// 创建数据实体
+// 创建模型属性
 export function createAttribute (data) {
   return request({
-    url: '/api/attribute/createAttribute',
+    url: '/api/attribute',
     method: 'post',
     data
   })
 }
-// 更新数据实体
+// 更新模型属性
 export function updateAttribute (data) {
   return request({
-    url: '/api/attribute/updateAttribute',
+    url: '/api/attribute',
     method: 'put',
     data
   })
 }
-// 删除数据实体
+// 删除模型属性
 export function deleteAttribute (data) {
   return request({
-    url: '/api/attribute/deleteAttribute',
+    url: '/api/attribute',
     method: 'delete',
     data
   })
@@ -44,7 +44,7 @@ export function getAttributeBaseAttrList (id) {
   return request({
     url: '/api/attribute/getAttributeBaseAttrList',
     method: 'get',
-    params: {id}
+    params: { id }
   })
 }
 
@@ -53,7 +53,7 @@ export function getAttributeBaseAttrDetail (id) {
   return request({
     url: '/api/attribute/getAttributeBaseAttrDetail',
     method: 'get',
-    params: {id}
+    params: { id }
   })
 }
 
@@ -87,7 +87,7 @@ export function getAttributeExtendAttrList (id) {
   return request({
     url: '/api/attribute/getAttributeExtendAttrList',
     method: 'get',
-    params: {id}
+    params: { id }
   })
 }
 
@@ -96,7 +96,7 @@ export function getAttributeExtendAttrDetail (id) {
   return request({
     url: '/api/attribute/getAttributeExtendAttrDetail',
     method: 'get',
-    params: {id}
+    params: { id }
   })
 }
 
@@ -131,7 +131,7 @@ export function getAttributeParentAttrList (id) {
   return request({
     url: '/api/attribute/getAttributeParentAttrList',
     method: 'get',
-    params: {id}
+    params: { id }
   })
 }
 
@@ -140,6 +140,6 @@ export function getAttributeParentAttrDetail (id) {
   return request({
     url: '/api/attribute/getAttributeParentAttrDetail',
     method: 'get',
-    params: {id}
+    params: { id }
   })
 }
