@@ -38,6 +38,7 @@ module.exports = new Promise((resolve, reject) => {
             : undefined
         })
       );
+      sitWebpackConfig.devServer.proxy= config.sit.proxyTable
       resolve(sitWebpackConfig);
     }
   });
