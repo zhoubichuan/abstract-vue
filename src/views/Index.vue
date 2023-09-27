@@ -28,97 +28,97 @@
 </template>
 
 <script>
-import Chart from "chart.js";
+import Chart from 'chart.js'
 export default {
-  data() {
+  data () {
     return {
       categoryDate: {
         name: [],
-        articleCount: [],
+        articleCount: []
       },
-      activeNames: ["1", "2"],
+      activeNames: ['1', '2'],
       articlesTitle: [],
       pv: [],
-      labels: [1, 2, 3, 4, 5, 6, 7],
-    };
+      labels: [1, 2, 3, 4, 5, 6, 7]
+    }
   },
-  created() {
-    this.loadingInit();
+  created () {
+    this.loadingInit()
   },
   methods: {
-    loadingInit() {
+    loadingInit () {
       this.$ajax.all([this.getCategory(), this.getPv()]).then(
         this.$ajax.spread((category, pv) => {
-          if (category.data.status === "1" && pv.data.status === "1") {
+          if (category.data.status === '1' && pv.data.status === '1') {
             category.data.result.forEach((item, index) => {
-              this.categoryDate.name.push(item.name);
-              this.categoryDate.articleCount.push(item.articles.length);
-            });
+              this.categoryDate.name.push(item.name)
+              this.categoryDate.articleCount.push(item.articles.length)
+            })
             pv.data.result.forEach((item) => {
-              this.pv.push(item.pv);
-              this.articlesTitle.push(item.title);
-            });
+              this.pv.push(item.pv)
+              this.articlesTitle.push(item.title)
+            })
             this.$nextTick(() => {
-              this.initChart();
-            });
+              this.initChart()
+            })
           } else {
-            this.$message.error("读取数据失败");
+            this.$message.error('读取数据失败')
           }
         })
-      );
+      )
     },
-    getCategory() {
-      return this.$ajax.get("/categories");
+    getCategory () {
+      return this.$ajax.get('/categories')
     },
-    getPv() {
-      return this.$ajax.get("/feArticles/pv");
+    getPv () {
+      return this.$ajax.get('/feArticles/pv')
     },
-    initChart() {
-      let artCtx = this.$refs.articleChart;
-      let pvCtx = this.$refs.pvChart;
+    initChart () {
+      let artCtx = this.$refs.articleChart
+      let pvCtx = this.$refs.pvChart
       /* eslint-disable no-unused-vars */
       let myDoughnutChart = new Chart(artCtx, {
-        type: "doughnut",
+        type: 'doughnut',
         data: {
           datasets: [
             {
               data: this.categoryDate.articleCount,
               backgroundColor: [
-                "rgba(103, 194, 58, 0.6)",
-                "rgba(230, 162, 60, 0.6)",
-                "rgba(245, 108, 108, 0.6)",
-                "rgba(75, 192, 192, 0.6)",
-              ],
-            },
+                'rgba(103, 194, 58, 0.6)',
+                'rgba(230, 162, 60, 0.6)',
+                'rgba(245, 108, 108, 0.6)',
+                'rgba(75, 192, 192, 0.6)'
+              ]
+            }
           ],
-          labels: this.categoryDate.name,
-        },
-      });
+          labels: this.categoryDate.name
+        }
+      })
       /* eslint-disable no-unused-vars */
       var myBarChart = new Chart(pvCtx, {
-        type: "horizontalBar",
+        type: 'horizontalBar',
         data: {
           datasets: [
             {
-              label: "浏览量",
+              label: '浏览量',
               data: this.pv,
               backgroundColor: [
-                "rgba(255, 99, 132, 0.6)",
-                "rgba(230, 162, 60, 0.6)",
-                "rgba(103, 194, 58, 0.6)",
-                "rgba(245, 108, 108, 0.6)",
-                "rgba(75, 192, 192, 0.6)",
-                "rgba(255, 206, 86, 0.6)",
-                "rgba(204, 101, 254, 0.6)",
-              ],
-            },
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(230, 162, 60, 0.6)',
+                'rgba(103, 194, 58, 0.6)',
+                'rgba(245, 108, 108, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(204, 101, 254, 0.6)'
+              ]
+            }
           ],
-          labels: this.articlesTitle,
-        },
-      });
-    },
-  },
-};
+          labels: this.articlesTitle
+        }
+      })
+    }
+  }
+}
 </script>
 
 <style scoped>

@@ -111,6 +111,16 @@ export default {
               index: 'downLoad',
               route: '/admin/downLoad',
               title: '下载管理'
+            },
+            {
+              index: 'UserLists',
+              route: '/admin/UserLists',
+              title: '用户列表'
+            },
+            {
+              index: 'UserDetail',
+              route: '/admin/UserDetail',
+              title: '用户详情'
             }
           ]
         },

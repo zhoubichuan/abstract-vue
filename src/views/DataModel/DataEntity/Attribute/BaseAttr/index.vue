@@ -36,32 +36,7 @@
       @selection-change="handleSelectionChange"
       class="table-part"
     >
-      <el-table-column fixed="left" type="index" width="55"> </el-table-column>
-      <el-table-column fixed="left" type="selection" width="55">
-      </el-table-column>
-      <el-table-column
-        sortable
-        fixed="left"
-        show-overflow-tooltip
-        prop="code"
-        label="编码"
-      >
-        <template slot-scope="scope">
-          <el-link
-            type="primary"
-            @click="showViewModal(scope.$index, scope.row)"
-            >{{ scope.row.code }}</el-link
-          >
-        </template>
-      </el-table-column>
-      <el-table-column
-        v-for="item in tableRows"
-        :key="item.prop"
-        :prop="item.prop"
-        :label="item.label"
-        v-bind="item.attrs"
-      >
-      </el-table-column>
+    <web-table-column v-for="item in tableRows" :key="item.prop" :item="item" />
     </web-table-page>
   </div>
 </template>
@@ -127,68 +102,7 @@ export default {
       },
       loadingFlag: false,
       tableData: [],
-      tableRows: [
-        {
-          prop: 'name',
-          label: '中文名称',
-          attrs: { 'show-overflow-tooltip': true }
-        },
-        {
-          prop: 'nameEn',
-          label: '英文名称',
-          attrs: { 'show-overflow-tooltip': true }
-        },
-        {
-          prop: 'descript',
-          label: '中文描述',
-          attrs: { 'show-overflow-tooltip': true }
-        },
-        {
-          prop: 'descriptEn',
-          label: '英文描述',
-          attrs: { 'show-overflow-tooltip': true }
-        },
-        {
-          prop: 'version',
-          label: '版本',
-          attrs: { 'show-overflow-tooltip': true }
-        },
-        {
-          prop: 'state',
-          label: '状态',
-          attrs: { 'show-overflow-tooltip': true }
-        },
-        {
-          prop: 'eos',
-          label: 'EOS时间',
-          attrs: { 'show-overflow-tooltip': true }
-        },
-        {
-          prop: 'modeType',
-          label: '模型类型',
-          attrs: { 'show-overflow-tooltip': true }
-        },
-        {
-          prop: 'creater',
-          label: '创建者',
-          attrs: { 'show-overflow-tooltip': true }
-        },
-        {
-          prop: 'modifier',
-          label: '更新者',
-          attrs: { 'show-overflow-tooltip': true }
-        },
-        {
-          prop: 'modifyTime',
-          label: '更新时间',
-          attrs: { 'show-overflow-tooltip': true }
-        },
-        {
-          prop: 'tags',
-          label: '标签',
-          attrs: { 'show-overflow-tooltip': true }
-        }
-      ]
+      tableRows: this.getData('table4')
     }
   },
   computed: {

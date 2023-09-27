@@ -123,6 +123,33 @@ let router = new Router({
           component: () => import('@/views/Comments/comment')
         },
         {
+          path: 'downLoad',
+          name: 'downLoad',
+          authority: [50],
+          meta: {
+            requireAuth: true // 添加需要权限的标记
+          },
+          component: () => import('@/views/User/UserInfo')
+        },
+        {
+          path: 'UserLists',
+          name: 'UserLists',
+          authority: [50],
+          meta: {
+            requireAuth: true // 添加需要权限的标记
+          },
+          component: () => import('@/views/User/UserLists')
+        },
+        {
+          path: 'UserDetail',
+          name: 'UserDetail',
+          authority: [50],
+          meta: {
+            requireAuth: true // 添加需要权限的标记
+          },
+          component: () => import('@/views/User/UserDetail')
+        },
+        {
           path: '*',
           redirect: '/admin'
         }
