@@ -27,7 +27,7 @@ export default {
   },
   provide () {
     return {
-      '$DataEntity': this
+      'rootPage': this
     }
   },
   props: {

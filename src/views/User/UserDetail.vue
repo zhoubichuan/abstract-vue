@@ -10,7 +10,7 @@
         <el-option
           v-for="item in options1"
           :key="item.value"
-          :label="item.label"
+          :label="item.name"
           :value="item.value"
         >
         </el-option>
@@ -19,7 +19,7 @@
         <el-option
           v-for="item in options3"
           :key="item.value"
-          :label="item.label"
+          :label="item.name"
           :value="item.value"
         >
         </el-option>
@@ -28,7 +28,7 @@
         <el-option
           v-for="item in options2"
           :key="item.value"
-          :label="item.label"
+          :label="item.name"
           :value="item.value"
         >
         </el-option>
@@ -73,18 +73,32 @@ let options = require('./0.json')
 export default {
   data () {
     return {
-      options3: require('./3.json'),
+      options3: [],
       value3: '1',
-      options2: require('./2.json'),
+      options2: [],
       value2: '3',
-      options1: require('./1.json'),
+      options1: [],
       value1: '3',
       value: ['1'],
       options: _.cloneDeep(options),
       options4: _.cloneDeep(options)
     }
   },
+  mounted () {
+    this.getList(1)
+    this.getList(2)
+    this.getList(3)
+  },
   methods: {
+    async getList (key) {
+      let res = await this.$api.getTypeEnum({
+        key: 1,
+        type: ['student', 'studentType', 'studentCode'][key - 1]
+      })
+      if (res) {
+        this['options' + key] = res.data
+      }
+    },
     handleChange (value) {
       let data = null
       _.cloneDeep(options).forEach((item) => {

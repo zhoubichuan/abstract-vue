@@ -3,14 +3,14 @@
     <!-- 右侧滑窗 -->
     <web-slider-right v-model="sliderPage">
       <template slot-scope="pageData">
-        <slider-tabs :pageData="pageData.data"></slider-tabs>
+        <page-slider :pageData="pageData.data"></page-slider>
       </template>
     </web-slider-right>
     <!-- 搜索 -->
-    <data-instance-search v-model="condition" @handleSearch="handleSearch">
-    </data-instance-search>
+    <page-search v-model="condition" @handleSearch="handleSearch">
+    </page-search>
     <!-- 按钮 -->
-    <data-instance-button
+    <page-button
       @handleCreate="handleCreate"
       @handleDelete="handleDelete"
       @handlePreRelease="handlePreRelease"
@@ -19,9 +19,9 @@
       @handleToVoid="handleToVoid"
       @handleInvalid="handleInvalid"
     >
-    </data-instance-button>
+    </page-button>
     <!-- 数据展示 -->
-    <data-instance-table
+    <page-table
       ref="entityTable"
       v-model="selects"
       :searchConditon="condition"
@@ -30,17 +30,17 @@
       @pageChange="pageChange"
       @handleSearch="handleSearch"
     >
-    </data-instance-table>
+    </page-table>
   </div>
 </template>
 <script>
 export default {
   name: "DataInstance",
   components: {
-    DataInstanceSearch: () => import("./DataInstanceSearch"),
-    DataInstanceButton: () => import("./DataInstanceButton"),
-    DataInstanceTable: () => import("./DataInstanceTable"),
-    SliderTabs: () => import("./SliderTabs"),
+    PageSearch: () => import("./PageSearch"),
+    PageButton: () => import("./PageButton"),
+    PageTable: () => import("./PageTable"),
+    PageSlider: () => import("./PageSlider"),
   },
   data() {
     return {
@@ -125,7 +125,7 @@ export default {
       this.handleSearch(params);
     },
     handleSearch(condition) {
-      this.$refs.entityTable.queryDataInstanceList(condition);
+      this.$refs.entityTable.handleSearch(condition);
     },
   },
 };

@@ -193,7 +193,7 @@ export default {
           childrens: [
             {
               index: '1-1',
-              route: '/admin/userList',
+              route: '/admin/search',
               title: '员工管理',
               authority: [50]
             }
@@ -206,19 +206,19 @@ export default {
           childrens: [
             {
               index: '2-1',
-              route: '/order/list',
+              route: '/admin/list1',
               title: '订单列表',
               authority: [50]
             },
             {
               index: '2-2',
-              route: '/order/tag',
+              route: '/admin/tag2',
               title: '订单标签',
               authority: [50]
             },
             {
               index: '2-3',
-              route: '/product/list',
+              route: '/admin/list3',
               title: '产品列表',
               authority: [50]
             }
@@ -231,19 +231,19 @@ export default {
           childrens: [
             {
               index: '3-1',
-              route: '/client/list',
+              route: '/admin/list',
               title: '客户列表',
               authority: [50]
             },
             {
               index: '3-2',
-              route: '/client/type',
+              route: '/admin/type',
               title: '客户类型',
               authority: [50]
             },
             {
               index: '3-3',
-              route: '/client/pay',
+              route: '/admin/pay',
               title: '汇款方式',
               authority: [50]
             }

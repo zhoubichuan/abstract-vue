@@ -143,3 +143,15 @@ export function getAttributeParentAttrDetail (id) {
     params: { id }
   })
 }
+// 模型属性列表查询
+export function getTypeEnum ({ key, ...rest }) {
+  return request({
+    url: '/api/list/type/' + key,
+    method: 'get',
+    params: {
+      current: 1,
+      pageSize: 20,
+      ...rest
+    }
+  })
+}

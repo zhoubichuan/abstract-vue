@@ -56,7 +56,7 @@ service.interceptors.response.use(
         })
       }
     } else {
-      return Promise.resolve(res.data.result)
+      return Promise.resolve(res.data)
     }
   },
   error => {

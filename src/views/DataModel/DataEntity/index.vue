@@ -124,7 +124,7 @@ export default {
     },
     handleSearch(condition) {
       this.$refs.entityTable &&
-        this.$refs.entityTable.queryDataEntityList(condition);
+        this.$refs.entityTable.handleSearch(condition);
     },
   },
 };

@@ -79,7 +79,7 @@ export default {
     }
   },
   inject: {
-    $DataEntity: {
+    rootPage: {
       type: Object
     }
   },
@@ -91,7 +91,7 @@ export default {
       this.baseInfoForm = this.$set(
         this,
         'baseInfoForm',
-        window._.cloneDeep(this.$DataEntity.tabsData.data)
+        window._.cloneDeep(this.rootPage.tabsData.data)
       )
     },
     async checkValidate (handleFn) {
@@ -165,7 +165,7 @@ export default {
   },
   computed: {
     pageSate () {
-      return this.$DataEntity.tabsData.state
+      return this.rootPage.tabsData.state
     },
     disableds () {
       let result = {
@@ -198,7 +198,7 @@ export default {
         } else {
           result.historyRecord = false
         }
-        let oldFormData = this.$DataEntity.tabsData.data
+        let oldFormData = this.rootPage.tabsData.data
         let newFormData = this.baseInfoForm
         result.saveButton = window._.isEqual(oldFormData, newFormData)
         console.log(result.saveButton)

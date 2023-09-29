@@ -66,7 +66,7 @@ export default {
   },
   provide () {
     return {
-      $DataInstance: this
+      rootPage: this
     }
   },
   props: {

@@ -44,7 +44,7 @@ import FormMixin from '@/mixin/FormMixin.js'
 export default {
   mixins: [FormMixin],
   inject: {
-    $DataEntity: {
+    rootPage: {
       type: Object
     }
   },
@@ -123,7 +123,7 @@ export default {
   },
   computed: {
     pageSate () {
-      return this.$DataEntity.tabsData.data.state
+      return this.rootPage.tabsData.data.state
     },
     disableds () {
       let result = {
@@ -156,7 +156,7 @@ export default {
         } else {
           result.historyRecord = false
         }
-        let oldFormData = this.$DataEntity.tabsData.data.data
+        let oldFormData = this.rootPage.tabsData.data.data
         let newFormData = this.baseInfoForm
         result.saveButton = window._.isEqual(oldFormData, newFormData)
         console.log(result.saveButton)
