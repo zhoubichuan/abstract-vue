@@ -149,8 +149,6 @@ export function getTypeEnum ({ key, ...rest }) {
     url: '/api/list/type/1',
     method: 'get',
     params: {
-      current: 1,
-      pageSize: 200,
       ...rest
     }
   })
@@ -161,8 +159,6 @@ export function getFieldEnum ({ key, ...rest }) {
     url: '/api/list/field/1',
     method: 'get',
     params: {
-      current: 1,
-      pageSize: 200,
       ...rest
     }
   })
@@ -173,8 +169,6 @@ export function getDataEnum ({ key, ...rest }) {
     url: '/api/list/data/1',
     method: 'get',
     params: {
-      current: 1,
-      pageSize: 200,
       ...rest
     }
   })

@@ -43,7 +43,33 @@
     </div>
     <div class="content">
       <div class="box" v-for="(item, index) in options" :key="index">
+        <div class="title">
+          {{ item.name }}
+        </div>
+        <div class="view">
+          <div
+            class="img"
+            v-for="(img, index) in item.images || []"
+            :key="index"
+          >
+            <img :src="img" alt="" />
+          </div>
+          <div>{{ item.descript }}</div>
+          <div>{{ item.detail }}</div>
+        </div>
         <div class="type" v-for="(type, index) in item.children" :key="index">
+          <div class="title">{{ item.name }} / {{ type.name }}</div>
+          <div class="view">
+            <div
+              class="img"
+              v-for="(img, index) in type.images || []"
+              :key="index"
+            >
+              <img :src="img" alt="" />
+            </div>
+            <div>{{ type.descript }}</div>
+            <div>{{ type.detail }}</div>
+          </div>
           <div
             class="detail"
             v-for="(detail, index) in type.children"
@@ -52,6 +78,7 @@
             <div class="title">
               {{ item.name }} / {{ type.name }} / {{ detail.name }}
             </div>
+
             <div class="view">
               <div
                 class="img"
@@ -59,6 +86,8 @@
                 :key="index"
               >
                 <img :src="img" alt="" />
+                <div>{{ detail.descript }}</div>
+                <div>{{ detail.detail }}</div>
               </div>
             </div>
           </div>
@@ -95,7 +124,7 @@ export default {
       let fields = await this.$api.getFieldEnum({})
       let datas = await this.$api.getDataEnum({})
       if (types) {
-       this.options4 = this.options = types.data.map((t) => {
+        this.options4 = this.options = types.data.map((t) => {
           t.children = fields.data.filter((f) => {
             if (f.type === t.value) {
               f.children = datas.data.filter((d) => d.type === f.value)
@@ -156,31 +185,31 @@ export default {
   .content {
     max-height: calc(100% - 50px);
     overflow: hidden auto;
+    .title {
+      &::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        background: pink;
+        border-radius: 5px;
+        display: inline-block;
+      }
+      padding: 6px 0;
+      font-weight: bold;
+    }
+    .view {
+      display: flex;
+      .img {
+        width: calc(20% - 10px);
+        padding: 0 5px;
+        img {
+          width: 100%;
+        }
+      }
+    }
     .box {
       .type {
         .detail {
-          .title {
-            &::before {
-              content: "";
-              width: 10px;
-              height: 10px;
-              background: pink;
-              border-radius: 5px;
-              display: inline-block;
-            }
-            padding: 6px 0;
-            font-weight: bold;
-          }
-          .view {
-            display: flex;
-            .img {
-              width: calc(20% - 10px);
-              padding: 0 5px;
-              img {
-                width: 100%;
-              }
-            }
-          }
         }
       }
     }
