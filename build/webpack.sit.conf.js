@@ -2,10 +2,6 @@
 const utils = require("./utils");
 const webpack = require("webpack");
 const config = require("../config");
-const merge = require("webpack-merge"); //webpack-merge实现合并
-const path = require("path");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin"); //webpack的提示错误和日志信息的插件
 const { devWebpackConfig } = require("./webpack.dev.conf");
 const env = require("../config/sit.env");

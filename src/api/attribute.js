@@ -146,11 +146,35 @@ export function getAttributeParentAttrDetail (id) {
 // 模型属性列表查询
 export function getTypeEnum ({ key, ...rest }) {
   return request({
-    url: '/api/list/type/' + key,
+    url: '/api/list/type/1',
     method: 'get',
     params: {
       current: 1,
-      pageSize: 20,
+      pageSize: 200,
+      ...rest
+    }
+  })
+}
+// 模型属性列表查询
+export function getFieldEnum ({ key, ...rest }) {
+  return request({
+    url: '/api/list/field/1',
+    method: 'get',
+    params: {
+      current: 1,
+      pageSize: 200,
+      ...rest
+    }
+  })
+}
+// 模型属性列表查询
+export function getDataEnum ({ key, ...rest }) {
+  return request({
+    url: '/api/list/data/1',
+    method: 'get',
+    params: {
+      current: 1,
+      pageSize: 200,
       ...rest
     }
   })

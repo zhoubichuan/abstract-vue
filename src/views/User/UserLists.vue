@@ -37,7 +37,7 @@
         style="width: 50%"
         v-model="value"
         :options="options4"
-        :props="{ checkStrictly: true,label:'name' }"
+        :props="{ checkStrictly: true, label: 'name' }"
         @change="handleChange"
       ></el-cascader>
     </div>
@@ -50,15 +50,15 @@
             :key="index"
           >
             <div class="title">
-              {{ item.label }} / {{ type.label }} / {{ detail.label }}
+              {{ item.name }} / {{ type.name }} / {{ detail.name }}
             </div>
             <div class="view">
               <div
                 class="img"
-                v-for="(img, index) in detail.imgs || []"
+                v-for="(img, index) in detail.images || []"
                 :key="index"
               >
-                <img :src="require(`./${img ? img.url : '1'}.jpeg`)" alt="" />
+                <img :src="img" alt="" />
               </div>
             </div>
           </div>
@@ -69,7 +69,6 @@
 </template>
   
   <script>
-let options = require('./0.json')
 export default {
   data () {
     return {
@@ -80,24 +79,33 @@ export default {
       options1: [],
       value1: '3',
       value: ['1'],
-      options: _.cloneDeep(options),
-      options4: _.cloneDeep(options)
+      options: [],
+      options4: []
     }
   },
   mounted () {
     this.getList(1)
-    this.getList(2)
-    this.getList(3)
+    // this.getList(2);
+    // this.getList(3);
     this.getList2(4)
   },
   methods: {
     async getList (key) {
-      let res = await this.$api.getTypeEnum({
-        key: 1,
-        type: ['student', 'studentType', 'studentCode', 'stage'][key - 1]
-      })
-      if (res) {
-        this['options' + key] = res.data
+      let types = await this.$api.getTypeEnum({})
+      let fields = await this.$api.getFieldEnum({})
+      let datas = await this.$api.getDataEnum({})
+      if (types) {
+       this.options4 = this.options = types.data.map((t) => {
+          t.children = fields.data.filter((f) => {
+            if (f.type === t.value) {
+              f.children = datas.data.filter((d) => d.type === f.value)
+              return true
+            }
+            return false
+          })
+          return t
+        })
+        console.log(this.options)
       }
     },
     async getList2 (key) {

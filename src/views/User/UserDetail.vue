@@ -69,7 +69,6 @@
 </template>
   
   <script>
-let options = require('./0.json')
 export default {
   data () {
     return {
@@ -80,23 +79,32 @@ export default {
       options1: [],
       value1: '3',
       value: ['1'],
-      options: _.cloneDeep(options),
-      options4: _.cloneDeep(options)
+      options: [],
+      options4: []
     }
   },
   mounted () {
     this.getList(1)
-    this.getList(2)
-    this.getList(3)
+    // this.getList(2)
+    // this.getList(3)
   },
   methods: {
     async getList (key) {
-      let res = await this.$api.getTypeEnum({
-        key: 1,
-        type: ['student', 'studentType', 'studentCode'][key - 1]
-      })
-      if (res) {
-        this['options' + key] = res.data
+      let types = await this.$api.getTypeEnum({})
+      let fields = await this.$api.getFieldEnum({})
+      let datas = await this.$api.getDataEnum({})
+      if (types) {
+        this.options4 = this.options = types.data.map((t) => {
+          t.children = fields.data.filter((f) => {
+            if (f.type === t.value) {
+              f.children = datas.data.filter((d) => d.type === f.value)
+              return true
+            }
+            return false
+          })
+          return t
+        })
+        console.log(this.options)
       }
     },
     handleChange (value) {

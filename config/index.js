@@ -34,6 +34,9 @@ module.exports = {
     proxyTable: {
       "/api": {
         target: "https://zhoubichuan.com/abstract-express"
+      },
+      "/api/list": {
+        target: "http://localhost:7001"
       }
     }, //配置API代理，可利用该属性解决跨域的问题
     host: "localhost", // 可以被 process.env.HOST 覆盖
