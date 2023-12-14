@@ -1,16 +1,16 @@
 <template>
   <div class="page">
     <div class="top">
-      <div class="title">
-        【{{ options1.find((item) => item.value === value1).label }}】-【{{
-          options3.find((item) => item.value === value3).label
-        }}-{{ options2.find((item) => item.value === value2).label }}】
-      </div>
+      <!-- <div class="title">
+        【{{ options1.find((item) => item.value === value1).name }}】-【{{
+          options3.find((item) => item.value === value3).name
+        }}-{{ options2.find((item) => item.value === value2).name }}】
+      </div> -->
       <el-select v-model="value3" placeholder="请选择">
         <el-option
           v-for="item in options3"
           :key="item.value"
-          :label="item.label"
+          :label="item.name"
           :value="item.value"
         >
         </el-option>
@@ -19,7 +19,7 @@
         <el-option
           v-for="item in options2"
           :key="item.value"
-          :label="item.label"
+          :label="item.name"
           :value="item.value"
         >
         </el-option>
@@ -28,7 +28,7 @@
         <el-option
           v-for="item in options1"
           :key="item.value"
-          :label="item.label"
+          :label="item.name"
           :value="item.value"
         >
         </el-option>
@@ -37,7 +37,7 @@
         style="width: 50%"
         v-model="value"
         :options="options4"
-        :props="{ checkStrictly: true }"
+        :props="{ checkStrictly: true,label:'name' }"
         @change="handleChange"
       ></el-cascader>
     </div>
@@ -88,12 +88,22 @@ export default {
     this.getList(1)
     this.getList(2)
     this.getList(3)
+    this.getList2(4)
   },
   methods: {
     async getList (key) {
       let res = await this.$api.getTypeEnum({
         key: 1,
-        type: ['student', 'studentType', 'studentCode'][key - 1]
+        type: ['student', 'studentType', 'studentCode', 'stage'][key - 1]
+      })
+      if (res) {
+        this['options' + key] = res.data
+      }
+    },
+    async getList2 (key) {
+      let res = await this.$api.getTypeEnum({
+        key: 2,
+        type: ['student', 'studentType', 'studentCode', 'stage'][key - 1]
       })
       if (res) {
         this['options' + key] = res.data

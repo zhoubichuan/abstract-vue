@@ -7,7 +7,7 @@ module.exports = {
   entry: {
     libs: [
       "vue-router",
-      "web-elementui",
+      // "web-elementui",
       "element-ui",
       "vuex",
       "vue",
