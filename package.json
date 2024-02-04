@@ -7,13 +7,13 @@
   "scripts": {
     "start": "npm run dev",
     "serve": "npm run dev",
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev2.conf.js",
     "sit": "webpack-dev-server --inline --progress --config build/webpack.sit.conf.js",
     "uat": "webpack-dev-server --inline --progress --config build/webpack.prod.conf.js",
     "prod": "webpack-dev-server --inline --progress --config build/webpack.prod.conf.js",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "build:dll": "node build/build.dll.js",
+    "dll": "node build/build.dll.js",
     "deploy": "bash deploy.sh",
     "gh-pages": "bash github.sh"
   },

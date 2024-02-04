@@ -4,7 +4,7 @@ const webpack = require("webpack");
 const config = require("../config");
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin"); //webpack的提示错误和日志信息的插件
 const { devWebpackConfig } = require("./webpack.dev.conf");
-const env = require("../config/sit.env");
+const env = require("../config/dev.env");
 const portfinder = require("portfinder"); // 查看空闲端口位置，默认情况下搜索8000这个端口
 devWebpackConfig.plugins[0] = new webpack.DefinePlugin({
   "process.env": env
@@ -12,7 +12,7 @@ devWebpackConfig.plugins[0] = new webpack.DefinePlugin({
 const sitWebpackConfig = devWebpackConfig;
 
 let sitConfig = new Promise((resolve, reject) => {
-  portfinder.basePort = process.env.PORT || config.sit.port;
+  portfinder.basePort = process.env.PORT || config.dev.port;
   portfinder.getPort((err, port) => {
     //查找端口号
     if (err) {
@@ -29,12 +29,12 @@ let sitConfig = new Promise((resolve, reject) => {
               `Your application is running here: http://${sitWebpackConfig.devServer.host}:${port}`
             ]
           },
-          onErrors: config.sit.notifyOnErrors
+          onErrors: config.dev.notifyOnErrors
             ? utils.createNotifierCallback()
             : undefined
         })
       );
-      sitWebpackConfig.devServer.proxy = config.sit.proxyTable
+      sitWebpackConfig.devServer.proxy = config.dev.proxyTable
       resolve(sitWebpackConfig);
     }
   });

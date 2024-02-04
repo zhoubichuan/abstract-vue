@@ -63,8 +63,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       filename: "index.html",
       template: "index.html",
       inject: true,
-      // libJsName: bundleConfig.libs.js,
-      // libCssName: bundleConfig.libs.css,
+      libJsName: bundleConfig['libs.js'],
+      libCssName: bundleConfig['libs.css'],
       env: config.dev.env
     }),
     // 提取static assets 中css 复制到dist/static文件
@@ -100,6 +100,7 @@ let devConfig = new Promise((resolve, reject) => {
             : undefined
         })
       );
+      devWebpackConfig.devServer.proxy = config.dev.proxyTable
       resolve(devWebpackConfig);
     }
   });
