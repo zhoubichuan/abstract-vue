@@ -8,12 +8,12 @@ module.exports = {
     assetsSubDirectory: "static", //静态资源文件夹(一般存放css、js、image等文件)
     assetsPublicPath: "/abstract-vue/", //根目录
     proxyTable: {
-      // "/api/*": {
-      //   target: "http://localhost:7005"
-      // },
-      "/api/list": {
-        target: "http://localhost:7001"
-      }
+      "/api/*": {
+        target: "http://localhost:7005"
+      },
+      // "/api/list": {
+      //   target: "http://localhost:7001"
+      // }
     }, //配置API代理，可利用该属性解决跨域的问题
     host: "localhost", // 可以被 process.env.HOST 覆盖
     port: 8080, // 可以被 process.env.PORT 覆盖

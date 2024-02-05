@@ -33,7 +33,8 @@ module.exports = {
     extensions: [".js", ".vue", ".json"], // 自动补全的扩展名
     //别名配置
     alias: {
-      "@": resolve("src"), // eg:"src/components" => "@/components"
+      "components": resolve("web-elementui/components"),
+      "@": resolve("src"), 
       static: resolve("static")
     }
   },
