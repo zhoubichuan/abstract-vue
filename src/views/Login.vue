@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import { setCookie } from '../util/cookies'
+import { setCookie } from '@/utils/cookies'
 export default {
   data () {
     return {

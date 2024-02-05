@@ -97,7 +97,7 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import { delCookie } from '../util/cookies'
+import { delCookie } from '@/utils/cookies'
 export default {
   data () {
     return {

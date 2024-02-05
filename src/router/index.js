@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store'
-import service from '@/util/request.js'
+import service from '@/utils/request.js'
 import {
   getCookie
-} from '../util/cookies'
+} from '@/utils/cookies'
 Vue.use(Router)
 let router = new Router({
   base: '/abstract-vue/',

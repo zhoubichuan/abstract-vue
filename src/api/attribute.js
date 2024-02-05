@@ -1,4 +1,4 @@
-import request from '@/util/request'
+import request from '@/utils/request'
 // 模型属性列表查询
 export function getAttributeList (data) {
   return request({

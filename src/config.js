@@ -1,7 +1,7 @@
 import * as api from '@/api/index.js'
 import * as _ from 'lodash'
 import axios from 'axios'
-import service from '@/util/request.js'
+import service from '@/utils/request.js'
 
 export default {
   install (Vue) {

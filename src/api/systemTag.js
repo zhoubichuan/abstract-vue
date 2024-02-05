@@ -1,4 +1,4 @@
-import request from '@/util/request'
+import request from '@/utils/request'
 // 数据实体列表查询
 export function getTagList (data) {
   return request({

@@ -89,16 +89,16 @@ export default {
     async queryDataEntityList (condition = {}) {
       this.loadingFlag = true
       let { current, pageSize } = this.page
-      let res = await this.$api.getDataEntityList({
+      let { result } = await this.$api.getDataEntityList({
         current,
         pageSize,
         ...condition
       })
-      if (res) {
+      if (result) {
         let {
           data,
           page: { current, total, pageSize }
-        } = res
+        } = result
         this.loadingFlag = false
         this.page.total = total
         this.page.current = current

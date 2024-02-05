@@ -132,17 +132,17 @@ data.table1 = [
         }
       }
     ) => [
-      <el-link
-        icon={'el-icon-edit'}
-        title={'编辑'}
-        onClick={row => this.showEditModal(row)}
-      />,
-      <el-link
-        icon={'el-icon-collection'}
-        title={'修订'}
-        onClick={row => this.showRemoveModal(row)}
-      />
-    ]
+        <el-link
+          icon={'el-icon-edit'}
+          title={'编辑'}
+          onClick={row => this.showEditModal(row)}
+        />,
+        <el-link
+          icon={'el-icon-collection'}
+          title={'修订'}
+          onClick={row => this.showRemoveModal(row)}
+        />
+      ]
   }
 ]
 data.table2 = [
@@ -199,17 +199,17 @@ data.table2 = [
         }
       }
     ) => [
-      <el-link
-        icon={'el-icon-edit'}
-        title={'编辑'}
-        onClick={row => this.showEditModal(row)}
-      ></el-link>,
-      <el-link
-        icon={'el-icon-collection'}
-        title={'修订'}
-        onClick={row => this.showRemoveModal(row)}
-      ></el-link>
-    ]
+        <el-link
+          icon={'el-icon-edit'}
+          title={'编辑'}
+          onClick={row => this.showEditModal(row)}
+        ></el-link>,
+        <el-link
+          icon={'el-icon-collection'}
+          title={'修订'}
+          onClick={row => this.showRemoveModal(row)}
+        ></el-link>
+      ]
   }
 ]
 data.table3 = [
@@ -228,17 +228,21 @@ data.table3 = [
       h,
       {
         data: {
-          attrs: { item, row }
+          attrs: { item, scope: { row } }
         }
       }
-    ) => (
-      <el-link
-        size={'mini'}
-        type={'primary'}
-        title={row._id || '-'}
-        onClick={row => this.showViewModal(row._id)}
-      ></el-link>
-    )
+    ) => {
+      return (
+        <el-link
+          size={'mini'}
+          type={'primary'}
+          title={row._id || '-'}
+          onClick={row => this.showViewModal(row._id)}
+        >
+          {row.code}
+        </el-link>
+      )
+    }
   },
   {
     prop: 'name',
