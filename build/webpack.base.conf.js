@@ -93,10 +93,10 @@ module.exports = {
     tls: "empty",
     child_process: "empty"
   },
-  plugins: [
-    new webpack.DllReferencePlugin({
-      context: __dirname,
-      manifest: require("../public/libs-mainfest.json") // 指向生成的manifest.json
-    })
-  ]
+  // plugins: [
+  //   new webpack.DllReferencePlugin({
+  //     context: __dirname,
+  //     manifest: require("../static/dll/libs-mainfest.json") // 指向生成的manifest.json
+  //   })
+  // ]
 };

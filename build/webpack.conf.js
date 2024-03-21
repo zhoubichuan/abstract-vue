@@ -11,7 +11,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HOST = process.env.HOST;
 const PORT = process.env.PORT && Number(process.env.PORT);
 const env = require("../config/dev.env");
-var bundleConfig = require("../public/libs-mainfest.json");
+var bundleConfig = require("../static/dll/libs-mainfest.json");
 
 exports.default = merge(baseWebpackConfig, {
   module: {
@@ -57,14 +57,14 @@ exports.default = merge(baseWebpackConfig, {
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
     new webpack.NoEmitOnErrorsPlugin(), //webpack编译错误的时候，中断打包进程，防止错误代码打包到文件中
     // 将打包编译好的代码插入index.html
-    new HtmlWebpackPlugin({
-      filename: "index.html",
-      template: "index.html",
-      inject: true,
-      libJsName: bundleConfig['libs.js'],
-      libCssName: bundleConfig['libs.css'],
-      env: config.dev.env
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: "index.html",
+    //   template: "index.html",
+    //   inject: true,
+    //   libJsName: bundleConfig['libs.js'],
+    //   libCssName: bundleConfig['libs.css'],
+    //   env: config.dev.env
+    // }),
     // 提取static assets 中css 复制到dist/static文件
     new CopyWebpackPlugin([
       {

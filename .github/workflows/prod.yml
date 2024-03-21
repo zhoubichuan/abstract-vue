@@ -7,10 +7,15 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: 使用库中的代码
-        uses: actions/checkout@v2
+      # 切代码到 runner
+      - name: Checkout repository
+        uses: actions/checkout@v1
         with:
-          persist-credentials: false
+          submodules: recursive
+      # 下载 git submodule
+      - name: Update submodules
+        run: |
+          git submodule update --remote
       - name: 安装项目依赖
         run: npm install
       - name: 打包

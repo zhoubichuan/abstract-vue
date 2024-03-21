@@ -15,13 +15,13 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, "../public"),
+    path: path.resolve(__dirname, "../static/dll"),
     filename: "[name].[chunkhash:7].js",
     library: "[name]_library"
   },
   plugins: [
     new webpack.DllPlugin({
-      path: path.resolve(__dirname, "../public/[name]-mainfest.json"),
+      path: path.resolve(__dirname, "../static/dll/[name]-mainfest.json"),
       name: "[name]_library",
       context: __dirname // 执行的上下文环境，对之后DllReferencePlugin有用
     }),
@@ -33,7 +33,7 @@ module.exports = {
     }),
     // new AssetsPlugin({
     //   filename: "bundle-config.json",
-    //   path: "./public"
+    //   path: "./static/dll"
     // })
   ],
   module: {

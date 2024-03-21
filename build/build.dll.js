@@ -15,7 +15,7 @@ var spinner = ora({
   text: "正为生产环境打包dll包，耐心点，不然自动关机。。。"
 });
 spinner.start();
-rm(path.resolve(__dirname, "../public"), err => {
+rm(path.resolve(__dirname, "../static/dll"), err => {
   if (err) throw err;
   webpack(dllConfig, function(err, stats) {
     spinner.stop();
