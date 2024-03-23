@@ -23,7 +23,8 @@ module.exports = {
   //配置出口
   output: {
     path: config.build.assetsRoot, //打包编译的根路径(dist)
-    filename: "[name].js",
+    filename: "[name].[hash].js",
+    library: '_dll_[name]',
     publicPath:
       process.env.NODE_ENV === "production"
         ? config.build.assetsPublicPath
@@ -34,7 +35,7 @@ module.exports = {
     //别名配置
     alias: {
       "components": resolve("web-elementui/components"),
-      "@": resolve("src"), 
+      "@": resolve("src"),
       static: resolve("static")
     }
   },
@@ -93,10 +94,12 @@ module.exports = {
     tls: "empty",
     child_process: "empty"
   },
-  // plugins: [
-  //   new webpack.DllReferencePlugin({
-  //     context: __dirname,
-  //     manifest: require("../static/dll/libs-mainfest.json") // 指向生成的manifest.json
-  //   })
-  // ]
+  plugins: [
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require("../static/dll/vendor-manifest.json"), // 指向生成的manifest.json
+      name: "[name]_[hash]",
+      context: process.cwd(),
+    }),
+  ]
 };
