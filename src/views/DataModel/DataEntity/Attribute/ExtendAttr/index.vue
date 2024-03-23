@@ -41,8 +41,9 @@
 </template>
 <script>
 import FormMixin from '@/mixin/FormMixin.js'
+import table from './BaseAttr.js'
 export default {
-  mixins: [FormMixin],
+  mixins: [table, FormMixin],
   inject: {
     rootPage: {
       type: Object
@@ -96,7 +97,6 @@ export default {
         desc: ''
       },
       loadingFlag: false,
-      tableRows: this.getData('table5'),
       tableData: [
         {
           date: '2016-05-02',

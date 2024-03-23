@@ -17,7 +17,9 @@
 </template>
 
 <script>
+import table from './PageTable.js'
 export default {
+  mixins: [table],
   props: {
     searchConditon: {
       type: Object,
@@ -41,8 +43,7 @@ export default {
       removeModalFlag: false,
       drawer: false,
       tableData: [],
-      productId: '',
-      tableRows: this.getData('table3')
+      productId: ''
     }
   },
   methods: {

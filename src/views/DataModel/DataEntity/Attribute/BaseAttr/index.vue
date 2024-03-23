@@ -36,14 +36,19 @@
       @selection-change="handleSelectionChange"
       class="table-part"
     >
-    <web-table-column v-for="item in tableRows" :key="item.prop" :item="item" />
+      <web-table-column
+        v-for="item in tableRows"
+        :key="item.prop"
+        :item="item"
+      />
     </web-table-page>
   </div>
 </template>
 <script>
 import FormMixin from '@/mixin/FormMixin.js'
+import table from './BaseAttr.js'
 export default {
-  mixins: [FormMixin],
+  mixins: [table, FormMixin],
   inject: {
     rootPage: {
       type: Object
@@ -101,8 +106,7 @@ export default {
         desc: ''
       },
       loadingFlag: false,
-      tableData: [],
-      tableRows: this.getData('table4')
+      tableData: []
     }
   },
   computed: {
@@ -230,22 +234,28 @@ export default {
           code: {
             label: '编码',
             disabled: this.disableds.code,
-            render: (h, {
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
+            ) => {
               return this.mixinInput(formItem)
             }
           },
           state: {
             label: '状态',
             disabled: this.disableds.state,
-            render: (h, {
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
+            ) => {
               return this.mixinSelect(formItem)
             }
           },
@@ -253,22 +263,28 @@ export default {
             label: '英文名称',
             disabled: this.disableds.nameEn,
             placeholder: '请输入英文名称',
-            render: (h, {
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
+            ) => {
               return this.mixinInput(formItem)
             }
           },
           name: {
             label: '中文名称',
             placeholder: '请输入中文名称',
-            render: (h, {
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
+            ) => {
               return this.mixinInput(formItem)
             }
           },
@@ -277,11 +293,14 @@ export default {
             disabled: this.disableds.descriptEn,
             placeholder: '请输入英文描述',
             singleFormItem: true,
-            render: (h, {
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
+            ) => {
               return this.mixinTextarea(formItem)
             }
           },
@@ -289,11 +308,14 @@ export default {
             label: '中文描述',
             placeholder: '请输入中文描述',
             singleFormItem: true,
-            render: (h, {
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
+            ) => {
               return this.mixinTextarea(formItem)
             }
           },
@@ -301,11 +323,14 @@ export default {
             label: '父模型',
             disabled: this.disableds.parentId,
             placeholder: '请选择父模型',
-            render: (h, {
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
+            ) => {
               return this.mixinSelect(formItem)
             }
           },
@@ -326,33 +351,42 @@ export default {
                 value: 'GENERE'
               }
             ],
-            render: (h, {
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
+            ) => {
               return this.mixinSelect(formItem)
             }
           },
           storeType: {
             label: '存储类型',
             disabled: this.disableds.storeType,
-            render: (h, {
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
+            ) => {
               return this.mixinRadio(formItem)
             }
           },
           inherit: {
             label: '是否继承',
             disabled: this.disableds.inherit,
-            render: (h, {
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
+            ) => {
               return this.mixinRadio(formItem)
             }
           },
@@ -362,11 +396,14 @@ export default {
             type: 'image',
             placeholder: '请输入图片',
             singleFormItem: true,
-            render: (h, {
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
+            ) => {
               return this.mixinUpload(formItem)
             }
           },
@@ -376,11 +413,14 @@ export default {
             type: 'video',
             placeholder: '请输入视频',
             singleFormItem: true,
-            render: (h, {
-              data: {
-                attrs: { formItem }
+            render: (
+              h,
+              {
+                data: {
+                  attrs: { formItem }
+                }
               }
-            }) => {
+            ) => {
               return this.mixinUpload(formItem)
             }
           }
