@@ -10,13 +10,13 @@
   </web-search>
 </template>
 <script>
-let { result } = require('@/assets/data/search.json')
+import search from './PageSearch.js'
 export default {
+  mixins: [search],
   name: 'DataEntitySearch',
   data () {
     return {
-      searchField: {},
-      condition: result
+      searchField: {}
     }
   },
   watch: {},

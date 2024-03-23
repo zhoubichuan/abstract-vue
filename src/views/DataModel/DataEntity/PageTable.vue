@@ -47,9 +47,6 @@ export default {
     }
   },
   methods: {
-    showEditModal (row) {
-      this.$emit('showEditModal', row)
-    },
     handleInput (val) {
       this.page = val
       this.$emit('pageChange', this.page)

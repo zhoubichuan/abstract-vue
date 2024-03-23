@@ -12,7 +12,7 @@ export default {
         {
           prop: 'code',
           label: '编码',
-          attrs: { 'show-overflow-tooltip': true, width: '55' },
+          attrs: { 'show-overflow-tooltip': true, width: '100' },
           render: (
             h,
             {
@@ -140,6 +140,9 @@ export default {
   methods: {
     showViewModal (row) {
       this.$emit('showViewModal', row)
+    },
+    showEditModal (row) {
+      this.$emit('showEditModal', row)
     }
   }
 }
