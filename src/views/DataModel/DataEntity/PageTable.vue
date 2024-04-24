@@ -75,8 +75,8 @@ export default {
       this.removeModalFlag = true
       this.productId = row._id
     },
-    async deleteModal (id) {
-      let res = await this.$api.deleteDataEntity(id)
+    async deleteModal (row) {
+      let res = await this.$api.deleteDataEntity(row._id)
       if (res) {
         this.handleSearch()
       }
