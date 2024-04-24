@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import table from './PageTable.js'
+import table from './PageTableConfig.js'
 export default {
   mixins: [table],
   props: {

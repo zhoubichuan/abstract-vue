@@ -6,11 +6,10 @@
     :value="searchField"
     @input="(val) => updateField(val)"
     @handleSearch="handleSearch"
-  >
-  </web-search>
+  />
 </template>
 <script>
-import search from './PageSearch.js'
+import search from './PageSearchConfig.js'
 export default {
   mixins: [search],
   name: 'DataEntitySearch',

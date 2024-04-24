@@ -20,7 +20,7 @@
     />
     <!-- 数据展示 -->
     <page-table
-      ref="entityTable"
+      ref="refPageTable"
       v-model="selects"
       :searchConditon="condition"
       @showViewModal="showViewModal"
@@ -38,6 +38,12 @@ export default {
     PageButton: () => import("./PageButton"),
     PageTable: () => import("./PageTable"),
     PageSlider: () => import("./PageSlider"),
+  },
+  provide() {
+    return {
+      template: "1",
+      config: {},
+    };
   },
   data() {
     return {
@@ -123,8 +129,8 @@ export default {
       this.handleSearch(params);
     },
     handleSearch(condition) {
-      this.$refs.entityTable &&
-        this.$refs.entityTable.handleSearch(condition);
+      this.$refs.refPageTable &&
+        this.$refs.refPageTable.handleSearch(condition);
     },
   },
 };
