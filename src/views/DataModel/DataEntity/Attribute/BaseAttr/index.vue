@@ -439,31 +439,28 @@ export default {
     }
   },
   methods: {
-    handleSelectionChange (condition = {}) {
+    async handleSelectionChange (condition = {}) {
       this.loadingFlag = true
       let { current, pageSize } = this.page
-      this.$api
-        .getAttributeList({
-          current,
-          pageSize,
-          ...condition
-        })
-        .then((res) => {
-          if (res.statusCode === 200) {
-            let {
-              result,
-              page: { current, total, pageSize }
-            } = res
-            this.loadingFlag = false
-            this.page.total = total
-            this.page.current = current
-            this.page.pageSize = pageSize
-            this.tableData = result
-          } else {
-            this.tableData = []
-            this.loadingFlag = false
-          }
-        })
+      let { result } = await this.$api.getAttributeList({
+        current,
+        pageSize,
+        ...condition
+      })
+      if (result) {
+        let {
+          data,
+          page: { current, total, pageSize }
+        } = result
+        this.loadingFlag = false
+        this.page.total = total
+        this.page.current = current
+        this.page.pageSize = pageSize
+        this.tableData = data
+      } else {
+        this.tableData = []
+        this.loadingFlag = false
+      }
     },
     handleCreate () {
       this.visibleDialog = true

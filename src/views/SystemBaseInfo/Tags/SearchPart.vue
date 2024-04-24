@@ -9,7 +9,6 @@
   </web-search>
 </template>
 <script>
-import SearchEnumerationType from 'static/EnumerationType.js'
 export default {
   name: 'TagSearch',
   data () {
@@ -17,19 +16,19 @@ export default {
       searchField: {},
       condition: [
         {
-          type: SearchEnumerationType.input,
+          type: 'searchInput',
           name: 'name',
           label: '中文名称',
           placeholder: '请输入中文名称'
         },
         {
-          type: SearchEnumerationType.input,
+          type: 'searchInput',
           name: 'nameEn',
           label: '英文名称',
           placeholder: '请输入英文名称'
         },
         {
-          type: SearchEnumerationType.user,
+          type: 'searchUser',
           name: 'user',
           label: '创建者',
           placeholder: '请输入用户'

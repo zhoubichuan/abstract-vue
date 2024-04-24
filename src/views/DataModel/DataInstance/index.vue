@@ -1,11 +1,11 @@
 <template>
   <div class="content">
     <!-- 右侧滑窗 -->
-    <web-slider-right v-model="sliderPage">
+    <web-drawer v-model="sliderPage">
       <template slot-scope="pageData">
         <page-slider :pageData="pageData.data"></page-slider>
       </template>
-    </web-slider-right>
+    </web-drawer>
     <!-- 搜索 -->
     <page-search v-model="condition" @handleSearch="handleSearch">
     </page-search>
