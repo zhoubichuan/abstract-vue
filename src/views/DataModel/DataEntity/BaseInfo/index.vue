@@ -133,7 +133,7 @@ export default {
         this.loading = false
       }
     },
-    handleEdit () {
+    async handleEdit () {
       let keys = [
         'id',
         'nameEn',
@@ -147,7 +147,9 @@ export default {
         'tableName'
       ]
       let params = this.$filterObj(this.baseInfoForm, keys)
-      this.$api.updateDataEntity(params).then((res) => {
+      let id = this.rootPage.tabsData.data._id
+      let res = await this.$api.updateDataEntity(id, params)
+      try {
         if (res.statusCode === 200) {
           this.$message({
             message: res.msg,
@@ -159,8 +161,10 @@ export default {
         } else {
           this.$message.error(res.msg)
         }
+      } catch (e) {
+      } finally {
         this.loading = false
-      })
+      }
     }
   },
   computed: {

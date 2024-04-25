@@ -1,6 +1,11 @@
 <template>
   <div>
-    <web-dialog ref="dialogForm" name="基本属性" @create="create">
+    <web-dialog
+      :visible.sync="visibleDialog"
+      ref="dialogForm"
+      title="基本属性"
+      @create="create"
+    >
       <el-form
         ref="form"
         :model="baseInfoForm"
@@ -465,7 +470,7 @@ export default {
     handleCreate () {
       this.visibleDialog = true
       this.viewPage = false
-      this.$refs.dialogForm.handleCreate()
+      // this.$refs.dialogForm.handleCreate()
     },
     create () {
       let keys = [

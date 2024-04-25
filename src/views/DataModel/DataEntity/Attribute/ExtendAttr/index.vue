@@ -1,6 +1,11 @@
 <template>
   <div>
-    <web-dialog ref="dialogForm" name="扩展属性">
+    <web-dialog
+      :visible.sync="visibleDialog"
+      ref="dialogForm"
+      title="扩展属性"
+      @create="create"
+    >
       <el-form
         ref="form"
         :model="baseInfoForm"
@@ -35,7 +40,11 @@
       @selection-change="handleSelectionChange"
       class="table-part"
     >
-    <web-table-column v-for="item in tableRows" :key="item.prop" :item="item" />
+      <web-table-column
+        v-for="item in tableRows"
+        :key="item.prop"
+        :item="item"
+      />
     </web-table-page>
   </div>
 </template>

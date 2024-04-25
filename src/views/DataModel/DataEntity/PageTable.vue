@@ -78,6 +78,10 @@ export default {
     async deleteModal (row) {
       let res = await this.$api.deleteDataEntity(row._id)
       if (res) {
+        this.$message({
+            message: '数据删除成功',
+            type: 'success'
+          })
         this.handleSearch()
       }
     },

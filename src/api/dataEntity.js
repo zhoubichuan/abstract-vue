@@ -23,9 +23,9 @@ export function createDataEntity (data) {
   })
 }
 // 更新数据
-export function updateDataEntity (data) {
+export function updateDataEntity (id, data) {
   return request({
-    url: '/api/dataEntity/update',
+    url: '/api/dataEntity/' + id,
     method: 'put',
     data
   })
@@ -34,7 +34,8 @@ export function updateDataEntity (data) {
 export function deleteDataEntity (id) {
   return request({
     url: '/api/dataEntity/' + id,
-    method: 'delete'
+    method: 'delete',
+    data: {}
   })
 }
 // 批量删除

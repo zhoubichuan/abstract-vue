@@ -131,9 +131,21 @@ export default {
           childrens: [
             {
               index: 'dataEntity',
-              route: '/admin/dataEntity',
+              route: '/admin/dataEntity?template=1',
               authority: [50],
               title: '数据实体'
+            },
+            {
+              index: 'dataEntity2',
+              route: '/admin/dataEntity?template=2',
+              authority: [50],
+              title: '数据实体2'
+            },
+            {
+              index: 'dataEntity3',
+              route: '/admin/dataEntity?template=3',
+              authority: [50],
+              title: '数据实体3'
             },
             {
               index: 'relationEntity',
