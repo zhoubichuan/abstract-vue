@@ -118,12 +118,12 @@ let router = new Router({
           component: () => import('@/views/Client/Payment')
         },
         {
-          path: 'comment',
+          path: '/comment',
           name: 'comment',
           component: () => import('@/views/Comments/comment')
         },
         {
-          path: 'downLoad',
+          path: '/downLoad',
           name: 'downLoad',
           authority: [50],
           meta: {
@@ -132,7 +132,7 @@ let router = new Router({
           component: () => import('@/views/User/UserInfo')
         },
         {
-          path: 'UserLists',
+          path: '/UserLists',
           name: 'UserLists',
           authority: [50],
           meta: {
@@ -141,19 +141,19 @@ let router = new Router({
           component: () => import('@/views/User/UserLists')
         },
         {
-          path: 'UserDetail',
+          path: '/UserDetail',
           name: 'UserDetail',
           authority: [50],
           meta: {
             requireAuth: true // 添加需要权限的标记
           },
           component: () => import('@/views/User/UserDetail')
-        },
-        {
-          path: '*',
-          redirect: '/admin'
         }
       ]
+    },
+    {
+      path: '*',
+      redirect: '/admin'
     }
   ]
 })

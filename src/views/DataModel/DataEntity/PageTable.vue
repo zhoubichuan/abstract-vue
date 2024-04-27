@@ -76,19 +76,19 @@ export default {
       this.productId = row._id
     },
     async deleteModal (row) {
-      let res = await this.$api.deleteDataEntity(row._id)
+      let res = await this.$api[this.config.interface.del](row._id)
       if (res) {
         this.$message({
-            message: '数据删除成功',
-            type: 'success'
-          })
+          message: '数据删除成功',
+          type: 'success'
+        })
         this.handleSearch()
       }
     },
     async queryDataEntityList (condition = {}) {
       this.loadingFlag = true
       let { current, pageSize } = this.page
-      let { result } = await this.$api.getDataEntityList({
+      let { result } = await this.$api[this.config.interface.view]({
         current,
         pageSize,
         ...condition

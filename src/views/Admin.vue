@@ -121,6 +121,11 @@ export default {
               index: 'UserDetail',
               route: '/admin/UserDetail',
               title: '用户详情'
+            },
+            {
+              index: 'template',
+              route: '/admin/dataEntity?template=4',
+              title: '数据模板'
             }
           ]
         },
@@ -136,29 +141,29 @@ export default {
               title: '数据实体'
             },
             {
-              index: 'dataEntity2',
-              route: '/admin/dataEntity?template=2',
-              authority: [50],
-              title: '数据实体2'
-            },
-            {
-              index: 'dataEntity3',
-              route: '/admin/dataEntity?template=3',
-              authority: [50],
-              title: '数据实体3'
-            },
-            {
               index: 'relationEntity',
-              route: '/admin/relationEntity',
+              route: '/admin/dataEntity?template=2',
               authority: [50],
               title: '关系实体'
             },
             {
               index: 'dataInstance',
-              route: '/admin/dataInstance',
+              route: '/admin/dataEntity?template=3',
               authority: [50],
               title: '数据实例'
             },
+            // {
+            //   index: 'relationEntity',
+            //   route: '/admin/relationEntity',
+            //   authority: [50],
+            //   title: '关系实体'
+            // },
+            // {
+            //   index: 'dataInstance',
+            //   route: '/admin/dataInstance',
+            //   authority: [50],
+            //   title: '数据实例'
+            // },
             {
               index: 'dataGraph',
               route: '/admin/dataGraph',

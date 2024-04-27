@@ -36,7 +36,7 @@
   </div>
 </template>
 <script>
-import FormMixin from '@/mixin/FormMixin.js'
+import FormMixin from '../FormMixin.js'
 import table from './BaseAttr.js'
 export default {
   mixins: [table, FormMixin],

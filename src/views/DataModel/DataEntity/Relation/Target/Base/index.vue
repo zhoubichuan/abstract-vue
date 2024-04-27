@@ -146,7 +146,7 @@
   </div>
 </template>
 <script>
-import FormMixin from '@/mixin/FormMixin.js'
+import FormMixin from '../../../FormMixin.js'
 export default {
   mixins: [FormMixin],
   inject: {

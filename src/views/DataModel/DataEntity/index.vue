@@ -41,8 +41,35 @@ export default {
   },
   provide() {
     return {
-      template: "1",
-      config: {},
+      config: {
+        template: this.$route.query.template,
+        interface: [
+          {
+            add: "createDataEntity",
+            del: "deleteDataEntity",
+            edit: "updateDataEntity",
+            view: "getDataEntityList",
+          },
+          {
+            add: "createDataEntity",
+            del: "deleteDataEntity",
+            edit: "updateDataEntity",
+            view: "getDataEntityList",
+          },
+          {
+            add: "createDataEntity",
+            del: "deleteDataEntity",
+            edit: "updateDataEntity",
+            view: "getDataEntityList",
+          },
+          {
+            add: "createTemplate",
+            del: "deleteTemplate",
+            edit: "updateTemplate",
+            view: "getTemplateList",
+          },
+        ][this.$route.query.template - 1],
+      },
     };
   },
   data() {
