@@ -1,4 +1,0 @@
-[submodule "web-elementui"]
-	path = web-elementui
-	url = https://gitee.com/zhoubichuan/web-elementui.git
-	branch = master

@@ -34,7 +34,6 @@ module.exports = {
     extensions: [".js", ".vue", ".json"], // 自动补全的扩展名
     //别名配置
     alias: {
-      "components": resolve("web-elementui/components"),
       "@": resolve("src"),
       static: resolve("static")
     }
@@ -55,7 +54,6 @@ module.exports = {
           resolve("src"),
           resolve("test"),
           resolve("node_modules/webpack-dev-server/client"),
-          resolve("node_modules/web-elementui")
         ]
       },
       //使用url-loader处理(图片、音像、字体)，超过10000编译成base64

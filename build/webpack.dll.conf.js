@@ -7,7 +7,7 @@ module.exports = {
   entry: {
     vendor: [
       "vue-router",
-      // "web-elementui",
+      "web-elementui",
       "element-ui",
       "vuex",
       "vue",

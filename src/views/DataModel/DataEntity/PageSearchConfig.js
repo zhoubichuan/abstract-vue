@@ -620,13 +620,13 @@ export default {
         let {
           data
         } = result
-        this.condition = Object.freeze(config[this.config.template - 1])
       } else {
         this.condition = []
       }
     }
   },
   created () {
+    this.condition = Object.freeze(config[this.config.template - 1])
     this.getConfig({ template: this.config.template })
   }
 }
