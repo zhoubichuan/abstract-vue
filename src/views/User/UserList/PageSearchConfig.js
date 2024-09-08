@@ -83,25 +83,31 @@ const config = [
       type: 'searchInput',
       name: '_id',
       label: '用户编码',
-      placeholder: '请输入编码'
+      placeholder: '请输入用户编码'
     },
     {
       type: 'searchInput',
       name: 'username',
-      label: '中文名称',
-      placeholder: '请输入中文名称'
+      label: '用户名称',
+      placeholder: '请输入用户名称'
     },
     {
       type: 'searchInput',
-      name: 'usernameEn',
-      label: '英文名称',
-      placeholder: '请输入英文名称'
+      name: 'phone',
+      label: '用户手机',
+      placeholder: '请输入手机号码'
+    },
+    {
+      type: 'searchInput',
+      name: 'email',
+      label: '用户邮箱',
+      placeholder: '请输入用户邮箱'
     },
     {
       type: 'searchUser',
       name: 'access',
-      label: '权限',
-      placeholder: '请输入用户'
+      label: '用户权限',
+      placeholder: '请输入用户权限'
     }
   ],
   [
@@ -471,7 +477,7 @@ export default {
   methods: {
     async getConfig (condition = {}) {
       this.loadingFlag = true
-      let { result } = await this.$api[[this.config.interface.list]]({
+      let { result } = await this.$api[this.config.interface.list]({
         ...condition
       })
       if (result) {
@@ -485,6 +491,6 @@ export default {
   },
   created () {
     this.condition = Object.freeze(config[this.config.template - 1])
-    this.getConfig({ template: this.config.template })
+    // this.getConfig({ template: this.config.template })
   }
 }

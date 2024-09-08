@@ -87,7 +87,7 @@ export default {
     return {
       loginForm: {
         account: 'admin',
-        password: 'ant.design1',
+        password: '123456',
         check: false
       },
       errMsg: '',
@@ -102,9 +102,7 @@ export default {
       }
       let res = await this.$api.userLogin({
         username: this.loginForm.account,
-        password: this.loginForm.password,
-        autoLogin: true,
-        type: 'account'
+        password: this.loginForm.password
       })
       if (res && res.success) {
         localStorage.setItem('token', res.result.token)

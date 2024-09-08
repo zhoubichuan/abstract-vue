@@ -78,23 +78,30 @@ export default {
     async queryList (condition = {}) {
       this.loadingFlag = true
       let { current, pageSize } = this.page
-      let { result } = await this.$api[this.config.interface.list]({
-        current,
-        pageSize,
-        ...condition
-      })
-      if (result) {
-        let {
-          data,
-          page: { current, total, pageSize }
-        } = result
+      try {
+        let { result } = await this.$api[this.config.interface.list]({
+          current,
+          pageSize,
+          ...condition
+        })
+        if (result) {
+          let {
+            data,
+            page: { current, total, pageSize }
+          } = result
+          this.loadingFlag = false
+          this.page.total = total
+          this.page.current = current
+          this.page.pageSize = pageSize
+          this.tableData = data
+        } else {
+          this.tableData = []
+          this.loadingFlag = false
+        }
+      } catch (e) {
+        console.log(e)
         this.loadingFlag = false
-        this.page.total = total
-        this.page.current = current
-        this.page.pageSize = pageSize
-        this.tableData = data
-      } else {
-        this.tableData = []
+      } finally {
         this.loadingFlag = false
       }
     }

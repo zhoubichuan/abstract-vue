@@ -18,13 +18,14 @@ export default {
     },
     async getConfig (condition = {}) {
       this.loadingFlag = true
-      let { result } = await this.$api[this.config.interface.list]({
-        ...condition
-      })
+      // let { result } = await this.$api[this.config.interface.list]({
+      //   ...condition
+      // })
+      let result = true
       if (result) {
-        let {
-          data
-        } = result
+        // let {
+        //   data
+        // } = result
         const config = [
           [
             {
@@ -526,6 +527,7 @@ export default {
           ]
         ]
         this.tableRows = Object.freeze(config[this.config.template - 1])
+        this.handleSearch()
       } else {
         this.tableRows = []
       }

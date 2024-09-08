@@ -35,6 +35,7 @@ export default {
             list: "getUserListApi",
             add: "createUserApi",
             del: "deleteUserApi",
+            dels: "pathDeleteUserApi",
             edit: "updateUserApi",
             view: "getUserDetailApi",
           },
@@ -72,23 +73,24 @@ export default {
       addModalFlag: false,
     };
   },
-  watch: {
-    condition: {
-      handler(newVal, oldVal) {
-        if (this.startLoad) {
-          this.handleSearch(this.condition);
-          this.startLoad = false;
-        }
-      },
-      deep: true,
-    },
-  },
+  // watch: {
+  //   condition: {
+  //     handler(newVal, oldVal) {
+  //       if (this.startLoad) {
+  //         this.handleSearch(this.condition);
+  //         this.startLoad = false;
+  //       }
+  //     },
+  //     deep: true,
+  //   },
+  // },
   beforeCreate() {
     this.$on("handleSearch", () => {
       this.handleSearch();
     });
   },
-  mounted() { },
+  mounted() {
+  },
   methods: {
     handleCreate() {
       if (!this.sliderPage.find((item) => item.state === "add")) {
@@ -125,7 +127,7 @@ export default {
     },
     async handleDelete() {
       let arr = this.selects.map((item) => item._id);
-      let res = await this.$api.pathDelete(arr);
+      let res = await this.$api.pathDeleteUserApi(arr);
       if (res) {
         this.handleSearch();
       }
