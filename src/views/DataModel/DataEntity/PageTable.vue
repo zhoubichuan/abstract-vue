@@ -1,17 +1,7 @@
 <template>
-  <web-table-page
-    :value="page"
-    @input="(val) => handleInput(val)"
-    v-loading="loadingFlag"
-    element-loading-text="拼命加载中"
-    element-loading-spinner="el-icon-loading"
-    :data="tableData"
-    stripe
-    highlight-current-row
-    style="width: 100%"
-    @selection-change="handleSelectionChange"
-    class="table-part"
-  >
+  <web-table-page :value="page" @input="(val) => handleInput(val)" v-loading="loadingFlag" element-loading-text="拼命加载中"
+    element-loading-spinner="el-icon-loading" :data="tableData" stripe highlight-current-row style="width: 100%"
+    @selection-change="handleSelectionChange" class="table-part">
     <web-table-column v-for="item in tableRows" :key="item.prop" :item="item" />
   </web-table-page>
 </template>
@@ -23,7 +13,7 @@ export default {
   props: {
     searchConditon: {
       type: Object,
-      default: () => {}
+      default: () => { }
     }
   },
   components: {},
@@ -52,7 +42,7 @@ export default {
       this.$emit('pageChange', this.page)
     },
     handleSearch (condition) {
-      this.queryDataEntityList(condition)
+      this.queryList(condition)
     },
     handleChange (val) {
       console.log(val)
@@ -85,7 +75,7 @@ export default {
         this.handleSearch()
       }
     },
-    async queryDataEntityList (condition = {}) {
+    async queryList (condition = {}) {
       this.loadingFlag = true
       let { current, pageSize } = this.page
       let { result } = await this.$api[this.config.interface.view]({
@@ -132,5 +122,10 @@ export default {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+}
+</style>
+<style>
+.el-table__body-wrapper.is-scrolling-left {
+  height: calc(100% - 37px) !important;
 }
 </style>

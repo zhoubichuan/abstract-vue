@@ -3,45 +3,61 @@
     <!-- 右侧滑窗 -->
     <web-drawer v-model="sliderPage">
       <template slot-scope="pageData">
-        <slider-tabs :pageData="pageData.data"></slider-tabs>
+        <page-slider :pageData="pageData.data"></page-slider>
       </template>
     </web-drawer>
     <!-- 搜索 -->
-    <data-entity-search v-model="condition" @handleSearch="handleSearch" />
+    <page-search v-model="condition" @handleSearch="handleSearch" />
     <!-- 按钮 -->
-    <data-entity-button
-      @handleCreate="handleCreate"
-      @handleDelete="handleDelete"
-      @handlePreRelease="handlePreRelease"
-      @handleRelease="handleRelease"
-      @handleRevise="handleRevise"
-      @handleToVoid="handleToVoid"
-      @handleInvalid="handleInvalid"
-    />
+    <page-button @handleCreate="handleCreate" @handleDelete="handleDelete" @handlePreRelease="handlePreRelease"
+      @handleRelease="handleRelease" @handleRevise="handleRevise" @handleToVoid="handleToVoid"
+      @handleInvalid="handleInvalid" />
     <!-- 数据展示 -->
-    <data-entity-table
-      ref="entityTable"
-      v-model="selects"
-      :searchConditon="condition"
-      @showViewModal="showViewModal"
-      @showEditModal="showEditModal"
-      @pageChange="pageChange"
-      @handleSearch="handleSearch"
-    />
+    <page-table ref="refPageTable" v-model="selects" :searchConditon="condition" @showViewModal="showViewModal"
+      @showEditModal="showEditModal" @pageChange="pageChange" @handleSearch="handleSearch" />
   </div>
 </template>
 <script>
 export default {
   name: "DataEntity",
   components: {
-    DataEntitySearch: () => import("./DataEntitySearch"),
-    DataEntityButton: () => import("./DataEntityButton"),
-    DataEntityTable: () => import("./DataEntityTable"),
-    SliderTabs: () => import("./SliderTabs"),
+    PageSearch: () => import("./PageSearch"),
+    PageButton: () => import("./PageButton"),
+    PageTable: () => import("./PageTable"),
+    PageSlider: () => import("./PageSlider"),
   },
   provide() {
     return {
-      template: "1",
+      config: {
+        template: this.$route.query.template,
+        interface: [
+          {
+            list: "getUserListApi",
+            add: "createUserApi",
+            del: "deleteUserApi",
+            edit: "updateUserApi",
+            view: "getUserDetailApi",
+          },
+          {
+            add: "createDataEntity",
+            del: "deleteDataEntity",
+            edit: "updateDataEntity",
+            view: "getDataEntityList",
+          },
+          {
+            add: "createDataEntity",
+            del: "deleteDataEntity",
+            edit: "updateDataEntity",
+            view: "getDataEntityList",
+          },
+          {
+            add: "createTemplate",
+            del: "deleteTemplate",
+            edit: "updateTemplate",
+            view: "getTemplateList",
+          },
+        ][this.$route.query.template - 1],
+      },
     };
   },
   data() {
@@ -72,7 +88,7 @@ export default {
       this.handleSearch();
     });
   },
-  mounted() {},
+  mounted() { },
   methods: {
     handleCreate() {
       if (!this.sliderPage.find((item) => item.state === "add")) {
@@ -107,17 +123,18 @@ export default {
         });
       }
     },
-    handleDelete() {
+    async handleDelete() {
       let arr = this.selects.map((item) => item._id);
-      this.$api.deleteDataEntity(arr).then((req) => {
+      let res = await this.$api.pathDelete(arr);
+      if (res) {
         this.handleSearch();
-      });
+      }
     },
-    handlePreRelease() {},
-    handleRelease() {},
-    handleRevise() {},
-    handleToVoid() {},
-    handleInvalid() {},
+    handlePreRelease() { },
+    handleRelease() { },
+    handleRevise() { },
+    handleToVoid() { },
+    handleInvalid() { },
     pageChange(page) {
       this.page = page;
       let params = {
@@ -127,8 +144,8 @@ export default {
       this.handleSearch(params);
     },
     handleSearch(condition) {
-      this.$refs.entityTable &&
-        this.$refs.entityTable.queryList(condition);
+      this.$refs.refPageTable &&
+        this.$refs.refPageTable.handleSearch(condition);
     },
   },
 };
@@ -140,12 +157,15 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
 .search-part {
   flex-basis: 20px;
 }
+
 .button-part {
   flex-basis: 20px;
 }
+
 .table-part {
   flex-grow: 1;
   display: flex;

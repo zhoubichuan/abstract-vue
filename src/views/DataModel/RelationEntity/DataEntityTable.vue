@@ -109,7 +109,7 @@ export default {
       this.$emit('pageChange', this.page)
     },
     handleSearch (condition) {
-      this.queryDataEntityList(condition)
+      this.queryList(condition)
     },
     handleChange (val) {
       console.log(val)
@@ -132,7 +132,7 @@ export default {
       this.removeModalFlag = true
       this.productId = row._id
     },
-    async queryDataEntityList (condition = {}) {
+    async queryList (condition = {}) {
       this.loadingFlag = true
       let { current, pageSize } = this.page
       let { result } = await this.$api.getDataEntityList({

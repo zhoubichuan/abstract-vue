@@ -1,29 +1,19 @@
 <template>
-  <web-table-page
-    :value="page"
-    @input="(val) => handleInput(val)"
-    v-loading="loadingFlag"
-    element-loading-text="拼命加载中"
-    element-loading-spinner="el-icon-loading"
-    :data="tableData"
-    stripe
-    highlight-current-row
-    style="width: 100%"
-    @selection-change="handleSelectionChange"
-    class="table-part"
-  >
+  <web-table-page :value="page" @input="(val) => handleInput(val)" v-loading="loadingFlag" element-loading-text="拼命加载中"
+    element-loading-spinner="el-icon-loading" :data="tableData" stripe highlight-current-row style="width: 100%"
+    @selection-change="handleSelectionChange" class="table-part">
     <web-table-column v-for="item in tableRows" :key="item.prop" :item="item" />
   </web-table-page>
 </template>
 
 <script>
-import table from './PageTable.js'
+import table from './PageTableConfig.js'
 export default {
   mixins: [table],
   props: {
     searchConditon: {
       type: Object,
-      default: () => {}
+      default: () => { }
     }
   },
   components: {},
@@ -47,12 +37,6 @@ export default {
     }
   },
   methods: {
-    showViewModal (row) {
-      this.$emit('showViewModal', row)
-    },
-    showEditModal (row) {
-      this.$emit('showEditModal', row)
-    },
     handleInput (val) {
       this.page = val
       this.$emit('pageChange', this.page)
@@ -81,16 +65,20 @@ export default {
       this.removeModalFlag = true
       this.productId = row._id
     },
-    async deleteModal (id) {
-      let res = await this.$api.deleteDataEntity(id)
+    async deleteModal (row) {
+      let res = await this.$api[this.config.interface.del](row._id)
       if (res) {
+        this.$message({
+          message: '数据删除成功',
+          type: 'success'
+        })
         this.handleSearch()
       }
     },
     async queryList (condition = {}) {
       this.loadingFlag = true
       let { current, pageSize } = this.page
-      let { result } = await this.$api.getDataEntityList({
+      let { result } = await this.$api[this.config.interface.list]({
         current,
         pageSize,
         ...condition
@@ -134,5 +122,10 @@ export default {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+}
+</style>
+<style>
+.el-table__body-wrapper.is-scrolling-left {
+  height: calc(100% - 37px) !important;
 }
 </style>

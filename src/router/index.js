@@ -21,10 +21,26 @@ let router = new Router({
       component: () => import('@/views/localhost')
     },
     {
+      path: '/user',
+      name: 'user',
+      component: () => import('@/views/Admin'),
+      children: [
+        {
+          path: 'list',
+          name: 'list',
+          component: () => import('@/views/User/UserList')
+        },
+        {
+          path: 'info/:id',
+          name: 'info',
+          component: () => import('@/views/User/UserInfo')
+        },
+      ]
+    },
+    {
       path: '/admin',
       name: 'admin',
       component: () => import('@/views/Admin'),
-      redirect: '/admin/DataEntity', // 登录成功后跳转的位置
       children: [
         {
           path: 'dataEntity',
@@ -66,16 +82,6 @@ let router = new Router({
           path: 'index',
           name: 'index',
           component: () => import('@/views/Index')
-        },
-        {
-          path: 'userList',
-          name: 'userList',
-          component: () => import('@/views/User/UserList')
-        },
-        {
-          path: 'userInfo/:id',
-          name: 'userInfo',
-          component: () => import('@/views/User/UserInfo')
         },
         {
           path: 'upload',

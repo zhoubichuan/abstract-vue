@@ -18,7 +18,7 @@ export default {
     },
     async getConfig (condition = {}) {
       this.loadingFlag = true
-      let { result } = await this.$api.getDataEntityList({
+      let { result } = await this.$api[this.config.interface.list]({
         ...condition
       })
       if (result) {
@@ -35,8 +35,8 @@ export default {
               attrs: { fixed: 'left', type: 'index', width: '55' }
             },
             {
-              prop: 'code',
-              label: '编码',
+              prop: '_id',
+              label: '用户编码',
               attrs: { 'show-overflow-tooltip': true, width: '100' },
               render: (
                 h,
@@ -60,13 +60,8 @@ export default {
               }
             },
             {
-              prop: 'name',
-              label: '中文名称',
-              attrs: { 'show-overflow-tooltip': true }
-            },
-            {
-              prop: 'nameEn',
-              label: '英文名称',
+              prop: 'username',
+              label: '用户名称',
               attrs: { 'show-overflow-tooltip': true }
             },
             {
@@ -75,28 +70,18 @@ export default {
               attrs: { 'show-overflow-tooltip': true }
             },
             {
-              prop: 'descriptEn',
-              label: '英文描述',
+              prop: 'access',
+              label: '权限',
               attrs: { 'show-overflow-tooltip': true }
             },
             {
-              prop: 'version',
-              label: '版本',
+              prop: 'phone',
+              label: '电话',
               attrs: { 'show-overflow-tooltip': true }
             },
             {
-              prop: 'state',
-              label: '状态',
-              attrs: { 'show-overflow-tooltip': true }
-            },
-            {
-              prop: 'eos',
-              label: 'EOS时间',
-              attrs: { 'show-overflow-tooltip': true }
-            },
-            {
-              prop: 'modeType',
-              label: '模型类型',
+              prop: 'email',
+              label: '邮箱',
               attrs: { 'show-overflow-tooltip': true }
             },
             {
@@ -117,11 +102,6 @@ export default {
             {
               prop: 'modifyTime',
               label: '更新时间',
-              attrs: { 'show-overflow-tooltip': true }
-            },
-            {
-              prop: 'tags',
-              label: '标签',
               attrs: { 'show-overflow-tooltip': true }
             },
             {
@@ -234,21 +214,21 @@ export default {
               label: '模型类型',
               attrs: { 'show-overflow-tooltip': true }
             },
-            {
-              prop: 'creater',
-              label: '创建者',
-              attrs: { 'show-overflow-tooltip': true }
-            },
+            // {
+            //   prop: 'creater',
+            //   label: '创建者',
+            //   attrs: { 'show-overflow-tooltip': true }
+            // },
             {
               prop: 'creatTime',
               label: '创建时间',
               attrs: { 'show-overflow-tooltip': true }
             },
-            {
-              prop: 'modifier',
-              label: '更新者',
-              attrs: { 'show-overflow-tooltip': true }
-            },
+            // {
+            //   prop: 'modifier',
+            //   label: '更新者',
+            //   attrs: { 'show-overflow-tooltip': true }
+            // },
             {
               prop: 'modifyTime',
               label: '更新时间',

@@ -19,7 +19,6 @@ export function getInfo (token) {
 }
 
 export function userLogin (data) {
-  console.log(data)
   return request({
     url: '/api/user/login',
     method: 'post',

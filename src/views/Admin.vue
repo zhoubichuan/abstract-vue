@@ -3,38 +3,20 @@
     <el-aside width="auto">
       <el-row>
         <el-col :span="24">
-          <el-menu
-            :collapse="isCollapse"
-            :default-active="navActive"
-            :default-openeds="openeds"
-            class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose"
-            background-color="#2f4050"
-            text-color="#fff"
-            active-text-color="#ffd04b"
-            router
-          >
-            <el-submenu
-              v-for="item in menus"
-              :key="item.index"
-              :index="item.index"
-            >
+          <el-menu :collapse="isCollapse" :default-active="navActive" :default-openeds="openeds"
+            class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#2f4050"
+            text-color="#fff" active-text-color="#ffd04b" router>
+            <el-submenu v-for="item in menus" :key="item.index" :index="item.index">
               <template slot="title">
                 <i :class="item.ico"></i>
                 <span>{{ item.title }}</span>
               </template>
               <el-menu-item-group>
-                <template v-for="childItem in item.childrens">
-                  <!--  v-if="childItem.authority && childItem.authority.includes($store.state.role)" -->
-                  <el-menu-item
-                    :key="childItem.index"
-                    :index="childItem.index"
-                    :route="childItem.route"
-                  >
-                    {{ childItem.title }}
-                  </el-menu-item>
-                </template>
+                <!--  v-if="childItem.authority && childItem.authority.includes($store.state.role)" -->
+                <el-menu-item v-for="childItem in item.childrens" :key="childItem.index" :index="childItem.index"
+                  :route="childItem.route">
+                  {{ childItem.title }}
+                </el-menu-item>
               </el-menu-item-group>
             </el-submenu>
           </el-menu>
@@ -46,31 +28,15 @@
         <el-header>
           <el-row type="flex" justify="space-between">
             <el-col :span="6">
-              <el-radio-group
-                v-model="isCollapse"
-                style="margin: 10px 0"
-                size="mini"
-              >
+              <el-radio-group v-model="isCollapse" style="margin: 10px 0" size="mini">
                 <el-radio-button :label="false">展开</el-radio-button>
                 <el-radio-button :label="true">收起</el-radio-button>
               </el-radio-group>
             </el-col>
             <el-col :sm="{ span: 5, offset: 13 }" :lg="{ span: 4, offset: 15 }">
               <div class="profile">
-                <img
-                  :src="avatarUrl"
-                  alt="logo"
-                  width="42"
-                  height="42"
-                  v-if="avatarUrl"
-                />
-                <img
-                  src="./../assets/img/a1.jpg"
-                  alt="logo"
-                  width="42"
-                  height="42"
-                  v-else
-                />
+                <img :src="avatarUrl" alt="logo" width="42" height="42" v-if="avatarUrl" />
+                <img src="./../assets/img/a1.jpg" alt="logo" width="42" height="42" v-else />
               </div>
               <el-dropdown @command="loginOut">
                 <span class="el-dropdown-link">
@@ -113,19 +79,14 @@ export default {
               title: '下载管理'
             },
             {
-              index: 'UserLists',
-              route: '/admin/UserLists',
+              index: 'user-list',
+              route: '/user/list?template=1',
               title: '用户列表'
             },
             {
-              index: 'UserDetail',
-              route: '/admin/UserDetail',
+              index: 'user-info',
+              route: '/user/info',
               title: '用户详情'
-            },
-            {
-              index: 'template',
-              route: '/admin/dataEntity?template=4',
-              title: '数据模板'
             }
           ]
         },
@@ -142,34 +103,22 @@ export default {
             },
             {
               index: 'relationEntity',
-              route: '/admin/dataEntity?template=2',
+              route: '/admin/relationEntity',
               authority: [50],
               title: '关系实体'
             },
             {
               index: 'dataInstance',
-              route: '/admin/dataEntity?template=3',
+              route: '/admin/dataInstance',
               authority: [50],
               title: '数据实例'
-            },
-            // {
-            //   index: 'relationEntity',
-            //   route: '/admin/relationEntity',
-            //   authority: [50],
-            //   title: '关系实体'
-            // },
-            // {
-            //   index: 'dataInstance',
-            //   route: '/admin/dataInstance',
-            //   authority: [50],
-            //   title: '数据实例'
-            // },
-            {
-              index: 'dataGraph',
-              route: '/admin/dataGraph',
-              authority: [50],
-              title: '数据图谱'
             }
+            // {
+            //   index: 'dataGraph',
+            //   route: '/admin/dataGraph',
+            //   authority: [50],
+            //   title: '数据图谱'
+            // }
           ]
         },
         {
@@ -295,10 +244,10 @@ export default {
       }
     },
     handleOpen (key, keyPath) {
-      // console.log(key, keyPath)
+      console.log(key, keyPath)
     },
     handleClose (key, keyPath) {
-      // console.log(key, keyPath)
+      console.log(key, keyPath)
     },
     handleCommand (command) {
       if (command === '1') {
@@ -321,25 +270,25 @@ export default {
     }
   },
   watch: {
-    $route (to, from) {
-      switch (to.path.slice(7)) {
-        case 'userList':
-          this.navActive = '1-1'
-          break
-        case '/order/add':
-          this.navActive = '2-1'
-          break
-        case '/order/list':
-          this.navActive = '2-2'
-          break
+    // $route (to, from) {
+    //   switch (to.path.slice(7)) {
+    //     case 'userList':
+    //       this.navActive = '1-1'
+    //       break
+    //     case '/order/add':
+    //       this.navActive = '2-1'
+    //       break
+    //     case '/order/list':
+    //       this.navActive = '2-2'
+    //       break
 
-        case '':
-          this.navActive = ''
-          break
-        default:
-          this.navActive = '1-1'
-      }
-    }
+    //     case '':
+    //       this.navActive = ''
+    //       break
+    //     default:
+    //       this.navActive = '1-1'
+    //   }
+    // }
   }
 }
 </script>
@@ -367,6 +316,7 @@ export default {
   margin-top: 10px;
   vertical-align: top;
 }
+
 .profile img {
   border-radius: 50%;
 }
@@ -375,10 +325,12 @@ export default {
   width: 220px;
   min-height: 400px;
 }
+
 .el-menu-vertical-demo {
   height: 100vh;
   border: none;
 }
+
 .el-header {
   background-color: #e9eef3;
   color: #333;
@@ -399,7 +351,7 @@ export default {
   margin: 20px;
 }
 
-body > .el-container {
+body>.el-container {
   margin-bottom: 40px;
 }
 
@@ -407,6 +359,7 @@ body > .el-container {
   display: inline-block;
   vertical-align: middle;
   margin-left: 5px;
+
   a: {
     color: #909399;
   }
