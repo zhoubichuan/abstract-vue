@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "axios": "0.21.1",
-    "chart.js": "2.7.1",
+    "chart.js": "2.9.4",
     "element-ui": "2.13.1",
     "vue": "2.5.17",
     "vue-router": "3.0.1",
