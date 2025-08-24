@@ -15,7 +15,8 @@
     "build": "node build/build.js",
     "dll": "node build/build.dll.js",
     "deploy": "bash deploy.sh",
-    "gh-pages": "bash github.sh"
+    "gh-pages": "bash github.sh",
+    "scp": "scp -r ./abstract-vue/* root@zhoubichuan.com:/usr/src/zhoubichuan/prod/abstract-vue"
   },
   "dependencies": {
     "axios": "0.21.1",

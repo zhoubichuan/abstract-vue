@@ -7,8 +7,12 @@
 </template>
 
 <script>
+import { getMeuns } from './json/index'
 export default {
-  name: 'app'
+  name: 'app',
+  mounted () {
+    getMeuns()
+  }
 }
 </script>
 
@@ -20,9 +24,11 @@ export default {
   width: 100%;
   height: 100vh;
 }
+
 .el-drawer.rtl {
   width: 100% !important;
 }
+
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
 ::-webkit-scrollbar {
   width: 7px;
@@ -45,6 +51,7 @@ export default {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
   background-color: #c8c8c8;
 }
+
 .admin {
   height: 100%;
 }
