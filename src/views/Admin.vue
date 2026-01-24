@@ -3,18 +3,35 @@
     <el-aside width="auto">
       <el-row>
         <el-col :span="24">
-          <el-menu :collapse="isCollapse" :default-active="navActive" :default-openeds="openeds"
-            class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#2f4050"
-            text-color="#fff" active-text-color="#ffd04b" router>
-            <el-submenu v-for="item in menus" :key="item.index" :index="item.index">
+          <el-menu
+            :collapse="isCollapse"
+            :default-active="navActive"
+            :default-openeds="openeds"
+            class="el-menu-vertical-demo"
+            @open="handleOpen"
+            @close="handleClose"
+            background-color="#2f4050"
+            text-color="#fff"
+            active-text-color="#ffd04b"
+            router
+          >
+            <el-submenu
+              v-for="item in menus"
+              :key="item.index"
+              :index="item.index"
+            >
               <template slot="title">
                 <i :class="item.ico"></i>
                 <span>{{ item.title }}</span>
               </template>
               <el-menu-item-group>
                 <!--  v-if="childItem.authority && childItem.authority.includes($store.state.role)" -->
-                <el-menu-item v-for="childItem in item.childrens" :key="childItem.index" :index="childItem.index"
-                  :route="childItem.route">
+                <el-menu-item
+                  v-for="childItem in item.childrens"
+                  :key="childItem.index"
+                  :index="childItem.index"
+                  :route="childItem.route"
+                >
                   {{ childItem.title }}
                 </el-menu-item>
               </el-menu-item-group>
@@ -28,15 +45,31 @@
         <el-header>
           <el-row type="flex" justify="space-between">
             <el-col :span="6">
-              <el-radio-group v-model="isCollapse" style="margin: 10px 0" size="mini">
+              <el-radio-group
+                v-model="isCollapse"
+                style="margin: 10px 0"
+                size="mini"
+              >
                 <el-radio-button :label="false">展开</el-radio-button>
                 <el-radio-button :label="true">收起</el-radio-button>
               </el-radio-group>
             </el-col>
             <el-col :sm="{ span: 5, offset: 13 }" :lg="{ span: 4, offset: 15 }">
               <div class="profile">
-                <img :src="avatarUrl" alt="logo" width="42" height="42" v-if="avatarUrl" />
-                <img src="./../assets/img/a1.jpg" alt="logo" width="42" height="42" v-else />
+                <img
+                  :src="avatarUrl"
+                  alt="logo"
+                  width="42"
+                  height="42"
+                  v-if="avatarUrl"
+                />
+                <img
+                  src="./../assets/img/a1.jpg"
+                  alt="logo"
+                  width="42"
+                  height="42"
+                  v-else
+                />
               </div>
               <el-dropdown @command="loginOut">
                 <span class="el-dropdown-link">
@@ -133,7 +166,6 @@ export default {
     //     case '/order/list':
     //       this.navActive = '2-2'
     //       break
-
     //     case '':
     //       this.navActive = ''
     //       break
@@ -203,7 +235,7 @@ export default {
   margin: 20px;
 }
 
-body>.el-container {
+body > .el-container {
   margin-bottom: 40px;
 }
 
