@@ -19,7 +19,7 @@
      "scp:prod": "scp -r ./abstract-vue/* root@zhoubichuan.com:/usr/src/zhoubichuan/prod/abstract-vue"
   },
   "dependencies": {
-    "axios": "0.21.1",
+    "axios": "1.6.0",
     "chart.js": "2.7.1",
     "element-ui": "2.13.1",
     "vue": "2.5.17",
